@@ -1,0 +1,183 @@
+.text_input, .select_input {
+	width: 50%;
+	margin-top: 10px;
+  margin-bottom: 10px;
+  @media screen and (max-width: $small-width) {
+    margin: 5px;
+  }
+
+	label {
+		color: lightgrey;
+		font-size: 1rem;
+		display: block;
+		margin: 0;
+    margin-top: 10px;
+    margin-left: 20px;
+
+    &.required:after {
+      content:"*";
+      color: red; 
+      font-weight: bolder;
+    }
+	}
+
+	input, select{
+		border-width: 0 0 1px 0;
+		border-color: lightgrey;
+		font-size: 1.2em;
+		display: block;
+    width: 95%;
+    margin: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.5rem;
+    color: #666;
+
+    //.error {}
+
+    &:hover, &:focus {
+		border-width: 0 0 2px 0;
+		border-color: $main-color;
+    color: black;
+    }
+
+    &:hover + label, &:focus + label {
+    	color: $main-color;
+    }
+	}
+}
+
+.input_error {
+  color: red;
+
+  input {
+    color: red;
+    border-width: 0 0 2px 0;
+    border-color: red;
+  }
+
+  label {
+    color:  red;
+  }
+
+  span {
+    font-size: 0.8rem;
+    color:  red;
+  }
+}
+
+.button {
+  background-color: $main-color;
+  color: white;
+  font-size: 1.2rem;
+  border-style: none;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  margin: 10px;
+}
+
+.check_input {
+  width: 25%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  .label_container:hover {
+    .value_text {
+      border-color: $main-color;
+      border-width: 0 0 2px 0;
+      color: black;
+    }
+  }
+
+  .label_container:hover + .label {
+    color: $main-color;
+  }
+
+  input[type=checkbox] {
+    display: none;
+  }
+
+  input[type=checkbox]:checked + .value_text {
+    .true { 
+      display: block;
+    }
+
+    .false {
+      display: none;
+    }
+}
+
+  .value_text{
+    border-width: 0 0 1px 0;
+    border-color: lightgrey;
+    border-style: solid;
+    font-size: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    color: #666;
+    width: 90%;
+
+    .true { 
+      display: none;
+    }
+    
+    .false {
+      display: block;
+    }
+
+    i {
+      float: right;
+    }
+
+    span {
+    }
+  }
+
+  .label {
+    color: lightgrey;
+    font-size: 1rem;
+    display: block;
+    margin: 0;
+    margin-top: 10px;
+    margin-left: 20px;
+  }
+}
+
+.input_full {
+  width: 100%;
+
+  input, select, .value_text {
+    width: 97.5%;
+  }
+}
+
+.input_big {
+  width: 75%;
+
+  input, select, .value_text {
+    width: 95%;
+  }
+}
+
+.input_medium {
+  width: 33%;
+
+  input, select, .value_text {
+    width: 92.5%;
+  }
+}
+
+.input_small {
+  width: 25%;
+
+  input, select, .value_text {
+    width: 90%;
+  }
+}
+
+.input_mini {
+  width: 16.6%;
+
+  input, select, .value_text {
+    width: 90%;
+  }
+}

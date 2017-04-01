@@ -1,0 +1,11 @@
+$size-mod : 1;
+
+.small_icon {
+	$size-mod: 4;
+	width: 40px;
+	height: 40px;
+}
+
+.round {
+	clip-path: circle((5px * $size-mod) at center);
+}

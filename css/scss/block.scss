@@ -1,0 +1,62 @@
+.block {
+  background-color: white;
+  width: 800px;
+  max-width: 95%;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+
+  .header {
+    color: white;
+    width: 100%;
+    background-color: $main-color;
+    box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2),0 0px 20px 0 rgba(0,0,0,0.19);
+
+    div {
+      padding: 5px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    span {
+      font-size: 3rem;
+      font-weight: bold;
+      transition: transform 0.5s;
+
+      @media screen and (max-width: $small-width) {
+        font-size: 2rem;
+      }
+
+      &.rotated {
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        -webkit-transition: transform 0.7s;
+        transition: transform 0.7s;
+      }
+
+      &:hover {
+        color: $light-color;
+        cursor: pointer;
+      }
+
+      &:active {
+        color: $dark-color;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .body {
+    margin: 20px;
+    margin-bottom: 40px;
+    @media screen and (max-width: $small-width) {
+      margin: 5px;
+      margin-top: 10px;
+      margin-bottom: 30px;
+    }
+    
+    &.hidden {
+      display: none;
+    }
+  }
+}
