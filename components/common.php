@@ -4,6 +4,8 @@ abstract class Component {
   public $extra_classes = "";
   public $id = "";
   public $id_text = "";
+  public $class_text = "";
+  public $component_class = "";
 
   function __construct($args){
     foreach ($args as $key => $val) {
@@ -13,6 +15,8 @@ abstract class Component {
       }
     }
     $this->id_text = ($this->id ? "id=\"$this->id\"" : "");
+    $this_>class_text = "class=\"$this->component_class" . ($this->extra_classes ? " " . $this->extra_classes : "") . "\"";
+   
   }
 
   public function __get($attribute) {
@@ -302,15 +306,17 @@ class Tooltip extends Component{
   public $content = "";
   public $position = "";
   public $is_error = false;
+  
+  private $positions = [
+    "top",
+    "bottom",
+    "left",
+    "right"
+  ];
 
   public function get_component() {
     $positon = "";
-    if(
-      ($this->position == "left") ||
-      ($this->position == "right") ||
-      ($this->position == "top") ||
-      ($this->position == "bottom")
-    ) {
+    if(in_array($this->position, $this->positions)) {
       $position = $this->position;
     } else {
       $position = "bottom";
