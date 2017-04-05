@@ -2,13 +2,14 @@
 require_once ("components/common.php");
 ?>
 
-<div class="row">
+<div class="row mobile_column">
   <?=new Text_Input([
     "label" => "Username",
     "name" => "username",
     "is_required" => true,
     "max_characters" => 20,
-    "id" => "username"
+    "id" => "username",
+    "error_message" => "Username is taken"
   ]);?>
   <?=new Text_Input([
     "label" => "Email Address",
@@ -35,7 +36,7 @@ require_once ("components/common.php");
     "max_characters" => 20
   ]);?>
 </div>
-<div class="row">
+<div class="row mobile_column">
   <?=new Text_Input([
     "label" => "Real Name",
     "name" => "realname",

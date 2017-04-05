@@ -2,7 +2,7 @@
 require_once('common.php');
 
 function login_modal() {
-  return new Modal([
+  $modal = new Modal([
     "title" => "Login",
     "template" => "header/login_modal",
     "activator" => (
@@ -11,6 +11,10 @@ function login_modal() {
       </a>'
       ),
     "container_classes" => "right"
+  ]);
+  return new Tooltip([
+    "focus" => $modal->get_component(),
+    "content" => "testttttt"
   ]);
 }
 

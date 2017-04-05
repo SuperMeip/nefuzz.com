@@ -41,9 +41,9 @@ class Text_Input extends Component {
   public $label = "";
   public $is_password = false;
   public $is_required = false;
-  public $is_large = false;
   public $size = "normal";
   public $max_characters = 0;
+  public $error_message = "";
 
   public function get_component() {
     $max_characters = ($this->max_characters ? "maxLength=\"$this->max_characters\"" : "");
@@ -66,18 +66,27 @@ class Text_Input extends Component {
         $size = "medium";
         break;
       default:
-        $size = "";
+        $size = "normal";
         break;
     }
     $class = "class=\"text_input" . ($size ? " input_$size" : "") . ($this->extra_classes ? " $this->extra_classes" : "") . "\"";
     $required = ($this->is_required ? "required" : "");
     $name = ($this->name ? "name=\"$this->name\"" : "");
     $label_class = ($this->is_required ? "class =\"required\"" : "");
+    $error_tooltip = $this->error_message ? new Tooltip([
+      "content" => $this->error_message,
+      "focus" => $this->label,
+      "is_error" => true,
+      "position" => "right",
+      ""
+    ]) : "$this->label";
 
     return "
     <div $class $this->id_text>
       <input $type $name $max_characters $required/>
-      <label $label_class> $this->label <span id=\"$this->name-error\" class=\"right\"></span></label>
+      <label $label_class>
+        $error_tooltip
+      </label>
     </div>
   ";
   }
@@ -119,7 +128,7 @@ class Modal extends Component {
     $content = ($this->template ? Template($this->template) : $this->content);
 
     return "
-      <div $container_class $this->id_text
+      <div $container_class $this->id_text>
         <div $activator_class>
           $this->activator
         </div>
@@ -282,6 +291,38 @@ class Check_Input extends Component {
         </div>
         <div $label_class>
           $this->label
+        </div>
+      </div>
+    ";
+  }
+}
+
+class Tooltip extends Component{
+  public $focus = "";
+  public $content = "";
+  public $position = "";
+  public $is_error = false;
+
+  public function get_component() {
+    $positon = "";
+    if(
+      ($this->position == "left") ||
+      ($this->position == "right") ||
+      ($this->position == "top") ||
+      ($this->position == "bottom")
+    ) {
+      $position = $this->position;
+    } else {
+      $position = "bottom";
+    }
+    $tooltip_class = "class=\"tooltip " . $position . ($this->is_error ? " error" : "") . "\"";
+    $class = "class=\"tooltip_container" . ($this->extra_classes ? " " . $this->extra_classes : "") . "\"";
+
+    return "
+      <div $class>
+        $this->focus
+        <div $tooltip_class>
+          $this->content
         </div>
       </div>
     ";

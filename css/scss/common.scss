@@ -33,6 +33,20 @@ main {
   &.center {
     justify-content: center;
   }
+
+  &.mobile_column {
+    @media screen and (max-width: $small-width) {
+      flex-direction: column;
+      
+      .input_normal,
+      .input_small,
+      .input_mini,
+      .input_big,
+      .input_medium {
+        width: 97.5%;
+      }
+    }
+  }
 }
 
 .right {

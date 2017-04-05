@@ -19,7 +19,7 @@ function contact_inputs() {
   $output = "<div class=\"row center\">\n";
   foreach ($GLOBALS["contact_methods"] as $text => $value) {
     if (($count % 3) == 0) {
-      $output .= "</div>\n<div class=\"row center\">\n";
+      $output .= "</div>\n<div class=\"row center mobile_column\">\n";
     }
     if($value != "email") {
       $output .= new Text_Input([

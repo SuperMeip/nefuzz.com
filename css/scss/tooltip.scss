@@ -1,0 +1,98 @@
+.tooltip_container {
+  position: relative;
+  display: inline-block;
+
+  &:hover {
+    .tooltip.hover {
+      visibility: visible;
+    }
+  }
+
+  &.display {
+    .tooltip {
+      visibility: visible;
+    }
+  }
+
+  .tooltip {
+    visibility: hidden;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    width: 150px;
+    background-color: rgba(black, .7);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+
+    &::after {
+      content: "";
+      position: absolute;
+      border-style: solid;
+    }
+
+    &.top {
+      bottom: 110%;
+      margin-left: -75px;
+      left: 50%;
+
+      &::after {
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-color: rgba(black, .7) transparent transparent transparent;
+      }
+    }
+
+    &.bottom {
+      top: 110%;
+      margin-left: -75px;
+      left: 50%;
+
+      &::after {
+        bottom: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-color: transparent transparent rgba(black, .7) transparent;
+      }
+    }
+
+    &.left {
+      top: 25%px;
+      right: 105%; 
+
+      &::after {
+        top: 50%;
+        left: 100%;
+        margin-top: -5px;
+        border-width: 5px;
+        border-color: transparent transparent transparent rgba(black, .7);
+      }
+    }
+
+    &.right {
+      top: 25%px;
+      left: 105%; 
+      $tooltip-color: black;
+
+      &.error {
+        $tooltip-color: red;
+        top: -20%;
+        left: 130%;
+      }
+
+      background-color: rgba($tooltip-color, .7);
+
+      &::after {
+        top: 50%;
+        right: 100%;
+        margin-top: -5px;
+        border-width: 5px;
+        border-color: transparent rgba($tooltip-color, .7) transparent transparent;
+      }
+    }
+  }
+}
