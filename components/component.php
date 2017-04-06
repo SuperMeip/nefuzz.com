@@ -1,6 +1,7 @@
 <?php
 
 abstract class Component {
+  private static $component_class = "change_me";
   public $extra_classes = "";
   public $id = "";
 
@@ -11,7 +12,6 @@ abstract class Component {
         $this->{$name} = $val;
       }
     }
-    $this->id_text = ($this->id ? "id=\"$this->id\"" : "");
   }
   
   private function id($prefix) {

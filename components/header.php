@@ -10,11 +10,12 @@ function login_modal() {
         <img src="img/login.png" class="small_icon round"/>
       </a>'
       ),
-    "container_classes" => "right"
   ]);
   return new Tooltip([
     "focus" => $modal->get_component(),
-    "content" => "testttttt"
+    "position" => "bottom",
+    "content" => "Login",
+    "extra_classes" => "right"
   ]);
 }
 
