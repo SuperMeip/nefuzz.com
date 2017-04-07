@@ -1,4 +1,4 @@
-/* compiled by scssphp v0.0.12 on Thu, 06 Apr 2017 20:11:20 -0400 (0.0491s) */
+/* compiled by scssphp v0.0.12 on Thu, 06 Apr 2017 21:22:19 -0400 (0.0607s) */
 
 html {
   font-size: 14px;
@@ -126,7 +126,7 @@ header {
 .modal {
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 3;
   padding-top: 100px;
   padding-bottom: 100px;
   left: 0;
@@ -245,23 +245,23 @@ header {
   padding: 0.5rem 1rem 0.5rem 1rem;
   margin: 10px; }
 
-.check_input {
+.checkbox_input {
   width: 25%;
   margin-top: 10px;
   margin-bottom: 10px; }
-  .check_input .label_container:hover .value_text {
+  .checkbox_input .label_container:hover .value_text {
     border-color: green;
     border-width: 0 0 2px 0;
     color: black; }
-  .check_input .label_container:hover + .label {
+  .checkbox_input .label_container:hover + .label {
     color: green; }
-  .check_input input[type=checkbox] {
+  .checkbox_input input[type=checkbox] {
     display: none; }
-  .check_input input[type=checkbox]:checked + .value_text .true {
+  .checkbox_input input[type=checkbox]:checked + .value_text .true {
     display: block; }
-    .check_input input[type=checkbox]:checked + .value_text .false {
+    .checkbox_input input[type=checkbox]:checked + .value_text .false {
       display: none; }
-  .check_input .value_text {
+  .checkbox_input .value_text {
     border-width: 0 0 1px 0;
     border-color: lightgrey;
     border-style: solid;
@@ -271,15 +271,15 @@ header {
     color: #666;
     width: 90%; }
     @media screen and (max-width: 480px) {
-  .check_input .value_text {
+  .checkbox_input .value_text {
     font-size: 1.2rem; } }
-    .check_input .value_text .true {
+    .checkbox_input .value_text .true {
       display: none; }
-    .check_input .value_text .false {
+    .checkbox_input .value_text .false {
       display: block; }
-    .check_input .value_text i {
+    .checkbox_input .value_text i {
       float: right; }
-    .check_input .label {
+    .checkbox_input .label {
       color: lightgrey;
       display: block;
       margin: 0;

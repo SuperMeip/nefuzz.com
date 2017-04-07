@@ -33,12 +33,12 @@ require_once("components/common.php");
     "size" => "big",
     "max_characters" => 200
   ]);?>
-  <?=new Check_Input([
+  <?=new Checkbox_Input([
     "label" => "Bee Allergy",
     "name" => "beeallergy",
     "size" => "mini"
   ]);?>
-  <?=new Check_Input([
+  <?=new Checkbox_Input([
     "label" => "Food Allergy",
     "name" => "foodallergy",
     "size" => "mini"

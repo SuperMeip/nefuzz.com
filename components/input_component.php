@@ -1,7 +1,7 @@
 <?php
 require_once('component.php');
 
-abstract class Input_Componenet extends Componenet {
+abstract class Input_Component extends Component {
 	public $size = "";
   public $name = "";
   public $label = "";
@@ -25,21 +25,21 @@ abstract class Input_Componenet extends Componenet {
     }
 	}
 	
-	private function class() {
-    $size =$this->check_size();
-	  $class = "class=\"text_input input_$size" . ($this->extra_classes ? " $this->extra_classes" : "") . "\"";
+	protected function class() {
+    $size = $this->check_size();
+	  return "class=\"$this->component_class input_$size" . ($this->extra_classes ? " $this->extra_classes" : "") . "\"";
 	}
 	
-	private function required() {
+	protected function required() {
 	  return ($this->is_required ? "required" : "");
 	}
   
-  private function name() {
+  protected function name() {
     return ($this->name ? "name=\"$this->name\"" : "");
   }
   
-  private function label_class() {
+  protected function label_class() {
     $text = "class =\"" . ($this->is_required ? "required" : "") . ($this->label_classes ? " $this->label_classes" : "") . "\"";
-    return (strlen($text) > 8 ? $text : "");
+    return (strlen($text) > 7 ? $text : "");
   }
 }

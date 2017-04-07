@@ -1,7 +1,7 @@
 <?php
 
 abstract class Component {
-  private static $component_class = "change_me";
+  protected $component_class = "change_me";
   public $extra_classes = "";
   public $id = "";
 
@@ -14,11 +14,11 @@ abstract class Component {
     }
   }
   
-  private function id($prefix) {
+  protected function id($prefix = "") {
       return ($this->id ? "id=\"$this->id\"" : "");
   }
   
-  private function class() {
+  protected function class() {
     return "class=\"$this->component_class" . ($this->extra_classes ? " " . $this->extra_classes : "") . "\"";
   }
 
@@ -28,7 +28,7 @@ abstract class Component {
 
   public function __set($attribute, $value) {
     if (isset($this->{$attribute})) {
-      $this->{$attribute} = $val;
+      $this->{$attribute} = $value;
     }
   }
 
@@ -41,4 +41,10 @@ abstract class Component {
   }
 
   abstract public function get_component();
+}
+
+function Template($name){
+  ob_start();
+  include("templates/" . $name . ".php");
+  return ob_get_clean();
 }

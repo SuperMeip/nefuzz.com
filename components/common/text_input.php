@@ -1,7 +1,8 @@
 <?php
 require_once("components/input_component.php");
 
-class Text_Input extends Input_Componenet {
+class Text_Input extends Input_Component {
+  protected $component_class = "text_input";
   public $is_password = false;
   public $max_characters = 0;
   public $error_message = "";
@@ -18,7 +19,7 @@ class Text_Input extends Input_Componenet {
     ]) : "$this->label";
 
     return "
-    <div $class {$this->id()}>
+    <div {$this->class()} {$this->id()}>
       <input $type {$this->name()} $max_characters {$this->required()}/>
       <label {$this->label_class()}>
         $error_tooltip
