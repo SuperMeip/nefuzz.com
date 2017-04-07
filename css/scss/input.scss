@@ -76,10 +76,28 @@
   border-style: none;
   padding: 0.5rem 1rem 0.5rem 1rem;
   margin: 10px;
+  
+  &.large {
+    font-size: 1.5rem;
+    border-style: none;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    margin: 2rem;
+  }
+  
+  &.lone {
+    box-shadow: 0 4px 8px 0 rgba(100,100,100,0.2),0 6px 20px 0 rgba(100,100,100,0.19);
+  }
 }
 
 .checkbox_input {
   width: 25%;
+}
+
+.upload {
+  width: 50%;
+}
+
+.checkbox_input, .upload{
   margin-top: 10px;
   margin-bottom: 10px;
 
@@ -95,7 +113,7 @@
     color: $main-color;
   }
 
-  input[type=checkbox] {
+  input[type=checkbox], input[type=file] {
     display: none;
   }
 
@@ -117,7 +135,7 @@
     @media screen and (max-width: $small-width) {
       font-size: 1.2rem;
     }
-    margin-left: auto;
+    //margin-left: auto;
     margin-right: auto;
     color: #666;
     width: 90%;

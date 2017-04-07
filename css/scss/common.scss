@@ -8,6 +8,14 @@ html {
   min-height: 100vh;
 }
 
+form.main {
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 body {
   min-height: 100vh;
   background-color: #EEE;
@@ -81,4 +89,9 @@ main {
 
 .unselectable {
   user-select: none;
+}
+
+::selection {
+  background: $light-color;
+  color: black;
 }

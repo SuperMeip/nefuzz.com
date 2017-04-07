@@ -20,7 +20,7 @@ class Text_Input extends Input_Component {
 
     return "
     <div {$this->class()} {$this->id()}>
-      <input $type {$this->name()} $max_characters {$this->required()}/>
+      <input data-validation=\"true\" $type {$this->name()} $max_characters {$this->required()}/>
       <label {$this->label_class()}>
         $error_tooltip
       </label>

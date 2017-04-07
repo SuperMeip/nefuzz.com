@@ -1,6 +1,6 @@
 <?php
-include_once('location.php');
-include_once('db.php');
+include_once('php/models/location.php');
+include_once('php/db.php');
 
 class User {
   const BY_NAME = 0;
@@ -175,7 +175,7 @@ class User {
   }
   
   public static function login ($username, $password) {
-    include_once('auth.php');
+    include_once('php/auth.php');
     $DB = new DBC();
     $result = $DB->query_to_array(
       'SELECT username from ev_users where AuthKey = ? ;',
@@ -193,4 +193,3 @@ class User {
     }
   }
 }
-?>

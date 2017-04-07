@@ -6,4 +6,5 @@ require_once("components/common/modal.php");
 require_once("components/common/block.php");
 require_once("components/common/button.php");
 require_once("components/common/tooltip.php");
+require_once("components/common/upload.php");
 ?>

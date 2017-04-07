@@ -28,6 +28,14 @@ require_once("components/common.php");
 </div>
 <div class="row">
   <?=new Text_Input([
+    "label" => "Relevant Medical Issues",
+    "name" => "medical_issues",
+    "size" => "full",
+    "max_characters" => 200
+  ]);?>
+</div>
+<div class="row">
+  <?=new Text_Input([
     "label" => "Allergies",
     "name" => "allergies",
     "size" => "big",

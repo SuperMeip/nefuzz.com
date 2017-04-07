@@ -7,6 +7,14 @@ error_reporting( E_ALL );
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <title>New England Fuzz</title>
+  <meta name="description" content="A website for hosting and discovering furry meets in New England">
+  <meta name="keywords" content="new england, new, england, massachussetts,
+    boston, harftord, conneticut, vermont, new hampshire, rhode island,
+    providence, maine, furry, fur, furmeet, furbowl, mascot, anthropomorphic,
+    meet, meets, meetup, convention">
+  <meta name="author" content="Meep">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="css/style.php?p=styles.scss" />
   <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">

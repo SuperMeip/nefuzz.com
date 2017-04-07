@@ -11,7 +11,7 @@ class Checkbox_Input extends Input_Component {
   
   public function get_component() {
     $checked = ($this->is_checked ? "checked" : "");
-    $this->label_classes = "label";
+    $this->label_classes .= "label";
   
   return "
       <div {$this->class()} {$this->id()}>

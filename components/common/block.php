@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<script>
 //Block open/close
 $(document).ready(function(){
   $('.block .extend').click(function() {

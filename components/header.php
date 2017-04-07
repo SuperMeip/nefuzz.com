@@ -1,5 +1,21 @@
+<script type="text/javascript">
+//Nav Bar Scroll
+  $(document).ready(function() {
+    $(window).scroll(function () {
+      if ($(window).scrollTop() > 100) {
+        $('#main-nav-bar').addClass('nav_fixed');
+        $('.hidden_bumper').show();
+      }
+      if ($(window).scrollTop() < 101) {
+        $('#main-nav-bar').removeClass('nav_fixed');
+        $('.hidden_bumper').hide();
+      }
+    });
+  });
+</script>
+
 <?php 
-require_once('common.php');
+require_once('components/common.php');
 
 function login_modal() {
   $modal = new Modal([
@@ -29,20 +45,3 @@ function icon_and_logout($user_id) {
     </a>
   ";
 }
-?>
-
-<script type="text/javascript">
-//Nav Bar Scroll
-  $(document).ready(function() {
-    $(window).scroll(function () {
-      if ($(window).scrollTop() > 100) {
-        $('#main-nav-bar').addClass('nav_fixed');
-        $('.hidden_bumper').show();
-      }
-      if ($(window).scrollTop() < 101) {
-        $('#main-nav-bar').removeClass('nav_fixed');
-        $('.hidden_bumper').hide();
-      }
-    });
-  });
-</script>
