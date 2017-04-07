@@ -17,12 +17,12 @@
   .tooltip {
     visibility: hidden;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    width: 150px;
+    max-width: 12rem;
     background-color: rgba(black, .7);
     color: #fff;
     text-align: center;
     border-radius: 6px;
-    padding: 5px 0;
+    padding: 0.5rem 1rem;
     position: absolute;
     z-index: 1;
 
@@ -61,7 +61,7 @@
     }
 
     &.left {
-      top: 25%px;
+      top: 25%;
       right: 105%; 
 
       &::after {
@@ -74,7 +74,7 @@
     }
 
     &.right {
-      top: 25%px;
+      top: 25%;
       left: 105%; 
       $tooltip-color: black;
 

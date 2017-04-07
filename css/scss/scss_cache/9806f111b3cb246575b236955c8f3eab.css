@@ -1,4 +1,4 @@
-/* compiled by scssphp v0.0.12 on Wed, 05 Apr 2017 01:52:59 -0400 (0.0659s) */
+/* compiled by scssphp v0.0.12 on Thu, 06 Apr 2017 20:11:20 -0400 (0.0491s) */
 
 html {
   font-size: 14px;
@@ -387,12 +387,12 @@ footer {
   .tooltip_container .tooltip {
     visibility: hidden;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    width: 150px;
+    max-width: 12rem;
     background-color: rgba(0, 0, 0, .7);
     color: #fff;
     text-align: center;
     border-radius: 6px;
-    padding: 5px 0;
+    padding: 0.5rem 1rem;
     position: absolute;
     z-index: 1; }
     .tooltip_container .tooltip::after {
@@ -420,7 +420,7 @@ footer {
         border-width: 5px;
         border-color: transparent transparent rgba(0, 0, 0, .7) transparent; }
     .tooltip_container .tooltip.left {
-      top: 25%px;
+      top: 25%;
       right: 105%; }
       .tooltip_container .tooltip.left::after {
         top: 50%;
@@ -429,7 +429,7 @@ footer {
         border-width: 5px;
         border-color: transparent transparent transparent rgba(0, 0, 0, .7); }
     .tooltip_container .tooltip.right {
-      top: 25%px;
+      top: 25%;
       left: 105%;
       background-color: rgba(255, 0, 0, .7); }
       .tooltip_container .tooltip.right.error {

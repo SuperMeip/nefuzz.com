@@ -13,7 +13,7 @@ function login_modal() {
   ]);
   return new Tooltip([
     "focus" => $modal->get_component(),
-    "position" => "bottom",
+    "position" => "left",
     "content" => "Login",
     "extra_classes" => "right"
   ]);

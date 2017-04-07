@@ -14,9 +14,6 @@ abstract class Component {
         $this->{$name} = $val;
       }
     }
-    $this->id_text = ($this->id ? "id=\"$this->id\"" : "");
-    $this_>class_text = "class=\"$this->component_class" . ($this->extra_classes ? " " . $this->extra_classes : "") . "\"";
-   
   }
 
   public function __get($attribute) {
@@ -321,7 +318,7 @@ class Tooltip extends Component{
     } else {
       $position = "bottom";
     }
-    $tooltip_class = "class=\"tooltip " . $position . ($this->is_error ? " error" : "") . "\"";
+    $tooltip_class = "class=\"tooltip " . $position . ($this->is_error ? " error" : " hover") . "\"";
     $class = "class=\"tooltip_container" . ($this->extra_classes ? " " . $this->extra_classes : "") . "\"";
 
     return "
