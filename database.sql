@@ -1,9 +1,10 @@
+
 CREATE TABLE users(
-    id          INT             NOT NULL AUTO_INCREMEMNT,
-    username    VARCHAR(20)     NOT NULL,
-    auth        VARCHAR(64)     NOT NULL,
-    fur_name    VARCHAR(50)     NOT NULL DEFAULT "",
-    real_name   VARCHAR(50)     NOT NULL DEFAULT "",
+    id              INT             NOT NULL AUTO_INCREMEMNT,
+    username        VARCHAR(20)     NOT NULL,
+    auth            VARCHAR(64)     NOT NULL,
+    fur_name        VARCHAR(50)     NOT NULL DEFAULT "",
+    real_name       VARCHAR(50)     NOT NULL DEFAULT "",
     
     address         VARCHAR(50)     NOT NULL DEFAULT "",
     city            VARCHAR(25)     NOT NULL DEFAULT "",
