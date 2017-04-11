@@ -22,7 +22,7 @@ function login_modal() {
     "title" => "Login",
     "template" => "header/login_modal",
     "activator" => (
-      '<a class="row info" href="#">
+      '<a class="row info item" href="#">
         <img src="img/login.png" class="small_icon round"/>
       </a>'
       ),
@@ -37,10 +37,10 @@ function login_modal() {
 
 function icon_and_logout($user_id) {
   return "
-    <a class=\"right row info\" href=\"#\">
+    <a class=\"right row item info\" href=\"#\">
       <img src=\"img/user_icon/$user_id.png\" class=\"small_icon round\"/>
     </a>
-    <a href=\"#\">
+    <a class=\"item\" href=\"#\">
       <i class=\"fa fa-sign-out\" aria-hidden=\"true\"></i>
     </a>
   ";

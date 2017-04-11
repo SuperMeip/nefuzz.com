@@ -1,4 +1,4 @@
-/* compiled by scssphp v0.0.12 on Fri, 07 Apr 2017 16:29:55 -0400 (0.0595s) */
+/* compiled by scssphp v0.0.12 on Mon, 10 Apr 2017 20:45:47 -0400 (0.0615s) */
 
 html {
   font-size: 14px;
@@ -90,7 +90,7 @@ header {
   display: flex;
   margin-bottom: 10px;
   align-items: center; }
-  .nav_bar a {
+  .nav_bar a.item {
     color: #fff;
     padding: 8px 7px;
     text-decoration: none;
@@ -100,13 +100,13 @@ header {
     align-items: center;
     display: flex; }
     @media screen and (max-width: 480px) {
-  .nav_bar a {
+  .nav_bar a.item {
     font-size: 2rem;
     padding: 8px 6px; } }
-    .nav_bar a:hover {
+    .nav_bar a.item:hover {
       background-color: darkgreen;
       color: #9fc; }
-    .nav_bar a:active {
+    .nav_bar a.item:active {
       background-color: #9fc;
       color: black; }
   .nav_bar div.right {
@@ -249,6 +249,9 @@ header {
     color: red; }
 
 .button {
+  cursor: pointer;
+  cursor: hand;
+  text-decoration: none;
   background-color: green;
   color: white;
   font-size: 1.2rem;
@@ -285,6 +288,8 @@ header {
     .checkbox_input input[type=checkbox]:checked + .value_text .false, .upload input[type=checkbox]:checked + .value_text .false {
       display: none; }
   .checkbox_input .value_text, .upload .value_text {
+    cursor: pointer;
+    cursor: hand;
     border-width: 0 0 1px 0;
     border-color: lightgrey;
     border-style: solid;

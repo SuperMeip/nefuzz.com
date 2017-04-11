@@ -29,6 +29,11 @@ require_once("components/common.php")
         "is_submit" => true,
         "extra_classes" => "right"
       ]);?>
+      <?=new Button([
+        "label" => "Register",
+        "link" => "/registration.php",
+        "extra_classes" => "right"
+      ]);?>
     </div>
   </form>
 </div>

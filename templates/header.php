@@ -29,10 +29,10 @@ error_reporting( E_ALL );
       <img class="name" src='img/fuzztext.png'/>
     </div>
     <div class="nav_bar" id="main-nav-bar">
-      <a href="#"><i class="fa fa-home" aria-hidden="true"></i><span class="desktop margin_left_small">Home</span></a>
-      <a href="#"><i class="fa fa-list" aria-hidden="true"></i><span class="desktop margin_left_small">Meets</span></a>
-      <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i><span class="desktop margin_left_small">Calendar</span></a>
-      <a href="#"><i class="fa fa-search" aria-hidden="true"></i><span class="desktop margin_left_small">Search</span></a>
+      <a class="item" href="/"><i class="fa fa-home" aria-hidden="true"></i><span class="desktop margin_left_small">Home</span></a>
+      <a class="item" href="#"><i class="fa fa-list" aria-hidden="true"></i><span class="desktop margin_left_small">Meets</span></a>
+      <a class="item" href="#"><i class="fa fa-calendar" aria-hidden="true"></i><span class="desktop margin_left_small">Calendar</span></a>
+      <a class="item" href="#"><i class="fa fa-search" aria-hidden="true"></i><span class="desktop margin_left_small">Search</span></a>
       <?=(isset($_SESSION['user']) ? icon_and_logout($_SESSION['user']) : login_modal());?>
     </div>
   </header>

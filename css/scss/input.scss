@@ -70,6 +70,9 @@
 }
 
 .button {
+  cursor: pointer;
+  cursor: hand;
+  text-decoration: none;
   background-color: $main-color;
   color: white;
   font-size: 1.2rem;
@@ -128,6 +131,8 @@
 }
 
   .value_text{
+    cursor: pointer;
+    cursor: hand;
     border-width: 0 0 1px 0;
     border-color: lightgrey;
     border-style: solid;
