@@ -10,20 +10,23 @@ CREATE TABLE users(
     state           VARCHAR(2)      NOT NULL,
     hide_city       TINYINT(1)      NOT NULL DEFAULT 0,
     
-    
-    
-    PRIMARY KEY(id)
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE contact_methods (
     id              INT             NOT NULL AUTO_INCREMEMNT,
-    contact_method  VARCHAR(20)     NOT NULL
+    contact_method  VARCHAR(20)     NOT NULL,
+    
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE user_contact_methods (
     method_id       INT             NOT NULL,
     user_id         INT             NOT NULL,
-    method_info     VARCHAR(40)     NOT NULL
+    method_info     VARCHAR(40)     NOT NULL,
+    
+    FOREIGN KEY method_id REFERENCES contact_methods(id),
+    FOREIGN KEY user_id REFERENCES users(id)
 );
 
 INSERT INTO contact_methods(
