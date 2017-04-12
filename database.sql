@@ -3,6 +3,7 @@ CREATE DATABASE the_fuzz
     COLLATE utf8_general_ci;
     
 USE the_fuzz;
+SET sql_mode='NO_AUTO_VALUE_ON_ZERO';
 
 CREATE TABLE regions (
     id              INT             NOT NULL AUTO_INCREMENT,
@@ -99,8 +100,8 @@ CREATE TABLE user_contact_methods (
     user            INT             NOT NULL,
     method_info     VARCHAR(40)     NOT NULL,
     
-    FOREIGN KEY (method_id) REFERENCES contact_methods(id),
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (method) REFERENCES contact_methods(id),
+    FOREIGN KEY (user) REFERENCES users(id)
 );
 
 CREATE TABLE groups (
@@ -114,18 +115,13 @@ CREATE TABLE groups (
     FOREIGN KEY (region) REFERENCES regions(id)
 );
 
-INSERT INTO groups (
-    name
-) VALUES 
-    ("none");
-
 CREATE TABLE user_group_roles (
     user            INT             NOT NULL,
-    group           INT             NOT NULL,
+    `group`         INT             NOT NULL,
     role            INT             NOT NULL,
     
-    FOREIGN KEY (user) REFERENCES user(id),
-    FOREIGN KEY (group) REFERENCES group(id),
+    FOREIGN KEY (user) REFERENCES users(id),
+    FOREIGN KEY (`group`) REFERENCES groups(id),
     FOREIGN KEY (role) REFERENCES group_roles(id)
 );
 
@@ -173,7 +169,7 @@ CREATE TABLE event_details (
 
 CREATE TABLE meets (
     id              INT             NOT NULL AUTO_INCREMENT,
-    group           INT             NOT NULL DEFAULT 0,
+    `group`         INT             DEFAULT NULL,
     details         INT             NOT NULL,
     
     name            VARCHAR(30)     NOT NULL,
@@ -184,7 +180,7 @@ CREATE TABLE meets (
     created_time    DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     PRIMARY KEY (id),
-    FOREIGN KEY (group) REFERENCES groups(id),
+    FOREIGN KEY (`group`) REFERENCES groups(id),
     FOREIGN KEY (details) REFERENCES event_details(id)
 );
 
@@ -209,12 +205,12 @@ CREATE TABLE events (
 );
 
 CREATE TABLE event_attendees (
-    event           INT             NOT NULL,
+    `event`         INT             NOT NULL,
     user            INT             NOT NULL,
     attendee_type   INT             NOT NULL,
     
     FOREIGN KEY (user) REFERENCES users(id),
-    FOREIGN KEY (event) REFERENCES events(id),
+    FOREIGN KEY (`event`) REFERENCES events(id),
     FOREIGN KEY (attendee_type) REFERENCES attendee_types(id)
 );
 
