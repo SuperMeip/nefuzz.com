@@ -35,12 +35,12 @@ CREATE TABLE contact_methods (
 INSERT INTO contact_methods (
     name
 ) VALUES 
-    ("email"),
-    ("telegram"),
-    ("twitter"),
-    ("furaffinity"),
-    ("skype"),
-    ("phone");
+    ("Email"),
+    ("Telegram"),
+    ("Twitter"),
+    ("Furaffinity"),
+    ("Skype"),
+    ("Phone Number");
 
 CREATE TABLE users (
     id              INT             NOT NULL AUTO_INCREMENT,
@@ -50,6 +50,7 @@ CREATE TABLE users (
     fur_name        VARCHAR(50)     NOT NULL DEFAULT "",
     real_name       VARCHAR(50)     NOT NULL DEFAULT "",
     contact_method  INT             NOT NULL,
+    is_admin        TINYINT(1)      NOT NULL DEFAULT 0,
     
     address         VARCHAR(50)     NOT NULL DEFAULT "",
     city            VARCHAR(25)     NOT NULL DEFAULT "",
@@ -237,3 +238,20 @@ INSERT INTO event_tags (
     ("RSVP",        128),
     ("Party",       256),
     ("Convention",  512);
+    
+CREATE TABLE announcements (
+    id              INT             NOT NULL AUTO_INCREMENT,
+    title           VARCHAR(30)     NOT NULL,
+    user            INT             NOT NULL,
+    posted_time     DATETIME        DEFAULT NULL,
+    submitted_time  DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    text            TEXT            NOT NULL DEFAULT "",
+    image           TEXT            NOT NULL DEFAULT "",
+    `group`         INT             DEFAULT NULL,
+    `event`         INT             DEFAULT NULL,
+    
+    PRIMARY KEY (id),
+    FOREIGN KEY (user) REFERENCES users(id),
+    FOREIGN KEY (`event`) REFERENCES events(id),
+    FOREIGN KEY (`group`) REFERENCES groups(id)
+);
