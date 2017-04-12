@@ -12,19 +12,27 @@ CREATE TABLE users(
     hide_city       TINYINT(1)      NOT NULL DEFAULT 0,
     
     PRIMARY KEY (id),
-    UNIQUE (username)
+    UNIQUE KEY (username)
+);
+
+CREATE TABLE regions (
+    id              INT             NOT NULL AUTO_INCREMEMNT,
+    name            VARCHAR(25)     NOT NULL,
+    
+    PRIMARY KEY (id),
+    UNIQUE KEY (name)
 );
 
 CREATE TABLE contact_methods (
     id              INT             NOT NULL AUTO_INCREMEMNT,
-    contact_method  VARCHAR(20)     NOT NULL,
+    name            VARCHAR(20)     NOT NULL,
     
     PRIMARY KEY (id),
-    UNIQUE (contact_method)
+    UNIQUE KEY (name)
 );
 
 INSERT INTO contact_methods(
-    contact_method
+    name
 ) VALUES 
     ("email"),
     ("telegram"),

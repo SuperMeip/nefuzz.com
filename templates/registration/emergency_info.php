@@ -2,6 +2,14 @@
 require_once("components/common.php");
 ?>
 
+<div class="row center">
+  <p class="info">
+    This emergency info will only be shared
+    with hosts of meets who you are attending
+    if they request such information. It is
+    entirely optional.
+  </p>
+</div>
 <div class="row mobile_column">
   <?=new Text_Input([
     "label" => "Emergency Contact 1 Name",

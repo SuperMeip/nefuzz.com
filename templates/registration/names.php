@@ -1,7 +1,16 @@
 <?php
 require_once ("components/common.php");
 ?>
-
+<div class="row center">
+  <p class="info">
+    Your username must be unique and may only
+    contain alphanumeric characters and underscores. 
+    Your password must be 8 letters and contain at
+    least one number. Your real name will only be shared
+    if a meet requires it, if a meet does require your
+    real name you cannot RSVP without it set.
+  </p>
+</div>
 <div class="row mobile_column">
   <?=new Text_Input([
     "label" => "Username",

@@ -1,6 +1,16 @@
 <?php
 require_once ("components/common.php");
 ?>
+<div class="row center">
+  <p class="info">
+    You must provide at least your state here. 
+    Your address will never be made public, it
+    is only used along with City to calculate
+    and make distances more accurate.
+    You must provide at least a City 
+    to use distance information.
+  </p>
+</div>
 <div class="row">
   <?=new Text_Input([
     "label" => "Street Address",
