@@ -13,24 +13,24 @@ require_once("components/common.php");
 <div class="row mobile_column">
   <?=new Text_Input([
     "label" => "Emergency Contact 1 Name",
-    "name" => "emname1",
+    "name" => "em_name_1",
     "max_characters" => 30
   ]);?>
   <?=new Text_Input([
     "label" => "Emergency Contact 1 Phone#",
-    "name" => "emphone1",
+    "name" => "em_phone_1",
     "max_characters" => 30
   ]);?>
 </div>
 <div class="row mobile_column">
   <?=new Text_Input([
     "label" => "Emergency Contact 2 Name",
-    "name" => "emname2",
+    "name" => "em_name_2",
     "max_characters" => 30
   ]);?>
   <?=new Text_Input([
     "label" => "Emergency Contact 2 Phone#",
-    "name" => "emphone2",
+    "name" => "em_phone_2",
     "max_characters" => 30
   ]);?>
 </div>
@@ -51,12 +51,12 @@ require_once("components/common.php");
   ]);?>
   <?=new Checkbox_Input([
     "label" => "Bee Allergy",
-    "name" => "beeallergy",
+    "name" => "bee_allergy",
     "size" => "mini"
   ]);?>
   <?=new Checkbox_Input([
     "label" => "Food Allergy",
-    "name" => "foodallergy",
+    "name" => "food_allergy",
     "size" => "mini"
   ]);?>
 </div>
