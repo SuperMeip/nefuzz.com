@@ -1,3 +1,9 @@
+CREATE DATABASE the_fuzz
+    CHARACTER SET utf8
+    COLLATE utf8_general_ci;
+    
+USE the_fuzz;
+
 CREATE TABLE regions (
     id              INT             NOT NULL AUTO_INCREMENT,
     name            VARCHAR(25)     NOT NULL,
@@ -7,7 +13,7 @@ CREATE TABLE regions (
     UNIQUE KEY (name)
 );
 
-INSERT INTO regions(
+INSERT INTO regions (
     name,               state
 ) VALUES 
     ("Massachusetts",   "MA"),
@@ -16,8 +22,26 @@ INSERT INTO regions(
     ("Maine",           "ME"),
     ("Rhode Island",    "RI"),
     ("Conneticut",      "CT");
+
+CREATE TABLE contact_methods (
+    id              INT             NOT NULL AUTO_INCREMENT,
+    name            VARCHAR(20)     NOT NULL,
     
-CREATE TABLE users(
+    PRIMARY KEY (id),
+    UNIQUE KEY (name)
+);
+
+INSERT INTO contact_methods (
+    name
+) VALUES 
+    ("email"),
+    ("telegram"),
+    ("twitter"),
+    ("furaffinity"),
+    ("skype"),
+    ("phone");
+
+CREATE TABLE users (
     id              INT             NOT NULL AUTO_INCREMENT,
     username        VARCHAR(20)     NOT NULL,
     auth            VARCHAR(64)     NOT NULL,
@@ -35,11 +59,13 @@ CREATE TABLE users(
     
     PRIMARY KEY (id),
     UNIQUE KEY (username),
-    FOREIGN KEY contact_method REFERENCES contact_methods(id),
-    FOREIGN KEY region REFERENCES regions(id)
+    FOREIGN KEY (contact_method) REFERENCES contact_methods(id),
+    FOREIGN KEY (region) REFERENCES regions(id)
 );
 
 CREATE TABLE emergency_info (
+    user            INT             NOT NULL,
+
     em_name_1       VARCHAR(50)     NOT NULL DEFAULT "",
     em_name_2       VARCHAR(50)     NOT NULL DEFAULT "",
     em_phone_1      VARCHAR(50)     NOT NULL DEFAULT "",
@@ -49,9 +75,11 @@ CREATE TABLE emergency_info (
     medical_issues  VARCHAR(50)     NOT NULL DEFAULT "",
     bee_allergy     TINYINT(1)      NOT NULL DEFAULT 0,
     food_allergy    TINYINT(1)      NOT NULL DEFAULT 0,
+    
+    FOREIGN KEY user REFERENCES users(id)
 );
 
-CREATE TABLE group_roles
+CREATE TABLE group_roles (
     id              INT             NOT NULL AUTO_INCREMENT,
     name            VARCHAR(20)     NOT NULL,
     
@@ -59,30 +87,12 @@ CREATE TABLE group_roles
     UNIQUE KEY (name)
 );
 
-INSERT INTO group_roles(
+INSERT INTO group_roles (
     name
 ) VALUES 
     ("Owner"),
     ("Moderator"),
     ("User");
-
-CREATE TABLE contact_methods (
-    id              INT             NOT NULL AUTO_INCREMENT,
-    name            VARCHAR(20)     NOT NULL,
-    
-    PRIMARY KEY (id),
-    UNIQUE KEY (name)
-);
-
-INSERT INTO contact_methods(
-    name
-) VALUES 
-    ("email"),
-    ("telegram"),
-    ("twitter"),
-    ("furaffinity"),
-    ("skype"),
-    ("phone");
 
 CREATE TABLE user_contact_methods (
     method          INT             NOT NULL,
@@ -100,11 +110,11 @@ CREATE TABLE groups (
     description     TEXT            NOT NULL,
     
     PRIMARY KEY (id),
-    UNIQUE KEY (name)
+    UNIQUE KEY (name),
     FOREIGN KEY region REFERENCES regions(id)
 );
 
-INSERT INTO groups(
+INSERT INTO groups (
     name
 ) VALUES 
     ("none");
@@ -127,7 +137,7 @@ CREATE TABLE attendee_types (
     UNIQUE KEY (name)
 );
 
-INSERT INTO attendee_types(
+INSERT INTO attendee_types (
     name
 ) VALUES 
     ("host"),
@@ -158,8 +168,7 @@ CREATE TABLE event_details (
     
     PRIMARY KEY (id),
     FOREIGN KEY region REFERENCES regions(id),
-    FOREIGN KEY alt_method REFERENCES contact_methods(id),
-    
+    FOREIGN KEY alt_method REFERENCES contact_methods(id)
 );
 
 CREATE TABLE meets (
@@ -195,7 +204,7 @@ CREATE TABLE events (
     canceled_time   DATETIME        DEFAULT NULL,
 
     PRIMARY KEY (id),
-    FOREIGN KEY details REFERENCES event_details(id)
+    FOREIGN KEY details REFERENCES event_details(id),
     FOREIGN KEY meet REFERENCES meets(id)
 );
 
@@ -204,7 +213,7 @@ CREATE TABLE event_attendees (
     user            INT             NOT NULL,
     attendee_type   INT             NOT NULL,
     
-    FOREIGN KEY user REFERENCES user(id),
+    FOREIGN KEY user REFERENCES users(id),
     FOREIGN KEY event REFERENCES events(id),
     FOREIGN KEY attendee_type REFERENCES attendee_types(id)
 );
@@ -219,7 +228,7 @@ CREATE TABLE event_tags (
     UNIQUE KEY (bitwise)
 );
 
-INSERT INTO contact_methods(
+INSERT INTO event_tags (
     name,           bitwise
 ) VALUES 
     ("18 Plus",     1),
