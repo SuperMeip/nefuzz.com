@@ -76,7 +76,7 @@ CREATE TABLE emergency_info (
     bee_allergy     TINYINT(1)      NOT NULL DEFAULT 0,
     food_allergy    TINYINT(1)      NOT NULL DEFAULT 0,
     
-    FOREIGN KEY user REFERENCES users(id)
+    FOREIGN KEY (user) REFERENCES users(id)
 );
 
 CREATE TABLE group_roles (
@@ -99,8 +99,8 @@ CREATE TABLE user_contact_methods (
     user            INT             NOT NULL,
     method_info     VARCHAR(40)     NOT NULL,
     
-    FOREIGN KEY method_id REFERENCES contact_methods(id),
-    FOREIGN KEY user_id REFERENCES users(id)
+    FOREIGN KEY (method_id) REFERENCES contact_methods(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 CREATE TABLE groups (
@@ -111,7 +111,7 @@ CREATE TABLE groups (
     
     PRIMARY KEY (id),
     UNIQUE KEY (name),
-    FOREIGN KEY region REFERENCES regions(id)
+    FOREIGN KEY (region) REFERENCES regions(id)
 );
 
 INSERT INTO groups (
@@ -124,9 +124,9 @@ CREATE TABLE user_group_roles (
     group           INT             NOT NULL,
     role            INT             NOT NULL,
     
-    FOREIGN KEY user REFERENCES user(id),
-    FOREIGN KEY group REFERENCES group(id),
-    FOREIGN KEY role REFERENCES group_roles(id)
+    FOREIGN KEY (user) REFERENCES user(id),
+    FOREIGN KEY (group) REFERENCES group(id),
+    FOREIGN KEY (role) REFERENCES group_roles(id)
 );
 
 CREATE TABLE attendee_types (
@@ -167,8 +167,8 @@ CREATE TABLE event_details (
     max_attendees   INT             NOT NULL DEFAULT 0,
     
     PRIMARY KEY (id),
-    FOREIGN KEY region REFERENCES regions(id),
-    FOREIGN KEY alt_method REFERENCES contact_methods(id)
+    FOREIGN KEY (region) REFERENCES regions(id),
+    FOREIGN KEY (alt_method) REFERENCES contact_methods(id)
 );
 
 CREATE TABLE meets (
@@ -184,8 +184,8 @@ CREATE TABLE meets (
     created_time    DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     PRIMARY KEY (id),
-    FOREIGN KEY group REFERENCES groups(id),
-    FOREIGN KEY details REFERENCES event_details(id)
+    FOREIGN KEY (group) REFERENCES groups(id),
+    FOREIGN KEY (details) REFERENCES event_details(id)
 );
 
 CREATE TABLE events (
@@ -204,8 +204,8 @@ CREATE TABLE events (
     canceled_time   DATETIME        DEFAULT NULL,
 
     PRIMARY KEY (id),
-    FOREIGN KEY details REFERENCES event_details(id),
-    FOREIGN KEY meet REFERENCES meets(id)
+    FOREIGN KEY (details) REFERENCES event_details(id),
+    FOREIGN KEY (meet) REFERENCES meets(id)
 );
 
 CREATE TABLE event_attendees (
@@ -213,9 +213,9 @@ CREATE TABLE event_attendees (
     user            INT             NOT NULL,
     attendee_type   INT             NOT NULL,
     
-    FOREIGN KEY user REFERENCES users(id),
-    FOREIGN KEY event REFERENCES events(id),
-    FOREIGN KEY attendee_type REFERENCES attendee_types(id)
+    FOREIGN KEY (user) REFERENCES users(id),
+    FOREIGN KEY (event) REFERENCES events(id),
+    FOREIGN KEY (attendee_type) REFERENCES attendee_types(id)
 );
 
 CREATE TABLE event_tags (
