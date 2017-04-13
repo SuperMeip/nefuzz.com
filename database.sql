@@ -55,7 +55,7 @@ CREATE TABLE users (
     address         VARCHAR(50)     NOT NULL DEFAULT "",
     city            VARCHAR(25)     NOT NULL DEFAULT "",
     region          INT             NOT NULL,
-    hide_city       TINYINT(1)      NOT NULL DEFAULT 0,
+  /*hide_city       TINYINT(1)      NOT NULL DEFAULT 0,*/
     
     joined_time     DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
     

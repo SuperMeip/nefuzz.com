@@ -1,19 +1,20 @@
 <?php
 
-
-class Location{
-  public $name;
-  public $address;
-  public $city;
-  public $state;
-  public $zip;
+class Location {
+  public $name = "";          //string
+  public $address = "";       //string
+  public $city = "";          //string
+  public $region = "";        //string
+  public $state = "";         //string
+  public $zip = "";           //string
+  public $country = "";       //string
   
-  function __construct($state, $city = false, $address = false, $name = false, $zip = false) {
-    $this->name = $name;
-    $this->address = $address;
-    $this->city = $city;
-    $this->state = $state;
-    $this->zip = $zip;
+  function __construct($location_array) {
+    foreach ($location_array as $key => $value) {
+      if (isset($this->{$key})) {
+        $this->{$key} = $value;
+      }
+    }
   }
 
   function full_string() {
@@ -23,6 +24,7 @@ class Location{
     $loc_string .= ($this->city ? $this->city . ', ' : '');
     $loc_string .= ($this->state ? $this->state . ' ' : '');
     $loc_string .= ($this->zip ? $this->zip : '');
+    $loc_string .= ($this->country ? ', ' . $this->country : '');
     return $loc_string;
   }
 
