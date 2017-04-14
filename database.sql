@@ -55,7 +55,6 @@ CREATE TABLE users (
     address         VARCHAR(50)     NOT NULL DEFAULT "",
     city            VARCHAR(25)     NOT NULL DEFAULT "",
     region          INT             NOT NULL,
-  /*hide_city       TINYINT(1)      NOT NULL DEFAULT 0,*/
     
     joined_time     DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
     
@@ -170,6 +169,7 @@ CREATE TABLE event_details (
 
 CREATE TABLE meets (
     id              INT             NOT NULL AUTO_INCREMENT,
+    user            INT             NOT NULL,
     `group`         INT             DEFAULT NULL,
     details         INT             NOT NULL,
     
@@ -182,7 +182,8 @@ CREATE TABLE meets (
 
     PRIMARY KEY (id),
     FOREIGN KEY (`group`) REFERENCES groups(id),
-    FOREIGN KEY (details) REFERENCES event_details(id)
+    FOREIGN KEY (details) REFERENCES event_details(id),
+    FOREIGN KEY (user) REFERENCES users(id)
 );
 
 CREATE TABLE events (
