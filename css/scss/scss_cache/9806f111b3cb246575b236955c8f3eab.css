@@ -1,4 +1,4 @@
-/* compiled by scssphp v0.0.12 on Wed, 12 Apr 2017 17:23:02 -0400 (0.0587s) */
+/* compiled by scssphp v0.0.12 on Tue, 18 Apr 2017 13:15:22 -0400 (0.0532s) */
 
 html {
   font-size: 14px;
@@ -267,13 +267,13 @@ header {
     box-shadow: 0 4px 8px 0 rgba(100, 100, 100, 0.2), 0 6px 20px 0 rgba(100, 100, 100, 0.19); }
 
 .checkbox_input {
-  width: 25%; }
+  width: 25%;
+  margin-top: 10px; }
 
 .upload {
   width: 50%; }
 
 .checkbox_input, .upload {
-  margin-top: 10px;
   margin-bottom: 10px; }
   .checkbox_input .label_container:hover .value_text, .upload .label_container:hover .value_text {
     border-color: green;
@@ -282,7 +282,7 @@ header {
   .checkbox_input .label_container:hover + .label, .upload .label_container:hover + .label {
     color: green; }
   .checkbox_input input[type=checkbox], .upload input[type=checkbox], .checkbox_input input[type=file], .upload input[type=file] {
-    display: none; }
+    opacity: 0; }
   .checkbox_input input[type=checkbox]:checked + .value_text .true, .upload input[type=checkbox]:checked + .value_text .true {
     display: block; }
     .checkbox_input input[type=checkbox]:checked + .value_text .false, .upload input[type=checkbox]:checked + .value_text .false {

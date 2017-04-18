@@ -12,6 +12,7 @@ require_once("components/common.php");
 <div class="row center">
     <?=new Upload([
       "label" => "Upload Icon",
+      "name" => "icon",
       "file_types" => ["image/png"],
       "is_image" => true,
       "file_size" => 300000,

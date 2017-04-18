@@ -5,10 +5,17 @@ class Location {
   public $address = "";       //string
   public $city = "";          //string
   public $region = "";        //string
+  public $region_id = 1;      //int
   public $state = "";         //string
   public $zip = "";           //string
   public $country = "";       //string
   
+  /**
+   * constructs a new Location object using an array
+   * 
+   * @param $location_array assoc - an associative array with keys named for 
+   *    the properties in the location.
+   */
   function __construct($location_array) {
     foreach ($location_array as $key => $value) {
       if (isset($this->{$key})) {
@@ -17,6 +24,11 @@ class Location {
     }
   }
 
+  /**
+   * Returns the location as a standard address string
+   * 
+   * @return string - the address as a string
+   */
   function full_string() {
     $loc_string = "";
     $loc_string .= ($this->name ? $this->name . ', ' : '');
@@ -35,7 +47,7 @@ class Location {
    *  The array contains 2 elements , length and time, which each have a text, and value option.
    *  Returns false if something goes wrong
    */
-  function dist($other_loc) {
+  function distance($other_loc) {
     if ($this->city == false || $other_loc->city == false) {
       return false;
     }
@@ -55,8 +67,26 @@ class Location {
       'length' => $distance_info->rows[0]->elements[0]->distance
     ];
   }
+  
+  /**
+   * serialize the object as a json string
+   * 
+   * @return string - the json string representing this object
+   */
+  public function serialize() {
+    return json_encode($this);
+  }
+  
+  /**
+   * get a new location object from a json
+   * 
+   * @param $json string = the string to get the location from
+   * 
+   * @return obj(Location) - the location built from the json
+   */
+  public static function deserialize() {
+    return new Location(json_decode($json, true));
+  }
 }
 
 //var_dump((new Location('TN'))->dist(new Location('Ma', 'Boston', 'State st')));
-
-?>

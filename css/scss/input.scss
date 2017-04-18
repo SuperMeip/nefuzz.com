@@ -36,8 +36,6 @@
     }
     color: #666;
 
-    //.error {}
-
     &:hover, &:focus {
 		border-width: 0 0 2px 0;
 		border-color: $main-color;
@@ -94,6 +92,7 @@
 
 .checkbox_input {
   width: 25%;
+  margin-top: 10px;
 }
 
 .upload {
@@ -101,7 +100,6 @@
 }
 
 .checkbox_input, .upload{
-  margin-top: 10px;
   margin-bottom: 10px;
 
   .label_container:hover {
@@ -117,7 +115,7 @@
   }
 
   input[type=checkbox], input[type=file] {
-    display: none;
+    opacity: 0;
   }
 
   input[type=checkbox]:checked + .value_text {
@@ -140,7 +138,6 @@
     @media screen and (max-width: $small-width) {
       font-size: 1.2rem;
     }
-    //margin-left: auto;
     margin-right: auto;
     color: #666;
     width: 90%;

@@ -1,8 +1,13 @@
 <?php
 require_once("components/common.php");
+require_once("components/registration.php");
 ?>
 
-<form class="main">
+<form
+  class="main"
+  action="controls/registration/add_new_user.php"
+  method="POST"
+>
   <?=new Block([
     "title" => "Name and Password",
     "template" => "registration/names"

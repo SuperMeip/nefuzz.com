@@ -1,7 +1,8 @@
 <?php
-require_once("models/location.php");
-require_once("models/Em_Info.php");
-require_once("php/db.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/models/location.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/models/em_info.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/php/db.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/php/auth.php");
 
 class User {
   public $id = -1;                    //int
@@ -10,7 +11,7 @@ class User {
   public $has_icon = false;           //bool
   public $fur_name = "";              //string
   public $real_name = "";             //string
-  public $contact_method = "";        //string
+  public $contact_method = 1;         //int
   public $is_admin = false;           //bool
   public $joined_time = 0;            //object(datetime)
 
@@ -21,7 +22,7 @@ class User {
   public $meets = [];                 //array[int]
   public $groups = [];                //assoc[$group_id=>role(string)]
   
-  private $DB = false                //object(DBC)
+  private $DB = false;                //object(DBC)
   
   
   /**
@@ -35,8 +36,27 @@ class User {
    * @param $group_info assoc[group_id=>role(string)] - an array of the roles this member has in groups, the group IDs being the keys
    * @param $emergency_info assoc[$DBColumn=>string|bool] - an array of emergency info from the database used to create an Em_Info object.
    */
-  public function __construct($user_info, $meet_info, $event_info, $contact_info, $location_info, $group_info, $emergency_info) {
-      
+  public function __construct(
+      $user_info,
+      $meet_info,
+      $event_info,
+      $contact_info,
+      $location_obj,
+      $group_info,
+      $emergency_obj
+  ) {
+    foreach ($user_info as $key => $value) {
+      if (isset($this->{$key})) {
+        $this->{$key} = $value;
+      }
+    }
+    
+    $this->location = $location_obj;
+    $this->meet_info = $meet_info;
+    $this->event_info = $event_info;
+    $this->contact_info = $contact_info;
+    $this->group_info = $group_info;
+    $this->emergency_info = $emergency_obj;
   }
   
   /**
@@ -58,28 +78,29 @@ class User {
     //grab all parts of the user data from DB
     $user_info = get_user_info($username);
     $user_info['is_current_user'] = $is_current_user;
-    $location_array = get_location($username);
+    $location_obj = get_location_obj($username);
     $meet_info = get_meet_info($username);
     $event_info = get_event_info($username);
     $contact_info = get_contact_info($username);
     $group_info = get_group_info($username);
-    $em_info = get_emergency_info($username);
+    $emergency_obj = get_emergency_obj($username);
     
     //close DB connection and return a constructed User
-    $DB->close();
+    $DB->quit();
     return new User(
       $user_info, 
       $meet_info, 
       $event_info, 
       $contact_info, 
-      $location_info, 
+      $location_obj, 
       $group_info, 
-      $emergency_info
+      $emergency_obj
     );
   }
   
+ /*///////////////////////////////////////////////////////////////////////*/
   /**
-   * Get Functions
+   * Get Sub-Functions
    *    Each is used to grab a part of the user object, each takes the username and connects to the
    *    DB to get the required info as an assoc array
    */
@@ -102,11 +123,12 @@ class User {
     return $result[0];
   }
   
-  private function get_location($username) {
+  private function get_location_obj($username) {
     $query = "
       SELECT
         u.address,
         u.city,
+        u.region as region_id
         r.state,
         r.name as region
       FROM users u
@@ -115,7 +137,7 @@ class User {
         u.username = ?;
     ";
     $results = $this->DB->query_to_array($query, "s", $username);
-    return $result[0];
+    return new Location($result[0]);
   }
   
   private function get_meet_info($username) {
@@ -130,7 +152,7 @@ class User {
     $results_solo = $this->DB->query_to_array($query, "s", $username);
     $ids_solo = [];
     foreach($results_solo as $result) {
-      array_push($id_solo, $result["id"];
+      array_push($id_solo, $result["id"]);
     }
     $query = "
       SELECT
@@ -146,7 +168,7 @@ class User {
     $results_groups = $this->DB->query_to_array($query, "s", $username);
     $ids_groups = [];
     foreach($results_groups as $result) {
-      array_push($id_groups, $result["id"];
+      array_push($id_groups, $result["id"]);
     }
     return array_unique(array_merge($ids_groups, $ids_solo), SORT_REGULAR);
   }
@@ -190,7 +212,7 @@ class User {
     return $contact_info;
   }
   
-  private function get_emergency_info($username) {
+  private function get_emergency_obj($username) {
     $query = "
       SELECT
         ei.*
@@ -200,7 +222,7 @@ class User {
         u.username = ?;
     ";
     $results = $this->DB->query_to_array($query, "s", $username);
-    return $results[0];
+    return new Em_Info($results[0]);
   }
   
   private function get_group_info($username) {
@@ -223,6 +245,7 @@ class User {
     return $group_info;
   }
   
+  /*///////////////////////////////////////////////////////////////////////*/
   
   public function save_user_info() {}
   public function save_location() {}
@@ -232,9 +255,66 @@ class User {
   
   /**
    * Adds this user to the DB as a new user with the specified password.
+   * 
+   * @param $password string - the new user's password
+   * 
+   * @return int - user.id if successfully added, 0 if failed
    */
   public function add($password) {
-      
+    $DB = new DBC();
+    $auth = makeHash($this->username,$password);
+    $query = "
+      INSERT INTO users(
+        username,
+        auth,
+        has_icon,
+        fur_name,
+        real_name,
+        contact_method,
+        address,
+        region,
+        city
+      ) VALUES (
+        ?,?,?,?,?,?,?,?,?
+      );
+    ";
+    $DB->query($query, "ssissisis", [
+      $this->username,
+      $auth,
+      $this->has_icon,
+      $this->fur_name,
+      $this->real_name,
+      $this->contact_method,
+      $this->location->address,
+      $this->location->region_id,
+      $this->location->city
+    ]);
+    $id = $DB->get_insert_id();
+    if(!$id){
+      $DB->quit();
+      return($id);
+    }
+    $values = [];
+    $types = "";
+    $query = "
+    INSERT INTO user_contact_methods(
+        user,
+        method,
+        method_info
+      ) VALUES 
+    ";
+    foreach ($this->contact_info as $method => $method_info) {
+      $query .= "(?, ?, ?),";
+      array_push($values, $id, $method, $method_info);
+      $types .= "iis";
+    }
+    $query = rtrim($query ,",");
+    $query .= ";";
+    $DB->query($query, $types, $values);
+    $contact_id = $DB->get_insert_id();
+    $DB->quit();
+    var_dump($id);
+    return($id);
   }
   
   /**
@@ -279,7 +359,6 @@ class User {
         [$username]
       );
     } else {
-      require_once('php/auth.php');
       $result = $DB->query_to_array(
         'SELECT username from users where auth = ?;',
         's',
@@ -295,5 +374,57 @@ class User {
     } else {
       return false;
     }
+  }
+  
+  /**
+   * Serializes the current user to json transferable format
+   * 
+   * @return string - a json containing all of the info from this
+   *    user, this is able to be made into a User object via 
+   *    user::deserialize()
+   */
+  public function serialize() {
+    $copy = clone $this;
+    
+    $raw = [];
+    $raw["emergency_info"] = $copy->emergency_info->serialize();
+    $copy->emergency_info = null;
+    $raw["meet_info"] = $copy->meet_info;
+    $copy->meet_info = null;
+    $raw["event_info"] = $copy->event_info;
+    $copy->event_info = null;
+    $raw["location_info"] = $copy->location_info->serialize();
+    $copy->location_info = null;
+    $raw["group_info"] = $copy->group_info;
+    $copy->group_info = null;
+    
+    $user_info = [];
+    foreach ($copy as $key => $value) {
+      if (isset($value)) {
+        $user_info[$key] = $value;
+      }
+    }
+    $raw["user_info"] = $user_info;
+    return json_encode($raw);
+  }
+  
+  /**
+   * Creates a User object from a serialized json of a user object
+   * 
+   * @param $json string - the json string to parse.
+   * 
+   * @return objecr(User) - returns the json as a User object
+   */
+  public static function deserialize($json){
+    $raw = json_decode($json, true);
+    return new User(
+      $raw['user_info'],
+      $raw['meet_info'],
+      $raw['event_info'],
+      $raw['contact_info'],
+      Location::deserialize($raw['location_info']),
+      $raw['group_info'],
+      Em_Info::deserialize($raw['emergency_info'])
+    );
   }
 }

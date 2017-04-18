@@ -15,7 +15,9 @@ require_once("components/registration/contact_info.php");
 </div>
 <div class="row">
   <?=new Select_Input([
+    "id" => "contact_method",
     "size" => "full",
+    "name" => "contact_method",
     "options" => contact_options(),
     "label" => "Prefered Contact Method",
     "is_required" => true

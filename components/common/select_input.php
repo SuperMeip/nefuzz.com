@@ -12,8 +12,8 @@ class Select_Input extends Input_Component {
     }
 
     return "
-      <div {$this->class()} {$this->id()}>
-        <select {$this->name()} {$this->required()}>
+      <div {$this->class()}>
+        <select {$this->name()} {$this->id()} {$this->required()}>
           $options
         </select>
         <label {$this->label_class()}>

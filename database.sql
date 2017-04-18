@@ -157,7 +157,7 @@ CREATE TABLE event_details (
     has_alt_host    TINYINT(1)      NOT NULL DEFAULT 0,
     alt_name        VARCHAR(30)     NOT NULL DEFAULT "",
     alt_contact     VARCHAR(30)     NOT NULL DEFAULT "",
-    alt_method      INT             NOT NULL DEFAULT 0,
+    alt_method      INT             DEFAULT NULL,
     
     must_rsvp       TINYINT(1)      NOT NULL DEFAULT 0,
     max_attendees   INT             NOT NULL DEFAULT 0,

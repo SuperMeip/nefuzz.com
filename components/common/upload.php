@@ -7,17 +7,11 @@ $(document).ready(function(){
     var files = this.files;
     var fileName = $(this).siblings(".value_text").find("span");
     var input = $(this);
-    var tooltipContainer = $(this).closest(".label_container").siblings(".label").children(".tooltip_container");
     validate(e, files, $(this), function(error) {
       if (error) {
         errorList += "\n" + error;
-        tooltipContainer.children(".tooltip").html(errorList);
       }
-      var showError = errorList ? true : false;
-      tooltipContainer.toggleClass("display", showError);
-      console.log(input);
-      console.log(!showError);
-      input.data("validation", (!showError));
+      input[0].setCustomValidity(errorList);
       fileName.html(files[0].name);
     });
   });

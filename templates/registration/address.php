@@ -1,5 +1,7 @@
 <?php
 require_once ("components/common.php");
+require_once("components/registration/address.php");
+
 ?>
 <div class="row center">
   <p class="info">
@@ -26,11 +28,11 @@ require_once ("components/common.php");
     "size" => "big",
     "max_characters" => 30
   ]);?>
-  <?=new Text_Input([
+  <?=new Select_Input([
     "label" => "State",
-    "name" => "state",
+    "name" => "region",
     "size" => "small",
-    "max_characters" => 2,
+    "options" => region_options(),
     "is_required" => true
   ]);?>
 </div>

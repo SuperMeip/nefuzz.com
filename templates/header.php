@@ -19,6 +19,8 @@ error_reporting( E_ALL );
   <link rel="stylesheet" href="css/style.php?p=styles.scss" />
   <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/cleave.min.js"></script>
+  <script type="text/javascript" src="js/cleave-phone.us.js"></script>
   <?php require_once('components/header.php'); ?>
 </head>
 <body>

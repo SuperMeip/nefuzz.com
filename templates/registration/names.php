@@ -1,5 +1,6 @@
 <?php
 require_once ("components/common.php");
+require_once ("components/registration/names.php");
 ?>
 <div class="row center">
   <p class="info">
@@ -17,12 +18,13 @@ require_once ("components/common.php");
     "name" => "username",
     "is_required" => true,
     "max_characters" => 20,
+    "pattern" => "[a-zA-Z0-9_]{3,20}",
     "id" => "username",
-    "error_message" => "Username is taken"
   ]);?>
   <?=new Text_Input([
     "label" => "Email Address",
     "name" => "email",
+    "pattern" => "^[^@]+@[^@]+\.[^@]+$",
     "is_required" => true,
     "max_characters" => 50,
     "id" => "email"
@@ -33,13 +35,15 @@ require_once ("components/common.php");
     "label" => "Password",
     "name" => "password",
     "id" => "password",
+    "pattern" => "^(?=.*\d).{8,20}$",
     "is_password" => true,
     "is_required" => true,
-    "max_characters" => 20
+    "max_characters" => 20,
   ]);?>
   <?=new Text_Input([
     "label" => " Repeat Password",
     "id" => "repeat-password",
+    "pattern" => "^(?=.*\d).{8,20}$",
     "is_password" => true,
     "is_required" => true,
     "max_characters" => 20
@@ -48,12 +52,12 @@ require_once ("components/common.php");
 <div class="row mobile_column">
   <?=new Text_Input([
     "label" => "Real Name",
-    "name" => "realname",
+    "name" => "real_name",
     "max_characters" => 40
   ]);?>
   <?=new Text_Input([
     "label" => "Fur Name",
-    "name" => "furname",
+    "name" => "fur_name",
     "max_characters" => 30
   ]);?>
 </div>
