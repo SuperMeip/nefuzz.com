@@ -2,10 +2,17 @@ $main-color: green;
 $light-color: #9FC;
 $dark-color: darkgreen;
 $small-width: 480px;
+$medium-width: 800px;
 
 html {
 	font-size: 14px;
   min-height: 100vh;
+}
+
+.shadow_title {
+  text-shadow: 3px 3px 5px darkgrey;
+  font-size: 2.5rem;
+  color: $main-color;
 }
 
 form.main {
@@ -33,6 +40,7 @@ main {
   display: flex;
   align-items: center;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .row {
@@ -63,7 +71,7 @@ main {
 }
 
 .center_column {
-  width: 70%;
+  min-width: 80%;
   margin: auto;
   align: center;
 }
@@ -94,4 +102,30 @@ main {
 ::selection {
   background: $light-color;
   color: black;
+}
+
+.info_table {
+  font-size: 1.2rem;
+  @media screen and (max-width: $small-width) {
+    font-size: 1rem;
+  }
+  color: #5f5f5f;
+  border-spacing: 5px;
+  font-weight: bold;
+  
+  .item_value {
+    width: 50%;
+    vertical-align: bottom;
+    color: grey;
+  }
+  
+  .item_title {
+    vertical-align: top;
+  }
+  td {
+    border-bottom: darkgrey solid 1px;
+  }
+  td:last-child {
+    width: 70%;
+  }
 }

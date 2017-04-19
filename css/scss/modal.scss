@@ -11,21 +11,29 @@
   overflow: auto; 
   background-color: rgba(0,0,0,0.4);
 
-  .content {
-		position: relative;
-    background-color: #fefefe;
-    margin: auto;
-    padding: 0;
-    width: 90%;
-    max-width: 700px;
-    min-width: 300px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.8s;
-    animation-name: animatetop;
-    animation-duration: 0.4s;
-    overflow: hidden;
-	}
+    .content {
+        position: relative;
+        background-color: white;
+        margin: auto;
+        padding: 0;
+        width: 90%;
+        max-width: 500px;
+        min-width: 300px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.8s;
+        animation-name: animatetop;
+        animation-duration: 0.4s;
+        overflow: hidden;
+      }
+      
+    .small {
+        max-width: 300px;
+    }
+    
+    .large {
+        max-width: 700px;
+    }
 
 	.header {
 		color: white;
@@ -33,7 +41,7 @@
 		background-color: $main-color;
 
 		h1 {
-			padding: 50px 10px 5px 20px;
+			padding: 30px 10px 5px 20px;
 		}
 	}
 
@@ -56,6 +64,14 @@
 	.body {
 		padding: 30px 10px 10px 10px;
 	}
+}
+
+p.modal_text {
+    margin: 1.2rem;
+    font-size: 1.5rem;
+    margin-top: 0px;
+    padding: 0px;
+    color: #444;
 }
 
 @-webkit-keyframes animatetop {

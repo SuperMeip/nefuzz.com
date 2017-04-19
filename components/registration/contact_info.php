@@ -55,6 +55,7 @@ function contact_inputs() {
       $output .= new Text_Input([
         "id" => str_replace(" ", "-", $name."Input"),
         "name" => "contact_method_" . $id,
+        "pattern" => ($name == "Discord" ? ".*#[0-9]{4,6}" : ""),
         "label" => $name,
         "cleave" => $cleave,
         "size" => "medium",

@@ -1,7 +1,8 @@
-<?php 
+<?php
+require_once($_SERVER['DOCUMENT_ROOT']."/models/user.php");
 session_start();
+//$_SESSION['user'] = null;
 error_reporting( E_ALL );
-//include('php/login.php');
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +22,7 @@ error_reporting( E_ALL );
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/cleave.min.js"></script>
   <script type="text/javascript" src="js/cleave-phone.us.js"></script>
-  <?php require_once('components/header.php'); ?>
+  <?php require_once($_SERVER['DOCUMENT_ROOT']."/components/header.php"); ?>
 </head>
 <body>
   <header>

@@ -1,11 +1,17 @@
-$size-mod : 1;
-
 .small_icon {
-	$size-mod: 4;
 	width: 40px;
 	height: 40px;
+
+	&.round {
+		clip-path: circle(20px at center);
+	}
 }
 
-.round {
-	clip-path: circle((5px * $size-mod) at center);
+.large_icon {
+	width: 180px;
+	height: 180px;
+
+	&.round {
+		clip-path: circle(90px at center);
+	}
 }

@@ -18,7 +18,7 @@ require_once ("components/registration/names.php");
     "name" => "username",
     "is_required" => true,
     "max_characters" => 20,
-    "pattern" => "[a-zA-Z0-9_]{3,20}",
+    "pattern" => "[a-zA-Z0-9_]{1,20}",
     "id" => "username",
   ]);?>
   <?=new Text_Input([
@@ -35,6 +35,7 @@ require_once ("components/registration/names.php");
     "label" => "Password",
     "name" => "password",
     "id" => "password",
+    "invalid_message" => "Password must be 8 characters and contain a number",
     "pattern" => "^(?=.*\d).{8,20}$",
     "is_password" => true,
     "is_required" => true,
@@ -43,7 +44,6 @@ require_once ("components/registration/names.php");
   <?=new Text_Input([
     "label" => " Repeat Password",
     "id" => "repeat-password",
-    "pattern" => "^(?=.*\d).{8,20}$",
     "is_password" => true,
     "is_required" => true,
     "max_characters" => 20

@@ -1,11 +1,13 @@
 <?php
-require_once("components/common.php")
+require_once("components/common.php");
+require_once("components/header/login_modal.php");
 ?>
 
 <div class="center_column">
-  <form>
+  <form method="POST" action="controls/header/login.php" id="login-form">
     <div class="row center">
       <?=new Text_Input([
+        "id" => "login-username",
         "label" => "Username",
         "name" => "username",
         "max_characters" => 20,
@@ -15,6 +17,7 @@ require_once("components/common.php")
     </div>
     <div class="row center">
       <?=new Text_Input([
+        "id" => "login-password",
         "label" => "Password",
         "name" => "password",
         "max_characters" => 20,

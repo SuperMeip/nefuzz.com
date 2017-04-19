@@ -8,8 +8,11 @@ class Text_Input extends Input_Component {
   public $is_password = false;
   public $max_characters = 0;
   public $error_message = "";
+  public $invalid_message = "";
 
   public function get_component() {
+    $invalid_message = ($this->invalid_message ? "oninvalid=\"this.setCustomValidity('$this->invalid_message')\"
+    oninput=\"setCustomValidity('')\"" : "");
     $max_characters = ($this->max_characters ? "maxLength=\"$this->max_characters\"" : "");
     $pattern = ($this->pattern ? "pattern=\"$this->pattern\"" : "");
     $type = "type=" . ($this->is_password ? "\"password\"" : "\"text\"");
@@ -52,7 +55,7 @@ class Text_Input extends Input_Component {
     return "
     <div {$this->class()}>
       $cleave
-      <input {$this->id()} data-validation=\"true\" $type {$this->name()} $pattern $max_characters {$this->required()}/>
+      <input $invalid_message {$this->id()} data-validation=\"true\" $type {$this->name()} $pattern $max_characters {$this->required()}/>
       <label {$this->label_class()}>
         $error_tooltip
       </label>

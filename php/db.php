@@ -30,6 +30,7 @@ class DBC {
     function query($statement, $types = "" , $arguments = [], $verbose = false) {
         if($verbose){
             mysqli_report(MYSQLI_REPORT_ALL);
+            error_reporting(E_ALL);
             var_dump($statement);
             echo '<br/>';
             var_dump($types);
@@ -37,21 +38,28 @@ class DBC {
             var_dump($arguments);
         }
         if (!empty($arguments)) {
-            if ($stmt = $this->db->prepare($statement)) {
+            $stmt = $this->db->prepare($statement);
+            if ($stmt !== FALSE) {
                 call_user_func_array(array($stmt, 'bind_param'), $this->refValues(array_merge([$types], $arguments)));
-                if (!$stmt->execute()) {
+                $worked = $stmt->execute();
+                if (!$worked) {
                     $this->errors .= $stmt->error;
-                    return [];
+                    return false;
                 }
+                $this->errors .= $stmt->error;
                 $results = $stmt->get_result();
+                if (!$results) {
+                    $results = $worked; 
+                }
                 $stmt->close();
             } else {
-                return [];
+                $this->errors .= $this->db->error;
+                return false;
             }
          } else {
             $results = $this->db->query($statement);
+            $this->errors .= $this->db->error;
         }
-        $this->errors .= $this->db->error;
         return $results;
     }
 
@@ -73,12 +81,12 @@ class DBC {
                 call_user_func_array(array($stmt, 'bind_param'), $this->refValues(array_merge([$types], $arguments)));
                 if (!$stmt->execute()) {
                     $this->errors .= $stmt->error;
-                    return [];
+                    return false;
                 }
                 $results = $stmt->get_result();
                 $stmt->close();
             } else {
-                return [];
+                return false;
             }
          } else {
             $results = $this->db->query($statement);

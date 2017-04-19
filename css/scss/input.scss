@@ -21,6 +21,7 @@
 	}
 
 	input, select{
+	  padding: 0;
 		border-width: 0 0 1px 0;
     background-color: white;
 		border-color: lightgrey;
@@ -46,6 +47,10 @@
     	color: $main-color;
     }
 	}
+}
+
+.select_input select{
+    margin-top: -1px;
 }
 
 .input_error {
@@ -101,6 +106,9 @@
 
 .checkbox_input, .upload{
   margin-bottom: 10px;
+  @media screen and (max-width: $small-width) {
+        margin: 5px;
+  }
 
   .label_container:hover {
     .value_text {
@@ -114,9 +122,14 @@
     color: $main-color;
   }
 
-  input[type=checkbox], input[type=file] {
+  input[type=checkbox]{
+    display: none;
+  }
+
+  input[type=file] {
     opacity: 0;
   }
+  
 
   input[type=checkbox]:checked + .value_text {
     .true { 

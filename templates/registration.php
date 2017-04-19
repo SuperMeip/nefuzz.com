@@ -5,6 +5,7 @@ require_once("components/registration.php");
 
 <form
   class="main"
+  id="registration-form"
   action="controls/registration/add_new_user.php"
   method="POST"
 >
@@ -43,3 +44,28 @@ require_once("components/registration.php");
     "extra_classes" => "large lone"
   ]);?>
 </form>
+  
+<?=new Modal([
+  "uncloseable" => true,
+  "title" => "Success :)",
+  "id" => "registration-success",
+  "content" =>  "<p class=\"modal_text\">
+                Welcome to NEFuzz.com,
+                you have successfully
+                created a new user and 
+                can log in on the next 
+                page!</p>"
+]);?>  
+
+<?=new Modal([
+  "title" => "Unknown Issue :(",
+  "id" => "registration-failed",
+  "content" =>  "<p class=\"modal_text\">
+                We applologize but it seems
+                something went wrong trying
+                to make this new user. Try
+                verifying everything you've entered
+                and submitting again, if the
+                issue persists contact a site
+                administrator.</p>"
+]);?>

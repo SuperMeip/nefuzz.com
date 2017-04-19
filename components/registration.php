@@ -1,30 +1,37 @@
+<?php
+if (isset($_SESSION["user"])){
+  echo "
+    <script>
+      window.location = \"https://nefuzz.com\";
+    </script>
+  ";
+}
+?>
 <script>
+//submit the form
 $(document).ready(function(){
-  $("form").submit(function() {
-    /*$('input[data-validation]').each(function() {
-      console.log([$(this).data("validation"), $(this)]);
-      if (!$(this).data("validation")) {
-        console.log("didn't send");
-        alert("There are still validation errors on the page");
-        return false;
-      }
-    });*/
-    console.log("sent ajax");
-    /*$theForm = $(this);
+  $("#registration-form").submit(function() {
+    $theForm = $(this);
     
-    // send xhr request
     $.ajax({
       type: $theForm.attr("method"),
       url: $theForm.attr("action"),
       data: new FormData( this ),
+      //dataType: "json",
       processData: false,
       contentType: false,
       success: function(data) {
-        console.log(data);
+        if (data) {
+          $("#registration-success.modal").css("display", "block");
+          setTimeout(function(){
+            window.location = "https://nefuzz.com/#login";
+          }, 3000);
+        } else {
+          $("#registration-failed.modal").css("display", "block");
+        }
       }
-    });*/
+    });
     
-    // prevent submitting again
     return false;
   });
 });

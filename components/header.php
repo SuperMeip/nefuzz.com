@@ -1,24 +1,40 @@
-<script type="text/javascript">
-//Nav Bar Scroll
-  $(document).ready(function() {
-    $(window).scroll(function () {
-      if ($(window).scrollTop() > 100) {
-        $('#main-nav-bar').addClass('nav_fixed');
-        $('.hidden_bumper').show();
-      }
-      if ($(window).scrollTop() < 101) {
-        $('#main-nav-bar').removeClass('nav_fixed');
-        $('.hidden_bumper').hide();
+<script>
+$(document).ready(function() {
+  //Nav Bar Scroll
+  $(window).scroll(function () {
+    if ($(window).scrollTop() > 100) {
+      $('#main-nav-bar').addClass('nav_fixed');
+      $('.hidden_bumper').show();
+    }
+    if ($(window).scrollTop() < 101) {
+      $('#main-nav-bar').removeClass('nav_fixed');
+      $('.hidden_bumper').hide();
+    }
+  });
+  //Open right to login
+  var hash = window.location.hash;
+  if (hash.substring(1) == "login") {
+    $("#login.modal").css('display', 'block');
+  }
+  $("#logout").click(function() {
+    $.ajax({
+      type: "POST",
+      url: "controls/header/logout.php",
+      success: function() {
+        location.reload();
       }
     });
   });
+});
 </script>
 
 <?php 
-require_once('components/common.php');
+require_once($_SERVER['DOCUMENT_ROOT']."/components/common.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/models/user.php");
 
 function login_modal() {
   $modal = new Modal([
+    "id" => "login",
     "title" => "Login",
     "template" => "header/login_modal",
     "activator" => (
@@ -35,13 +51,14 @@ function login_modal() {
   ]);
 }
 
-function icon_and_logout($user_id) {
+function icon_and_logout($user) {
+  $icon = ($user->has_icon ? "img/user/icon/$user->id.png" : "NONE.png");
   return "
     <a class=\"right row item info\" href=\"#\">
-      <img src=\"img/user_icon/$user_id.png\" class=\"small_icon round\"/>
+      <img src=\"$icon\" class=\"small_icon round\"/>
     </a>
     <a class=\"item\" href=\"#\">
-      <i class=\"fa fa-sign-out\" aria-hidden=\"true\"></i>
+      <i class=\"fa fa-sign-out\" id=\"logout\" aria-hidden=\"true\"></i>
     </a>
   ";
 }

@@ -22,7 +22,7 @@ class User {
   public $meets = [];                 //array[int]
   public $groups = [];                //assoc[$group_id=>role(string)]
   
-  private $DB = false;                //object(DBC)
+  private static $DB = false;                //object(DBC)
   
   
   /**
@@ -69,24 +69,24 @@ class User {
    */
   public static function get($username, $password = false) {
     //connect to DB and verify user
-    $DB = new DBC();
+    $GLOBALS["DB"] = new DBC();
     if (!self::exists($username, $password)) {
       return false;
     }
     $is_current_user = $password ? true : false;
     
     //grab all parts of the user data from DB
-    $user_info = get_user_info($username);
+    $user_info = self::get_user_info($username);
     $user_info['is_current_user'] = $is_current_user;
-    $location_obj = get_location_obj($username);
-    $meet_info = get_meet_info($username);
-    $event_info = get_event_info($username);
-    $contact_info = get_contact_info($username);
-    $group_info = get_group_info($username);
-    $emergency_obj = get_emergency_obj($username);
+    $location_obj = self::get_location_obj($username);
+    $meet_info = self::get_meet_info($username);
+    $event_info = self::get_event_info($username);
+    $contact_info = self::get_contact_info($username);
+    $group_info = self::get_group_info($username);
+    $emergency_obj = self::get_emergency_obj($username);
     
     //close DB connection and return a constructed User
-    $DB->quit();
+    $GLOBALS["DB"]->quit();
     return new User(
       $user_info, 
       $meet_info, 
@@ -117,10 +117,10 @@ class User {
         joined_time
       FROM users
       WHERE
-        u.username = ?;
+        username = ?;
     ";
-    $results = $this->DB->query_to_array($query, "s", $username);
-    return $result[0];
+    $results = $GLOBALS["DB"]->query_to_array($query, "s", [$username]);
+    return $results[0];
   }
   
   private function get_location_obj($username) {
@@ -128,7 +128,7 @@ class User {
       SELECT
         u.address,
         u.city,
-        u.region as region_id
+        u.region AS region_id,
         r.state,
         r.name as region
       FROM users u
@@ -136,8 +136,8 @@ class User {
       WHERE
         u.username = ?;
     ";
-    $results = $this->DB->query_to_array($query, "s", $username);
-    return new Location($result[0]);
+    $results = $GLOBALS["DB"]->query_to_array($query, "s", [$username]);
+    return new Location($results[0]);
   }
   
   private function get_meet_info($username) {
@@ -149,7 +149,7 @@ class User {
       WHERE
         u.username = ?;
     ";
-    $results_solo = $this->DB->query_to_array($query, "s", $username);
+    $results_solo = $GLOBALS["DB"]->query_to_array($query, "s", [$username]);
     $ids_solo = [];
     foreach($results_solo as $result) {
       array_push($id_solo, $result["id"]);
@@ -165,7 +165,7 @@ class User {
       WHERE
         u.username = ? AND gr.id < 3;
     ";
-    $results_groups = $this->DB->query_to_array($query, "s", $username);
+    $results_groups = $GLOBALS["DB"]->query_to_array($query, "s", [$username]);
     $ids_groups = [];
     foreach($results_groups as $result) {
       array_push($id_groups, $result["id"]);
@@ -185,7 +185,7 @@ class User {
       WHERE
         u.username = ?;
     ";
-    $results = $this->DB->query_to_array($query, "s", $username);
+    $results = $GLOBALS["DB"]->query_to_array($query, "s", [$username]);
     $event_info = [];
     foreach($results as $result) {
       $event_info[$result["id"]] = $result["name"];
@@ -204,7 +204,7 @@ class User {
       WHERE
         u.username = ?;
     ";
-    $results = $this->DB->query_to_array($query, "s", $username);
+    $results = $GLOBALS["DB"]->query_to_array($query, "s", [$username]);
     $contact_info = [];
     foreach($results as $result) {
       $contact_info[$result["name"]] = $result["method_info"];
@@ -221,7 +221,7 @@ class User {
       WHERE
         u.username = ?;
     ";
-    $results = $this->DB->query_to_array($query, "s", $username);
+    $results = $GLOBALS["DB"]->query_to_array($query, "s", [$username]);
     return new Em_Info($results[0]);
   }
   
@@ -237,7 +237,7 @@ class User {
       WHERE
         u.username = ?;
     ";
-    $results = $this->DB->query_to_array($query, "s", $username);
+    $results = $GLOBALS["DB"]->query_to_array($query, "s", [$username]);
     $group_info = [];
     foreach($results as $result) {
       $contact_info[$result["group"]] = $result["role"];
@@ -262,6 +262,9 @@ class User {
    */
   public function add($password) {
     $DB = new DBC();
+    
+    $DB->query("START TRANSACTION");
+    
     $auth = makeHash($this->username,$password);
     $query = "
       INSERT INTO users(
@@ -278,7 +281,7 @@ class User {
         ?,?,?,?,?,?,?,?,?
       );
     ";
-    $DB->query($query, "ssissisis", [
+    $worked = $DB->query($query, "ssissisis", [
       $this->username,
       $auth,
       $this->has_icon,
@@ -289,11 +292,13 @@ class User {
       $this->location->region_id,
       $this->location->city
     ]);
-    $id = $DB->get_insert_id();
-    if(!$id){
+    if(!$worked){
+      $DB->query("ROLLBACK");
       $DB->quit();
-      return($id);
+      return 0;
     }
+    
+    $id = $DB->get_insert_id();
     $values = [];
     $types = "";
     $query = "
@@ -310,10 +315,50 @@ class User {
     }
     $query = rtrim($query ,",");
     $query .= ";";
-    $DB->query($query, $types, $values);
-    $contact_id = $DB->get_insert_id();
+    $worked = $DB->query($query, $types, $values);
+    
+    if(!$worked) {
+      $DB->query("ROLLBACK");
+      $DB->quit();
+      return 0;
+    }
+    
+    $query = "
+      INSERT INTO emergency_info(
+        user,
+        em_name_1,
+        em_name_2,
+        em_phone_1,
+        em_phone_2,
+        allergies,
+        medical_issues,
+        bee_allergy,
+        food_allergy
+      ) VALUES (
+        ?, ?, ?, ?, ?, ?, ?, ?, ?
+      );
+    ";
+    $worked = $DB->query($query, "issssssii", [
+      $id,
+      $this->emergency_info->emergency_contacts[0]["name"],
+      $this->emergency_info->emergency_contacts[0]["phone_number"],
+      $this->emergency_info->emergency_contacts[1]["name"],
+      $this->emergency_info->emergency_contacts[1]["phone_number"],
+      $this->emergency_info->allergies,
+      $this->emergency_info->medical_issues,
+      $this->emergency_info->bee_allergy,
+      $this->emergency_info->food_allergy
+    ]);
+    
+    if(!$worked) {
+      $DB->query("ROLLBACK");
+      $DB->quit();
+      return 0;
+    }
+    
+    $DB->query("COMMIT");
+    
     $DB->quit();
-    var_dump($id);
     return($id);
   }
   
@@ -417,6 +462,9 @@ class User {
    */
   public static function deserialize($json){
     $raw = json_decode($json, true);
+    if(!$raw || ($raw === "false")) {
+      return false;
+    }
     return new User(
       $raw['user_info'],
       $raw['meet_info'],

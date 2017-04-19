@@ -6,7 +6,7 @@ $data = $_POST;
 
 $user_info = [
     "username" => $data["username"],
-    "has_icon" => !empty($_FILES),
+    "has_icon" => ($_FILES["icon"]["tmp_name"] ? 1 : 0),
     "fur_name" => $data["fur_name"] ?? "",
     "real_name" => $data["real_name"] ?? "",
     "contact_method" => $data["contact_method"],
@@ -55,10 +55,9 @@ $new_user = new User(
 $new_id = $new_user->add($data['password']);
 
 if (!$new_id) {
-    echo "failed";
+    echo 0;
     return;
 }
-var_dump($_FILES);
 $target_path = $_SERVER['DOCUMENT_ROOT']."/img/user/icon/$new_id.png";
 move_uploaded_file($_FILES["icon"]["tmp_name"], $target_path);
 echo $new_id;

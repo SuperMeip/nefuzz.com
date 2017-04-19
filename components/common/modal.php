@@ -21,6 +21,7 @@ class Modal extends Component {
   public $template = "";
   public $activator_classes = "";
   public $container_classes = "";
+  public $uncloseable = false;
 
   public function get_component() {
     $title = (
@@ -33,18 +34,20 @@ class Modal extends Component {
     $activator_class = "class=\"activator" . ($this->activator_classes ? " " . $this->activator_classes : "") . "\"";
     $container_class = "class=\"modal_container" .  ($this->container_classes ? " " . $this->container_classes : "") . "\"";
     $content = ($this->template ? Template($this->template) : $this->content);
+    $close = ($this->uncloseable ? "" : "
+    <span class=\"close right\">
+        <i class=\"fa fa-times\"></i>
+    </span>");
 
     return "
-      <div $container_class {$this->id()}>
+      <div $container_class>
         <div $activator_class>
           $this->activator
         </div>
-        <div {$this->class()}>
+        <div {$this->class()} {$this->id()}>
           <div class=\"content\">
             <div class=\"header\"> 
-              <span class=\"close right\">
-                <i class=\"fa fa-times\"></i>
-              </span>
+              $close
               $title
             </div>
             <div class=\"body\">

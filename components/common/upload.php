@@ -12,6 +12,7 @@ $(document).ready(function(){
         errorList += "\n" + error;
       }
       input[0].setCustomValidity(errorList);
+      input[0].reportValidity()
       fileName.html(files[0].name);
     });
   });
@@ -88,7 +89,6 @@ class Upload extends Input_Component {
       "max-height" => 0,
       "max-width" => 0
   ];*/
-  public $error_message = "Incorrect File Type or Size";
 
   public function get_component() {
     $file_types = json_encode($this->file_types);
