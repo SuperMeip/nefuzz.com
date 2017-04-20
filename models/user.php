@@ -11,12 +11,14 @@ class User {
   public $has_icon = false;           //bool
   public $fur_name = "";              //string
   public $real_name = "";             //string
+  public $bio = "";                   //string
+  public $species = "";               //string
   public $contact_method = 1;         //int
   public $is_admin = false;           //bool
   public $joined_time = 0;            //object(datetime)
 
   public $location = [];              //object(Location)
-  public $contact_information = [];   //assoc[$contact_method=>contact_info(string)]
+  public $contact_info = [];          //assoc[$contact_method=>contact_info(string)]
   public $emergency_info  = [];       //object(Em_Info)
   public $event_info = [];            //assoc[$event_id=>attendee_type(string)]
   public $meets = [];                 //array[int]
@@ -112,6 +114,8 @@ class User {
         has_icon,
         fur_name,
         real_name,
+        bio,
+        species,
         contact_method,
         is_admin,
         joined_time
@@ -196,7 +200,7 @@ class User {
   private function get_contact_info($username) {
     $query = "
       SELECT
-        cm.name,
+        cm.id,
         ucm.method_info
       FROM user_contact_methods ucm
         JOIN contact_methods cm on cm.id = ucm.method
@@ -207,7 +211,7 @@ class User {
     $results = $GLOBALS["DB"]->query_to_array($query, "s", [$username]);
     $contact_info = [];
     foreach($results as $result) {
-      $contact_info[$result["name"]] = $result["method_info"];
+      $contact_info[$result["id"]] = $result["method_info"];
     }
     return $contact_info;
   }

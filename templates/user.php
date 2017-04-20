@@ -1,5 +1,6 @@
 <?php
-require_once("components/common.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/components/common.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/components/user.php");
 ?>
 
 <div class="center_column">
@@ -14,30 +15,14 @@ require_once("components/common.php");
           display:flex
         "
       >
-        <img class="large_icon round" src="img/user/icon/151.png" />
+        <img class="large_icon round" src="<?=user_icon($_GET['username'] ?? "");?>" />
       </div>
-      <h1 class="shadow_title">~Meep~</h1>
+      <h1 class="shadow_title">~<?=user_name($_GET['username'] ?? "");?>~</h1>
     </div>
-    <div class="grid_block h_large w_full">
-      <div class="header">
-        <h1>User Info</h1>
-      </div>
-      <div class="body">
-        <?=new Info_Table([
-          "values" => [
-            "Fur Name:" => "Meep",
-            "Primary Contact:" => "Telegram",
-            "Species:" => "Salamander",
-            "Bio:" => "TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT"
-          ]
-        ]);?>
-      </div>
-    </div>
+    <?=user_info_grid_block($_GET['username'] ?? "");?>
   </div>
   <div class="row grid center mobile_column">
-    <div class="grid_block h_big w_normal">
-      test content
-    </div>
+    <?=contact_info_grid_block($_GET['username'] ?? "");?>
     <div class="grid_column w_normal">
       <?=new Grid_Block([
         "title" => "tiny",

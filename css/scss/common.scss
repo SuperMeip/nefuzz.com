@@ -71,9 +71,13 @@ main {
 }
 
 .center_column {
-  min-width: 80%;
+  //min-width: 80%;
   margin: auto;
-  align: center;
+  max-width: 80%;
+  width: 1000px;
+  @media screen and (max-width: $medium-width) {
+  max-width: 100%;
+  }
 }
 
 .margin_left_small {
@@ -127,5 +131,10 @@ main {
   }
   td:last-child {
     width: 70%;
+  }
+  tr:last-child {
+    td {
+      border-bottom-width: 0;
+    }
   }
 }

@@ -3,7 +3,7 @@ $(document).ready(function(){
   //check if username exists already
   $("#username").keyup(function() {
      $.ajax({
-      type: "POST",
+      type: "GET",
       url: "controls/registration/user_exists.php",
       data: {username: $(this).val()},
       success: function(data) {

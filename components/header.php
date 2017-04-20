@@ -31,6 +31,7 @@ $(document).ready(function() {
 <?php 
 require_once($_SERVER['DOCUMENT_ROOT']."/components/common.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/models/user.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/php/common.php");
 
 function login_modal() {
   $modal = new Modal([
@@ -52,9 +53,10 @@ function login_modal() {
 }
 
 function icon_and_logout($user) {
-  $icon = ($user->has_icon ? "img/user/icon/$user->id.png" : "NONE.png");
+  $icon = use_control("get/user_icon", ['username' => $user->username]);
+  $link = use_control("user/link", ['username' => $user->username]);
   return "
-    <a class=\"right row item info\" href=\"#\">
+    <a class=\"right row item info\" href=\"$link\">
       <img src=\"$icon\" class=\"small_icon round\"/>
     </a>
     <a class=\"item\" href=\"#\">

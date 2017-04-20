@@ -7,8 +7,8 @@ if (!isset($_GET["username"])) {
 $user = User::get($_GET["username"]);
 
 if ($user) {
-    echo json_encode($user->has_icon ? "img/user/icon/$user->id.png" : "NONE.png");
+    echo json_encode($user->has_icon ? "img/user/icon/$user->id.png" : "img/user/icon/NONE.png");
 } else {
-    echo json_encode("NONE.php");
+    echo json_encode("img/user/icon/NONE.php");
 }
 ?>

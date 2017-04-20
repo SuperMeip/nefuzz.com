@@ -7,6 +7,9 @@ class Info_Table extends Component {
   
   public function get_component() {
     $table = "<table {$this->class()} {$this->id()} >";
+    if (!$this->values) {
+      return "";
+    }
     foreach($this->values as $title => $info) {
       $table .= "
         <tr>

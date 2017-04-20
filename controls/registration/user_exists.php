@@ -1,8 +1,8 @@
 <?php
 //checks if a user exists from the username
-require_once($_SERVER['DOCUMENT_ROOT']."/php/db.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/models/user.php");
 
-if (!isset($_POST['username'])) {
+if (!isset($_GET['username'])) {
     echo false;
     return;
 }
@@ -13,8 +13,8 @@ $query = "
     WHERE username = ?
 ";
 
-$result = (new DBC())->query($query, "s", [$_POST["username"]]);
-if ($result->fetch_object()) {
+$result = User::exists($_GET['username']);
+if ($result) {
     echo 1;
 } else {
     echo 0;

@@ -1,4 +1,4 @@
-/* compiled by scssphp v0.0.12 on Wed, 19 Apr 2017 16:52:59 -0400 (0.0635s) */
+/* compiled by scssphp v0.0.12 on Thu, 20 Apr 2017 09:06:10 -0400 (0.0711s) */
 
 html {
   font-size: 14px;
@@ -49,9 +49,12 @@ main {
   margin-left: auto; }
 
 .center_column {
-  min-width: 80%;
   margin: auto;
-  align: center; }
+  max-width: 80%;
+  width: 1000px; }
+  @media screen and (max-width: 800px) {
+  .center_column {
+    max-width: 100%; } }
 
 .margin_left_small {
   margin-left: 5px; }
@@ -92,6 +95,8 @@ main {
     border-bottom: darkgrey solid 1px; }
   .info_table td:last-child {
     width: 70%; }
+  .info_table tr:last-child td {
+    border-bottom-width: 0; }
 
 header {
   width: 100%; }
@@ -204,9 +209,11 @@ header {
   .grid_block.w_big, .grid_column.w_big {
     width: 72%; }
   .grid_block.w_medium, .grid_column.w_medium {
-    width: 32%; }
+    width: 32%;
+    min-width: 150px; }
   .grid_block.w_small, .grid_column.w_small {
-    width: 24%; }
+    width: 24%;
+    min-width: 135px; }
   @media screen and (max-width: 800px) {
   .grid_block, .grid_column {
     width: 90% !important;
