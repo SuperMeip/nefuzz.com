@@ -19,10 +19,11 @@ $(document).ready(function(){
 <?php
 require_once("components/common.php");
 require_once("php/common.php");
+require_once("controls/get/contact_methods.php");
 
 
 $GLOBALS["contact_methods"] = [];
-$raw_methods = use_control("get/contact_methods");
+$raw_methods = contact_methods();
 
 foreach ($raw_methods as $method) {
   $GLOBALS["contact_methods"][$method['name']] = $method['id'];

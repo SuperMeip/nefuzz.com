@@ -3,11 +3,12 @@ $(document).ready(function(){
   //check if username exists already
   $("#username").keyup(function() {
      $.ajax({
-      type: "GET",
-      url: "controls/registration/user_exists.php",
+      type: "POST",
+      url: "controls/registration/user_exists.php?ajax=true",
       data: {username: $(this).val()},
+      dataType: 'json',
       success: function(data) {
-        if (data === "0") {
+        if (!data) {
           $("#username")[0].setCustomValidity('');
         } else {
           $("#username")[0].setCustomValidity('This username is already taken');

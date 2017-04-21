@@ -1,14 +1,18 @@
 <?php 
 require_once($_SERVER['DOCUMENT_ROOT']."/components/common.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/models/user.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/php/common.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/controls/user/get_user_contact_methods.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/controls/user/get_user_bio_info.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/controls/user/get_user_location_info.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/controls/get/user_icon.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/controls/get/username.php");
 
-function user_icon($username) {
-  return use_control("get/user_icon", ['username' => $username]);
+function user_page_icon($username) {
+  return user_icon($username);
 }
 
-function user_name($username) {
-  $name = use_control("get/username", ["username" => $username]);
+function user_page_name($username) {
+  $name = username($username);
   if ($name) {
     return $name;
   } else {
@@ -21,10 +25,8 @@ function user_name($username) {
 }
 
 function contact_info_grid_block($username) {
-  $contact_data = use_control(
-    'user/get_user_contact_methods',
-    ['username' => $username]
-  );
+  $contact_data = get_user_contact_methods($username);
+  
   $table = new Info_Table([
     "values" => $contact_data
   ]);
@@ -37,10 +39,8 @@ function contact_info_grid_block($username) {
 }
 
 function user_info_grid_block($username) {
-  $user_data = use_control(
-    'user/get_user_bio_info',
-    ['username' => $username]
-  );
+  $user_data = get_user_bio_info($username);
+  
   $table = new Info_Table([
     "values" => $user_data
   ]);
@@ -53,10 +53,7 @@ function user_info_grid_block($username) {
 }
 /*
 function location_grid_item() {
-  $user_location = use_control(
-    'get/user_location_info',
-    ['username' => $username]
-  );
+  $location_data = get_user_location_info($username);
 }
 
 echo use_control("get/user_location", ['username' => "meep"]);*/

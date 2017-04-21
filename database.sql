@@ -71,8 +71,8 @@ CREATE TABLE emergency_info (
 
     em_name_1       VARCHAR(50)     NOT NULL DEFAULT "",
     em_name_2       VARCHAR(50)     NOT NULL DEFAULT "",
-    em_phone_1      VARCHAR(50)     NOT NULL DEFAULT "",
-    em_phone_2      VARCHAR(50)     NOT NULL DEFAULT "",
+    em_phone_1      VARCHAR(20)     NOT NULL DEFAULT "",
+    em_phone_2      VARCHAR(20)     NOT NULL DEFAULT "",
     
     allergies       VARCHAR(50)     NOT NULL DEFAULT "",
     medical_issues  VARCHAR(50)     NOT NULL DEFAULT "",

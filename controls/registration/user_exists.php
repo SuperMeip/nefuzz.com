@@ -1,22 +1,28 @@
 <?php
 //checks if a user exists from the username
-require_once($_SERVER['DOCUMENT_ROOT']."/models/user.php");
 
-if (!isset($_GET['username'])) {
-    echo false;
-    return;
-}
-
-$query = "
+function user_exists($username) {
+  require_once($_SERVER['DOCUMENT_ROOT']."/models/user.php");
+  
+  if (!$username) {
+    return false;
+  }
+  
+  $query = "
     SELECT username
     FROM users
     WHERE username = ?
-";
+  ";
+  
+  $result = User::exists($username);
+  if ($result) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
-$result = User::exists($_GET['username']);
-if ($result) {
-    echo 1;
-} else {
-    echo 0;
+if (isset($_GET['ajax'])) {
+  echo json_encode(user_exists($_POST['username'] ?? ""));
 }
 ?>

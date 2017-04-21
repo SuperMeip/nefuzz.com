@@ -1,12 +1,17 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/php/db.php");
-/**
- * Generates a json of all the regions and their IDs
- */
+//gets an array of all regions from the DB
 
-$result = (new DBC())->query_to_array("
-    SELECT *
-    FROM regions;
-",'',[]);
-echo json_encode($result);
+function regions() {
+  require_once($_SERVER['DOCUMENT_ROOT']."/php/db.php");
+
+  $result = (new DBC())->query_to_array("
+      SELECT *
+      FROM regions;
+  ",'',[]);
+  return $result;
+}
+
+if (isset($_GET['ajax'])) {
+  echo json_encode(regions());
+}
 ?>

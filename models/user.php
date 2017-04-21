@@ -106,7 +106,7 @@ class User {
    *    Each is used to grab a part of the user object, each takes the username and connects to the
    *    DB to get the required info as an assoc array
    */
-  private function get_user_info($username) {
+  private static function get_user_info($username) {
     $query = "
       SELECT
         id,
@@ -127,7 +127,7 @@ class User {
     return $results[0];
   }
   
-  private function get_location_obj($username) {
+  private static function get_location_obj($username) {
     $query = "
       SELECT
         u.address,
@@ -144,7 +144,7 @@ class User {
     return new Location($results[0]);
   }
   
-  private function get_meet_info($username) {
+  private static function get_meet_info($username) {
     $query = "
       SELECT
         m.id
@@ -177,7 +177,7 @@ class User {
     return array_unique(array_merge($ids_groups, $ids_solo), SORT_REGULAR);
   }
   
-  private function get_event_info($username) {
+  private static function get_event_info($username) {
     $query = "
       SELECT
         e.id,
@@ -197,7 +197,7 @@ class User {
     return $event_info;
   }
   
-  private function get_contact_info($username) {
+  private static function get_contact_info($username) {
     $query = "
       SELECT
         cm.id,
@@ -216,7 +216,7 @@ class User {
     return $contact_info;
   }
   
-  private function get_emergency_obj($username) {
+  private static function get_emergency_obj($username) {
     $query = "
       SELECT
         ei.*
@@ -229,7 +229,7 @@ class User {
     return new Em_Info($results[0]);
   }
   
-  private function get_group_info($username) {
+  private static function get_group_info($username) {
     $query = "
       SELECT
         g.name AS `group`,

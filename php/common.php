@@ -1,5 +1,6 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT']."/php/auth.php");
+/*
 function use_control($name, $get = [], $decode = true) {
   $get_string = "";
   if (!empty($get)) {
@@ -19,4 +20,4 @@ function use_control($name, $get = [], $decode = true) {
   }
   curl_close( $curl_handle );
   return $text;
-}
+}*/

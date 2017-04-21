@@ -15,9 +15,9 @@ require_once($_SERVER['DOCUMENT_ROOT']."/components/user.php");
           display:flex
         "
       >
-        <img class="large_icon round" src="<?=user_icon($_GET['username'] ?? "");?>" />
+        <img class="large_icon round" src="<?=user_page_icon($_GET['username'] ?? "");?>" />
       </div>
-      <h1 class="shadow_title">~<?=user_name($_GET['username'] ?? "");?>~</h1>
+      <h1 class="shadow_title">~<?=user_page_name($_GET['username'] ?? "");?>~</h1>
     </div>
     <?=user_info_grid_block($_GET['username'] ?? "");?>
   </div>

@@ -15,9 +15,9 @@ $(document).ready(function(){
     
     $.ajax({
       type: $theForm.attr("method"),
-      url: $theForm.attr("action"),
+      url: $theForm.attr("action") + "?ajax=true",
       data: new FormData( this ),
-      //dataType: "json",
+      dataType: "json",
       processData: false,
       contentType: false,
       success: function(data) {

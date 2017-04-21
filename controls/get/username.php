@@ -1,14 +1,19 @@
 <?php
 //Gets the proper capitalized version of the username
-require_once($_SERVER['DOCUMENT_ROOT']."/models/user.php");
-if(!isset($_GET["username"])) {
-    echo json_encode(false);
-    return;
+
+function username($username) {
+  require_once($_SERVER['DOCUMENT_ROOT']."/models/user.php");
+  if(!$username) {
+    return false;
+  }
+  $user = User::get($username);
+  if (!$user) {
+    return false;
+  }
+  return $user->username;
 }
-$user = User::get($_GET["username"]);
-if (!$user) {
-    echo json_encode(false);
-    return;
+
+if (isset($_GET['ajax'])) {
+  echo json_encode(username($_POST['username'] ?? ""));
 }
-echo json_encode($user->username);
 ?>

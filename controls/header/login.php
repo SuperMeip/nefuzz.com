@@ -1,16 +1,23 @@
 <?php
-session_start();
-require_once($_SERVER['DOCUMENT_ROOT']."/models/user.php");
-if ((!isset($_POST["username"])) || (!isset($_POST["password"]))) {
-    echo json_encode(false);
-    return;
-}
-$user = User::get($_POST["username"], $_POST["password"]);
+//used to log the user in by verifying username and PW
 
-if ($user) {
-    echo json_encode(true);
+function login($username, $password) {
+  require_once($_SERVER['DOCUMENT_ROOT']."/models/user.php");
+  if ((!$username) || (!$password)) {
+    return false;
+  }
+  $user = User::get($username, $password);
+  
+  if ($user) {
     $_SESSION['user'] = $user;
-} else {
-    echo json_encode(false);
+    return true;
+  } else {
+    return false;
+  }
+}
+
+if (isset($_GET['ajax'])) {
+  session_start();
+  echo json_encode(login($_POST['username'] ?? "", $_POST['password'] ?? ""));
 }
 ?>

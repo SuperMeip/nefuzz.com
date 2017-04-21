@@ -32,6 +32,8 @@ $(document).ready(function() {
 require_once($_SERVER['DOCUMENT_ROOT']."/components/common.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/models/user.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/php/common.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/controls/get/user_icon.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/controls/user/page_link.php");
 
 function login_modal() {
   $modal = new Modal([
@@ -53,8 +55,8 @@ function login_modal() {
 }
 
 function icon_and_logout($user) {
-  $icon = use_control("get/user_icon", ['username' => $user->username]);
-  $link = use_control("user/link", ['username' => $user->username]);
+  $icon = user_icon($user->username);
+  $link = page_link($user->username);
   return "
     <a class=\"right row item info\" href=\"$link\">
       <img src=\"$icon\" class=\"small_icon round\"/>
