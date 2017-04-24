@@ -378,30 +378,39 @@ class User {
   }
   
   /**
-   * Requst a user's emergency info as a host
+   * Get the user's icon address
    * 
-   * @param $user string - The username you want the em_info from
-   * @param $requester string - The username of the person requesting the information, to verify this user has a meet
-   *    with propper permission to view this information.
-   * 
-   * @return object(Em_Info) - The user's emergency info.
+   * @return string - the address of the user icon as a string.
    */
-  public static function request_em_info($user, $requester) {
-    //this will be done as a control
+  public function get_icon() {
+    return ($this->has_icon ? "img/user/icon/$this->id.png" : "img/user/icon/NONE.png");
   }
   
   /**
-   * Requst a user's real name as a host
+   * Get this user's user page link
    * 
-   * @param $user string - The username you want the real name from
-   * @param $requester string - The username of the person requesting the information, to verify this user has a meet
-   *    with propper permission to view this information.
-   * 
-   * @return string - The user's real name.
+   * @return string - returns the link addess to this user's page
    */
-  public static function request_real_name($user, $requester) {
-    //this will be done as a control
+  public function get_page_link() {
+    return "/user.php?username=$this->username";
   }
+  
+  /**
+   * Get's a list of all contact methods a user can have
+   * 
+   * @return array - returns an array of associative arrays [[name=>$method_name][id=>$method_id]]
+   */
+   public static function get_all_contact_methods() {
+     
+  require_once($_SERVER['DOCUMENT_ROOT']."/php/db.php");
+    $DB = new DBC();
+    $result = ($DB)->query_to_array("
+        SELECT *
+        FROM contact_methods;
+    ",'',[]);
+    $DB->quit();
+    return $result;
+   }
   
   /**
    * Checks if the user with the username exists, if a password is provided this also can be used to

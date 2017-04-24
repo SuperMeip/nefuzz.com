@@ -1,8 +1,3 @@
-<?php
-require_once("components/common.php");
-require_once("components/registration/contact_info.php");
-?>
-
 <div class="row center">
   <p class="info">
     You must provide at least one contact method
@@ -18,9 +13,9 @@ require_once("components/registration/contact_info.php");
     "id" => "contact_method",
     "size" => "full",
     "name" => "contact_method",
-    "options" => contact_options(),
+    "options" => $this->contact_options(),
     "label" => "Prefered Contact Method",
     "is_required" => true
   ]);?>
 </div>
-<?=contact_inputs();?>
+<?=$this->contact_inputs();?>

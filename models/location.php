@@ -16,7 +16,7 @@ class Location {
    * @param $location_array assoc - an associative array with keys named for 
    *    the properties in the location.
    */
-  function __construct($location_array) {
+  public function __construct($location_array) {
     foreach ($location_array as $key => $value) {
       if (isset($this->{$key})) {
         $this->{$key} = $value;
@@ -29,7 +29,7 @@ class Location {
    * 
    * @return string - the address as a string
    */
-  function full_string() {
+  public function full_string() {
     $loc_string = "";
     $loc_string .= ($this->name ? $this->name . ', ' : '');
     $loc_string .= ($this->address ? $this->address . ', ' : '');
@@ -47,7 +47,7 @@ class Location {
    *  The array contains 2 elements , length and time, which each have a text, and value option.
    *  Returns false if something goes wrong
    */
-  function distance($other_loc) {
+  public function distance($other_loc) {
     if ($this->city == false || $other_loc->city == false) {
       return false;
     }
@@ -66,6 +66,17 @@ class Location {
       'time' => $distance_info->rows[0]->elements[0]->duration,
       'length' => $distance_info->rows[0]->elements[0]->distance
     ];
+  }
+  
+  public static function get_all_regions() {
+    require_once($_SERVER['DOCUMENT_ROOT']."/php/db.php");
+    $DB = new DBC();
+    $result = ($DB)->query_to_array("
+      SELECT *
+      FROM regions;
+    ",'',[]);
+    $DB->quit();
+    return $result;
   }
   
   /**

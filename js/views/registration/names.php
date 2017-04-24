@@ -4,7 +4,7 @@ $(document).ready(function(){
   $("#username").keyup(function() {
      $.ajax({
       type: "POST",
-      url: "controls/registration/user_exists.php?ajax=true",
+      url: "controllers/registration.php?action=user_exists",
       data: {username: $(this).val()},
       dataType: 'json',
       success: function(data) {

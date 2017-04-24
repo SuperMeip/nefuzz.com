@@ -1,7 +1,5 @@
 <?php
-include('templates/header.php');
-require_once("components/common.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/controllers/registration.php");
 ?>
 
-<?=Template("registration");?>
-<?=Template('footer');?>
+<?=(new Registration_Controller())->load();?>

@@ -1,6 +1,5 @@
 <?php
-require_once("components/common/header.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/controllers/home.php");
 ?>
-<?=new Header([]);?>
 
-<?=Template('footer');?>
+<?=(new Home_Controller())->load();?>

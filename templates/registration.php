@@ -1,7 +1,4 @@
-<?php
-require_once("components/common.php");
-require_once("components/registration.php");
-?>
+<?=$this->redirect()?>
 
 <form
   class="main"
@@ -11,7 +8,7 @@ require_once("components/registration.php");
 >
   <?=new Block([
     "title" => "Name and Password",
-    "template" => "registration/names"
+    "content" => new Names_Registration_View()
   ]);?>
   
   <?=new Block([
@@ -23,12 +20,12 @@ require_once("components/registration.php");
   
   <?=new Block([
     "title" => "Address",
-    "template" => "registration/address"
+    "content" => new Address_Registration_View()
   ]);?>
   
   <?=new Block([
     "title" => "Contact Information",
-    "template" => "registration/contact_info"
+    "content" => new Contact_Info_Registration_View()
   ]);?>
   
   <?=new Block([

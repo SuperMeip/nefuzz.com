@@ -8,7 +8,7 @@ $(document).ready(function(){
     
     $.ajax({
       type: $theForm.attr("method"),
-      url: $theForm.attr("action") + "?ajax=true",
+      url: $theForm.attr("action"),
       data: $(this).serialize(),
       dataType: "json",
       success: function(data) {

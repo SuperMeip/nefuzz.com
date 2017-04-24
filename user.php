@@ -1,7 +1,5 @@
 <?php
-include('templates/header.php');
-require_once("components/common.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/controllers/user.php");
 ?>
 
-<?=Template("user");?>
-<?=Template('footer');?>
+<?=(new User_Controller())->load();?>

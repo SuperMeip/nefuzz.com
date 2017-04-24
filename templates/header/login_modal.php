@@ -1,10 +1,6 @@
-<?php
-require_once("components/common.php");
-require_once("components/header/login_modal.php");
-?>
 
 <div class="center_column">
-  <form method="POST" action="controls/header/login.php" id="login-form">
+  <form method="POST" action="controllers/login_logout.php?action=login" id="login-form">
     <div class="row center">
       <?=new Text_Input([
         "id" => "login-username",

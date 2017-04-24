@@ -1,8 +1,4 @@
-<?php
-require_once ("components/common.php");
-require_once("components/registration/address.php");
 
-?>
 <div class="row center">
   <p class="info">
     You must provide at least your state here. 
@@ -32,7 +28,7 @@ require_once("components/registration/address.php");
     "label" => "State",
     "name" => "region",
     "size" => "small",
-    "options" => region_options(),
+    "options" => $this->region_options(),
     "is_required" => true
   ]);?>
 </div>

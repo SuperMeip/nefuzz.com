@@ -12,6 +12,12 @@ class Registration_View extends View {
       ";
     }
   }
+  
+  protected function preload() {
+    require_once($_SERVER['DOCUMENT_ROOT']."/views/registration/names.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/views/registration/address.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/views/registration/contact_info.php");
+  }
 
   protected function js() {
     return ["registration"];

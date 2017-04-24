@@ -1,7 +1,5 @@
-<?php
-require_once($_SERVER['DOCUMENT_ROOT']."/components/common.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/components/user.php");
-?>
+
+<?=$this->redirect();?>
 
 <div class="center_column">
   <div class="row grid center mobile_column">
@@ -15,15 +13,15 @@ require_once($_SERVER['DOCUMENT_ROOT']."/components/user.php");
           display:flex
         "
       >
-        <img class="large_icon round" src="<?=user_page_icon($_GET['username'] ?? "");?>" />
+        <img class="large_icon round" src="<?=$this->user_icon();?>" />
       </div>
-      <h1 class="shadow_title">~<?=user_page_name($_GET['username'] ?? "");?>~</h1>
+      <h1 class="shadow_title">~<?=$this->username();?>~</h1>
     </div>
-    <?=user_info_grid_block($_GET['username'] ?? "");?>
+    <?=$this->user_info_grid_block();?>
   </div>
   <div class="row grid center mobile_column">
     <div class="grid_column w_normal">
-      <?=location_grid_item($_GET['username']);?>
+      <?=$this->location_grid_item();?>
       <div class="grid_block h_mini w_full">
         <div id="user_meets_attended">
           <div class="number">
@@ -55,7 +53,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/components/user.php");
         </div>
       </div>
     </div>
-    <?=contact_info_grid_block($_GET['username'] ?? "");?>
+    <?=$this->contact_info_grid_block();?>
   </div>
   <div class="row grid center mobile_column">
     <div class="grid_block h_normal w_medium">

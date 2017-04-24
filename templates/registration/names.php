@@ -1,7 +1,3 @@
-<?php
-require_once ("components/common.php");
-require_once ("components/registration/names.php");
-?>
 <div class="row center">
   <p class="info">
     Your username must be unique and may only
