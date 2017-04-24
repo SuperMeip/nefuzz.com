@@ -1,23 +1,49 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT']."/php/auth.php");
-/*
-function use_control($name, $get = [], $decode = true) {
-  $get_string = "";
-  if (!empty($get)) {
-      $get_string = "?" . http_build_query($get);
+
+function validate($value, $validation, $error, $DBC = false) {
+  if (strpos($value, "<") !== false) {
+    throw new Exception("$error, an illegal character, '<', was detected");
   }
-  $url = "https://www.nefuzz.com/controls/" . $name . ".php" . $get_string;
-  $curl_handle = curl_init();
-  curl_setopt( $curl_handle, CURLOPT_URL, $url );
-  curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, true );
-  curl_setopt( $curl_handle, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-  curl_setopt( $curl_handle, CURLOPT_USERPWD, "{$GLOBALS['REST_AUTH_USER']}:{$GLOBALS['REST_AUTH_PW']}");
-  $text = "";
-  if ($decode) {
-    $text = json_decode(curl_exec( $curl_handle ), true);
+  //if string it's regex
+  if (is_string($validation)) {
+    if (preg_match("/$validation/", $value)) {
+      return $value; 
+    } else {
+      if ($DBC) {
+        $DBC->query("ROLLBACK");
+        $DBC->quit();
+      }
+      throw new Exception("$error, did not match the required pattern");
+    }
+  //if int it's max-length
+  } elseif (is_int($validation)) {
+    if (strlen($value) <= $validation) {
+      return $value;
+    } else {
+      if ($DBC) {
+        $DBC->query("ROLLBACK");
+        $DBC->quit();
+      }
+      throw new Exception("$error, incorrect character length > $validation");
+    }
+  //if bool it must be changed/ is required
+  } elseif (is_bool($validation)) {
+    if ($value) {
+      return $value;
+    } else {
+      if ($DBC) {
+        $DBC->query("ROLLBACK");
+        $DBC->quit();
+      }
+      throw new Exception("$error, field is required");
+    }
+  //else I have no idea
   } else {
-    $text = curl_exec( $curl_handle );
+    if ($DBC) {
+      $DBC->query("ROLLBACK");
+      $DBC->quit();
+    }
+    throw new Exception("$error, unknown data error");
   }
-  curl_close( $curl_handle );
-  return $text;
-}*/
+}
+?>

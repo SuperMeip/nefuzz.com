@@ -26,11 +26,20 @@
     background-color: green;
     color: white;
     box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2),0 0px 20px 0 rgba(0,0,0,0.19);
+    display: flex;
+    align-items: center;
+    
     
     h1 {
       font-size: 1.8rem;
       margin: 0px;
       padding: 5px;
+    }
+    
+    i {
+      font-size: 1.4rem;
+      margin: 10px;
+      margin-left: auto;
     }
   }
   

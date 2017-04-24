@@ -17,6 +17,10 @@ error_reporting( E_ALL );
     meet, meets, meetup, convention">
   <meta name="author" content="Meep">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="green"/>
+	<meta name="mobile-web-app-capable" content="yes">
+	<link rel="icon" sizes="192x192" href="img/iconsquare.png">
+	<link rel="apple-touch-icon" href="img/iconsquare.png">
   <link rel="stylesheet" href="css/style.php?p=styles.scss" />
   <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

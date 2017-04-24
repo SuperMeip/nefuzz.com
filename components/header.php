@@ -19,7 +19,7 @@ $(document).ready(function() {
   $("#logout").click(function() {
     $.ajax({
       type: "POST",
-      url: "controls/header/logout.php",
+      url: "controls/header/logout.php?ajax=true",
       success: function() {
         location.reload();
       }

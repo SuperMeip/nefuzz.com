@@ -1,6 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/models/location.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/models/em_info.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/php/common.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/php/db.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/php/auth.php");
 
@@ -268,8 +269,10 @@ class User {
     $DB = new DBC();
     
     $DB->query("START TRANSACTION");
-    
-    $auth = makeHash($this->username,$password);
+    $auth = makeHash(
+      validate($this->username, "^[a-zA-Z0-9_]{1,20}$", "Problem in Username field", $DB),
+      validate($password, "^(?=.*\d).{8,20}$", "Problem in Password field", $DB)
+    );
     $query = "
       INSERT INTO users(
         username,
@@ -289,12 +292,12 @@ class User {
       $this->username,
       $auth,
       $this->has_icon,
-      $this->fur_name,
-      $this->real_name,
-      $this->contact_method,
-      $this->location->address,
-      $this->location->region_id,
-      $this->location->city
+      validate($this->fur_name, 50, "Problem in Fur Name field", $DB),
+      validate($this->real_name, 50, "Problem in Real Name field", $DB),
+      validate($this->contact_method, true, "Problem with Prefered Contact Method Selection", $DB),
+      validate($this->location->address, 50, "Problem with Address field", $DB),
+      validate($this->location->region_id, true, "Problem with state selection", $DB),
+      validate($this->location->city, 25, "Problem with City field", $DB)
     ]);
     if(!$worked){
       $DB->query("ROLLBACK");
@@ -313,8 +316,16 @@ class User {
       ) VALUES 
     ";
     foreach ($this->contact_info as $method => $method_info) {
+      if ($method == 1) {
+        validate($method_info, "^[^@]+@[^@]+\.[^@]+$", "Problem in Email field", $DB);
+      }
       $query .= "(?, ?, ?),";
-      array_push($values, $id, $method, $method_info);
+      array_push(
+        $values,
+        $id,
+        $method,
+        validate($method_info, 40, "Problem in Contact Method field #$method", $DB)
+      );
       $types .= "iis";
     }
     $query = rtrim($query ,",");
@@ -344,12 +355,12 @@ class User {
     ";
     $worked = $DB->query($query, "issssssii", [
       $id,
-      $this->emergency_info->emergency_contacts[0]["name"],
-      $this->emergency_info->emergency_contacts[0]["phone_number"],
-      $this->emergency_info->emergency_contacts[1]["name"],
-      $this->emergency_info->emergency_contacts[1]["phone_number"],
-      $this->emergency_info->allergies,
-      $this->emergency_info->medical_issues,
+      validate($this->emergency_info->emergency_contacts[0]["name"], 50, "Problem in Name for Emergency Contact 1", $DB),
+      validate($this->emergency_info->emergency_contacts[0]["phone_number"], 20, "Problem in Phone Number for Emergency Contact 1", $DB),
+      validate($this->emergency_info->emergency_contacts[1]["name"], 50, "Problem in Name for Emergency Contact 2", $DB),
+      validate($this->emergency_info->emergency_contacts[1]["phone_number"], 20, "Problem in Phone Number for Emergency Contact 2", $DB),
+      validate($this->emergency_info->allergies, 50 , "Problem in Allergies field", $DB),
+      validate($this->emergency_info->medical_issues, 50 , "Problem in Medical Issues field", $DB),
       $this->emergency_info->bee_allergy,
       $this->emergency_info->food_allergy
     ]);

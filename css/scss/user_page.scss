@@ -3,17 +3,100 @@
   width: 100%;
   height: 100%;
   
+  .address_city {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+  }
+  
   .city {
     font-size: 2.5rem;
   }
   
   .state {
+    margin-left: auto;
     font-size: 3.5rem;
+    @media screen and (max-width: $small-width) {
+      font-size: 2.5rem;
+    }
     color: white;
     background-color: $main-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     
     p {
       text-align: center;
+      margin: 1rem;
+    }
+  }
+}
+
+#user_member_groups,
+#user_meets_attended {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  
+  .title {
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .number {
+    margin-right: auto;
+    font-size: 3.5rem;
+    @media screen and (max-width: $small-width) {
+      font-size: 2.5rem;
+    }
+    color: white;
+    background-color: $main-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    p {
+      text-align: center;
+      margin: 1rem;
+    }
+  }
+}
+
+#user_meets_hosted {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  
+  .title {
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .number {
+    margin-left: auto;
+    font-size: 3.5rem;
+    @media screen and (max-width: $small-width) {
+      font-size: 2.5rem;
+    }
+    color: white;
+    background-color: $main-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    p {
+      text-align: center;
+      margin: 1rem;
     }
   }
 }

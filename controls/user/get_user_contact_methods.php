@@ -4,7 +4,6 @@
 
 function get_user_contact_methods($username) {
   require_once($_SERVER['DOCUMENT_ROOT']."/models/user.php");
-  require_once($_SERVER['DOCUMENT_ROOT']."/php/common.php");
   require_once($_SERVER['DOCUMENT_ROOT']."/controls/get/contact_methods.php");
 
   if (!$username) {

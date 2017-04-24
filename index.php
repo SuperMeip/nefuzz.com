@@ -1,6 +1,6 @@
 <?php
-include('templates/header.php');
-require_once("components/common.php");
+require_once("components/common/header.php");
 ?>
+<?=new Header([]);?>
 
 <?=Template('footer');?>

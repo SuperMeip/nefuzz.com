@@ -1,8 +1,18 @@
-/* compiled by scssphp v0.0.12 on Thu, 20 Apr 2017 09:06:10 -0400 (0.0711s) */
+/* compiled by scssphp v0.0.12 on Fri, 21 Apr 2017 15:02:02 -0400 (0.0677s) */
 
 html {
   font-size: 14px;
   min-height: 100vh; }
+
+.error_message {
+  background-color: lightgray;
+  border-radius: 10px;
+  font-family: courier;
+  border-left: red solid 1px;
+  margin: 10px;
+  border-right: red solid 1px; }
+  .error_message p {
+    padding: 10px; }
 
 .shadow_title {
   text-shadow: 3px 3px 5px darkgrey;
@@ -38,7 +48,7 @@ main {
   display: flex; }
   .row.center {
     justify-content: center; }
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 600px) {
     .row.mobile_column {
       flex-direction: column; }
       .row.mobile_column .input_normal, .row.mobile_column .input_small, .row.mobile_column .input_mini, .row.mobile_column .input_big, .row.mobile_column .input_medium {
@@ -62,11 +72,11 @@ main {
 .header_small {
   font-size: 2rem;
   margin: 0; }
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 600px) {
   .header_small {
     font-size: 1.5rem; } }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
   .desktop {
     display: none; } }
 
@@ -82,7 +92,7 @@ main {
   color: #5f5f5f;
   border-spacing: 5px;
   font-weight: bold; }
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 600px) {
   .info_table {
     font-size: 1rem; } }
   .info_table .item_value {
@@ -103,7 +113,7 @@ header {
   header .logo {
     max-height: 100px;
     max-width: 28%; }
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: 600px) {
   header .logo {
     max-height: 100px;
     width: auto; } }
@@ -129,7 +139,7 @@ header {
     height: 40px;
     align-items: center;
     display: flex; }
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: 600px) {
   .nav_bar a.item {
     font-size: 2rem;
     padding: 8px 6px; } }
@@ -180,11 +190,17 @@ header {
     width: 100%;
     background-color: green;
     color: white;
-    box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2), 0 0px 20px 0 rgba(0, 0, 0, 0.19); }
+    box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2), 0 0px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    align-items: center; }
     .grid_block .header h1 {
       font-size: 1.8rem;
       margin: 0px;
       padding: 5px; }
+    .grid_block .header i {
+      font-size: 1.4rem;
+      margin: 10px;
+      margin-left: auto; }
   .grid_block .body {
     margin: 10px; }
 
@@ -325,7 +341,7 @@ p.modal_text {
   width: 50%;
   margin-top: 10px;
   margin-bottom: 10px; }
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 600px) {
   .text_input, .select_input {
     margin: 5px; } }
   .text_input label, .select_input label {
@@ -351,7 +367,7 @@ p.modal_text {
     margin-right: auto;
     font-size: 1.5rem;
     color: #666; }
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: 600px) {
   .text_input input, .select_input input, .text_input select, .select_input select {
     font-size: 1.2rem; } }
     .text_input input:hover, .select_input input:hover, .text_input select:hover, .select_input select:hover, .text_input input:focus, .select_input input:focus, .text_input select:focus, .select_input select:focus {
@@ -403,7 +419,7 @@ p.modal_text {
 
 .checkbox_input, .upload {
   margin-bottom: 10px; }
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 600px) {
   .checkbox_input, .upload {
     margin: 5px; } }
   .checkbox_input .label_container:hover .value_text, .upload .label_container:hover .value_text {
@@ -430,7 +446,7 @@ p.modal_text {
     margin-right: auto;
     color: #666;
     width: 90%; }
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: 600px) {
   .checkbox_input .value_text, .upload .value_text {
     font-size: 1.2rem; } }
     .checkbox_input .value_text .true, .upload .value_text .true {
@@ -500,7 +516,7 @@ p.modal_text {
     margin: 0px;
     margin-bottom: 15px;
     background-color: #f5f5f5; }
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: 600px) {
   .block p.info {
     font-size: 0.9rem;
     margin: 5px;
@@ -523,7 +539,7 @@ p.modal_text {
       font-size: 2rem;
       font-weight: bold;
       transition: transform 0.5s; }
-      @media screen and (max-width: 480px) {
+      @media screen and (max-width: 600px) {
   .block .header span {
     font-size: 2rem; } }
       .block .header span.rotated {
@@ -540,7 +556,7 @@ p.modal_text {
   .block .body {
     margin: 20px;
     margin-bottom: 40px; }
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: 600px) {
   .block .body {
     margin: 5px;
     margin-top: 10px;
@@ -552,7 +568,7 @@ p.modal_text {
   width: 95%;
   margin: 10px;
   min-width: 200px; }
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 600px) {
   .row .block {
     margin-left: auto;
     margin-right: auto; } }
@@ -648,3 +664,82 @@ footer {
         margin-top: -5px;
         border-width: 5px;
         border-color: transparent rgba(255, 0, 0, .7) transparent transparent; }
+
+#user_location {
+  display: flex;
+  width: 100%;
+  height: 100%; }
+  #user_location .address_city {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    justify-content: center; }
+  #user_location .city {
+    font-size: 2.5rem; }
+  #user_location .state {
+    margin-left: auto;
+    font-size: 3.5rem;
+    color: white;
+    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    @media screen and (max-width: 600px) {
+  #user_location .state {
+    font-size: 2.5rem; } }
+    #user_location .state p {
+      text-align: center;
+      margin: 1rem; }
+
+#user_member_groups, #user_meets_attended {
+  display: flex;
+  width: 100%;
+  height: 100%; }
+  #user_member_groups .title, #user_meets_attended .title {
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    justify-content: center; }
+  #user_member_groups .number, #user_meets_attended .number {
+    margin-right: auto;
+    font-size: 3.5rem;
+    color: white;
+    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    @media screen and (max-width: 600px) {
+  #user_member_groups .number, #user_meets_attended .number {
+    font-size: 2.5rem; } }
+    #user_member_groups .number p, #user_meets_attended .number p {
+      text-align: center;
+      margin: 1rem; }
+
+#user_meets_hosted {
+  display: flex;
+  width: 100%;
+  height: 100%; }
+  #user_meets_hosted .title {
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    justify-content: center; }
+  #user_meets_hosted .number {
+    margin-left: auto;
+    font-size: 3.5rem;
+    color: white;
+    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    @media screen and (max-width: 600px) {
+  #user_meets_hosted .number {
+    font-size: 2.5rem; } }
+    #user_meets_hosted .number p {
+      text-align: center;
+      margin: 1rem; }

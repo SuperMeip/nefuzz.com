@@ -9,4 +9,5 @@ require_once("components/common/tooltip.php");
 require_once("components/common/upload.php");
 require_once("components/common/grid_block.php");
 require_once("components/common/info_table.php");
+require_once("components/common/header.php");
 ?>

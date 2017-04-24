@@ -3,11 +3,10 @@
 
 function page_link($username) {
   require_once($_SERVER['DOCUMENT_ROOT']."/models/user.php");
-  require_once($_SERVER['DOCUMENT_ROOT']."/php/common.php");
-  if($username) {
+  if(!$username) {
     return "/index.php";
   }
-  $user = User::get($_GET["username"]);
+  $user = User::get($username);
   if (!$user) {
     return "/index.php";
   }

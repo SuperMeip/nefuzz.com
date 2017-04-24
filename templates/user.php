@@ -22,25 +22,44 @@ require_once($_SERVER['DOCUMENT_ROOT']."/components/user.php");
     <?=user_info_grid_block($_GET['username'] ?? "");?>
   </div>
   <div class="row grid center mobile_column">
-    <?=contact_info_grid_block($_GET['username'] ?? "");?>
     <div class="grid_column w_normal">
-      <?=new Grid_Block([
-        "title" => "tiny",
-        "width" => "full",
-        "height" => "small",
-        "content" => "test content"
-      ]);?>
+      <?=location_grid_item($_GET['username']);?>
       <div class="grid_block h_mini w_full">
-        test content
+        <div id="user_meets_attended">
+          <div class="number">
+            <p>33</p>
+          </div>
+          <div class="title">
+            Meets Attended
+          </div>
+        </div>
       </div>
       <div class="grid_block h_mini w_full">
-        test content
+        <div id="user_meets_hosted">
+          <div class="title">
+            Meets Hosted
+          </div>
+          <div class="number">
+            <p>10</p>
+          </div>
+        </div>
+      </div>
+      <div class="grid_block h_mini w_full">
+        <div id="user_member_groups">
+          <div class="number">
+            <p>444</p>
+          </div>
+          <div class="title">
+            Groups I'm In
+          </div>
+        </div>
       </div>
     </div>
+    <?=contact_info_grid_block($_GET['username'] ?? "");?>
   </div>
   <div class="row grid center mobile_column">
     <div class="grid_block h_normal w_medium">
-      test content
+      em_info (personal)
     </div>
     <div class="grid_block h_normal w_medium">
       test content

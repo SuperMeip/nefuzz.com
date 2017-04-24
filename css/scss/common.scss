@@ -1,12 +1,25 @@
 $main-color: green;
 $light-color: #9FC;
 $dark-color: darkgreen;
-$small-width: 480px;
+$small-width: 600px;
 $medium-width: 800px;
 
 html {
 	font-size: 14px;
   min-height: 100vh;
+}
+
+.error_message {
+    background-color: lightgray;
+    border-radius: 10px;
+    font-family: courier;
+    border-left: red solid 1px;
+    margin: 10px;
+    border-right: red solid 1px;
+    
+    p {
+      padding: 10px;
+    }
 }
 
 .shadow_title {

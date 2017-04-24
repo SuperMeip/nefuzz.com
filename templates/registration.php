@@ -58,7 +58,7 @@ require_once("components/registration.php");
 ]);?>  
 
 <?=new Modal([
-  "title" => "Unknown Issue :(",
+  "title" => "Error :(",
   "id" => "registration-failed",
   "content" =>  "<p class=\"modal_text\">
                 We applologize but it seems
@@ -67,5 +67,6 @@ require_once("components/registration.php");
                 verifying everything you've entered
                 and submitting again, if the
                 issue persists contact a site
-                administrator.</p>"
+                administrator.</br></br> ERROR:
+                <div class=\"error_message\"><p></p></div></p>"
 ]);?>

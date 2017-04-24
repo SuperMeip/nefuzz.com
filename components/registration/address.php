@@ -1,5 +1,4 @@
 <?php
-require_once("php/common.php");
 require_once("controls/get/regions.php");
 
 function region_options() {

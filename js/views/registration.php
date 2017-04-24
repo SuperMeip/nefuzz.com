@@ -1,12 +1,3 @@
-<?php
-if (isset($_SESSION["user"])){
-  echo "
-    <script>
-      window.location = \"https://nefuzz.com\";
-    </script>
-  ";
-}
-?>
 <script>
 //submit the form
 $(document).ready(function(){
