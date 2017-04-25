@@ -1,4 +1,4 @@
-/* compiled by scssphp v0.0.12 on Tue, 25 Apr 2017 11:06:10 -0400 (0.0677s) */
+/* compiled by scssphp v0.0.12 on Tue, 25 Apr 2017 14:40:24 -0400 (0.0788s) */
 
 html {
   font-size: 14px;
@@ -753,3 +753,6 @@ footer {
   cursor: hand; }
   #edit-user-info:active, #edit-contact-info:active {
     color: #9fc; }
+
+#everyone_map {
+  height: 100%; }

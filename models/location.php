@@ -1,4 +1,5 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT']."/php/auth.php");
 
 class Location {
   public $name = "";          //string
@@ -53,7 +54,7 @@ class Location {
     }
     $origin = ($this->address ? str_replace(' ', '+', $this->address) : '') . '+' . $this->city . '+' . $this->state;
     $destination = ($other_loc->address ? str_replace(' ', '+', $other_loc->address) : '') . '+' . $other_loc->city . '+' . $other_loc->state;
-    $url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" . $origin . "&destinations=" . $destination . "&key=AIzaSyAVHaRFclrSmQusTzLrdYa_CQrJdLeFxcU";
+    $url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=$origin&destinations=$destination&key={$GLOBALS['google_maps_key']}";
     $curl_handle = curl_init();
     curl_setopt( $curl_handle, CURLOPT_URL, $url );
     curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, true );
@@ -97,7 +98,6 @@ class Location {
     $hours = floor($added_time/3600);
     $minuets = floor(($added_time%3600)/60);
     $hours_and_minuets = ($hours ? "$hours hours " : "") . "$minuets mins";
-    echo "Difference 1-2-3 vs 1-3 \n";
     return [
       "length" => [
         "text" => $length_text,
@@ -131,8 +131,8 @@ class Location {
   }
 }
 //testing 
-
-/*$location_1 = new Location(["state" => "MA", "city" => "boston"]);
+/*
+$location_1 = new Location(["state" => "MA", "city" => "boston"]);
 $location_2 = new Location(["state" => "MA", "city" => "worcester"]);
 $location_3 = new Location(["state" => "MA", "city" => "springfield"]);
 
