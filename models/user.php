@@ -22,10 +22,10 @@ class User {
   public $contact_info = [];          //assoc[$contact_method=>contact_info(string)]
   public $emergency_info  = [];       //object(Em_Info)
   public $event_info = [];            //assoc[$event_id=>attendee_type(string)]
-  public $meets = [];                 //array[int]
-  public $groups = [];                //assoc[$group_id=>role(string)]
+  public $meet_info = [];             //array[int]
+  public $group_info = [];            //assoc[$group_id=>role(string)]
   
-  private static $DB = false;                //object(DBC)
+  private static $DB = false;         //object(DBC)
   
   
   /**
@@ -182,7 +182,7 @@ class User {
     $query = "
       SELECT
         e.id,
-        at.name
+        at.id
       FROM events e
         JOIN event_attendees ea on ea.event = e.id
         JOIN users u on u.id = ea.user

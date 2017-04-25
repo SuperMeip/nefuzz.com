@@ -45,34 +45,65 @@
   
   .body {
     margin: 10px;
+    overflow: auto;
   }
 }
 
 .grid_block,
 .grid_column {
+  
+  .body {
+    @media screen and (max-width: $medium-width){
+      height: 240px !important;
+    }
+  }
 
   &.h_big {
     height: 360px;
+    
+    .body {
+      height: 300px;
+    }
   }
   
   &.h_large {
     height: 300px;
+    
+    .body {
+      height: 240px;
+    }
   };
   
   &.h_medium {
     height: 200px;
+    
+    .body {
+      height: 140px;
+    }
   };
   
   &.h_normal {
     height: 240px;
+    
+    .body {
+      height: 180px;
+    }
   }
   
   &.h_small {
     height: 170px;
+    
+    .body {
+      height: 110px;
+    }
   }
   
   &.h_mini {
     height: 75px;
+    
+    .body {
+      height: 15px;
+    }
   }
   
   &.w_full {

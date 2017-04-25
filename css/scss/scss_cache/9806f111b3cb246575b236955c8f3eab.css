@@ -1,4 +1,4 @@
-/* compiled by scssphp v0.0.12 on Fri, 21 Apr 2017 15:02:02 -0400 (0.0677s) */
+/* compiled by scssphp v0.0.12 on Tue, 25 Apr 2017 11:06:10 -0400 (0.0677s) */
 
 html {
   font-size: 14px;
@@ -48,7 +48,7 @@ main {
   display: flex; }
   .row.center {
     justify-content: center; }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 766px) {
     .row.mobile_column {
       flex-direction: column; }
       .row.mobile_column .input_normal, .row.mobile_column .input_small, .row.mobile_column .input_mini, .row.mobile_column .input_big, .row.mobile_column .input_medium {
@@ -62,7 +62,7 @@ main {
   margin: auto;
   max-width: 80%;
   width: 1000px; }
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 766px) {
   .center_column {
     max-width: 100%; } }
 
@@ -72,11 +72,11 @@ main {
 .header_small {
   font-size: 2rem;
   margin: 0; }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 766px) {
   .header_small {
     font-size: 1.5rem; } }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 766px) {
   .desktop {
     display: none; } }
 
@@ -88,11 +88,12 @@ main {
   color: black; }
 
 .info_table {
+  width: 100%;
   font-size: 1.2rem;
   color: #5f5f5f;
   border-spacing: 5px;
   font-weight: bold; }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 766px) {
   .info_table {
     font-size: 1rem; } }
   .info_table .item_value {
@@ -113,7 +114,7 @@ header {
   header .logo {
     max-height: 100px;
     max-width: 28%; }
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 766px) {
   header .logo {
     max-height: 100px;
     width: auto; } }
@@ -139,7 +140,7 @@ header {
     height: 40px;
     align-items: center;
     display: flex; }
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 766px) {
   .nav_bar a.item {
     font-size: 2rem;
     padding: 8px 6px; } }
@@ -202,20 +203,36 @@ header {
       margin: 10px;
       margin-left: auto; }
   .grid_block .body {
-    margin: 10px; }
+    margin: 10px;
+    overflow: auto; }
 
-.grid_block.h_big, .grid_column.h_big {
-  height: 360px; }
+@media screen and (max-width: 766px) {
+      .grid_block .body, .grid_column .body {
+        height: 240px !important; } }
+  .grid_block.h_big, .grid_column.h_big {
+    height: 360px; }
+    .grid_block.h_big .body, .grid_column.h_big .body {
+      height: 300px; }
   .grid_block.h_large, .grid_column.h_large {
     height: 300px; }
+    .grid_block.h_large .body, .grid_column.h_large .body {
+      height: 240px; }
   .grid_block.h_medium, .grid_column.h_medium {
     height: 200px; }
+    .grid_block.h_medium .body, .grid_column.h_medium .body {
+      height: 140px; }
   .grid_block.h_normal, .grid_column.h_normal {
     height: 240px; }
+    .grid_block.h_normal .body, .grid_column.h_normal .body {
+      height: 180px; }
   .grid_block.h_small, .grid_column.h_small {
     height: 170px; }
+    .grid_block.h_small .body, .grid_column.h_small .body {
+      height: 110px; }
   .grid_block.h_mini, .grid_column.h_mini {
     height: 75px; }
+    .grid_block.h_mini .body, .grid_column.h_mini .body {
+      height: 15px; }
   .grid_block.w_full, .grid_column.w_full {
     width: 100%; }
   .grid_block.w_normal, .grid_column.w_normal {
@@ -230,7 +247,7 @@ header {
   .grid_block.w_small, .grid_column.w_small {
     width: 24%;
     min-width: 135px; }
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 766px) {
   .grid_block, .grid_column {
     width: 90% !important;
     min-width: 300px !important;
@@ -247,7 +264,7 @@ header {
   align-items: center;
   width: 100%; }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 766px) {
   .row.grid {
     flex-direction: column; } }
 
@@ -341,7 +358,7 @@ p.modal_text {
   width: 50%;
   margin-top: 10px;
   margin-bottom: 10px; }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 766px) {
   .text_input, .select_input {
     margin: 5px; } }
   .text_input label, .select_input label {
@@ -367,7 +384,7 @@ p.modal_text {
     margin-right: auto;
     font-size: 1.5rem;
     color: #666; }
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 766px) {
   .text_input input, .select_input input, .text_input select, .select_input select {
     font-size: 1.2rem; } }
     .text_input input:hover, .select_input input:hover, .text_input select:hover, .select_input select:hover, .text_input input:focus, .select_input input:focus, .text_input select:focus, .select_input select:focus {
@@ -419,7 +436,7 @@ p.modal_text {
 
 .checkbox_input, .upload {
   margin-bottom: 10px; }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 766px) {
   .checkbox_input, .upload {
     margin: 5px; } }
   .checkbox_input .label_container:hover .value_text, .upload .label_container:hover .value_text {
@@ -446,7 +463,7 @@ p.modal_text {
     margin-right: auto;
     color: #666;
     width: 90%; }
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 766px) {
   .checkbox_input .value_text, .upload .value_text {
     font-size: 1.2rem; } }
     .checkbox_input .value_text .true, .upload .value_text .true {
@@ -516,7 +533,7 @@ p.modal_text {
     margin: 0px;
     margin-bottom: 15px;
     background-color: #f5f5f5; }
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 766px) {
   .block p.info {
     font-size: 0.9rem;
     margin: 5px;
@@ -539,7 +556,7 @@ p.modal_text {
       font-size: 2rem;
       font-weight: bold;
       transition: transform 0.5s; }
-      @media screen and (max-width: 600px) {
+      @media screen and (max-width: 766px) {
   .block .header span {
     font-size: 2rem; } }
       .block .header span.rotated {
@@ -556,7 +573,7 @@ p.modal_text {
   .block .body {
     margin: 20px;
     margin-bottom: 40px; }
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 766px) {
   .block .body {
     margin: 5px;
     margin-top: 10px;
@@ -568,7 +585,7 @@ p.modal_text {
   width: 95%;
   margin: 10px;
   min-width: 200px; }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 766px) {
   .row .block {
     margin-left: auto;
     margin-right: auto; } }
@@ -665,81 +682,74 @@ footer {
         border-width: 5px;
         border-color: transparent rgba(255, 0, 0, .7) transparent transparent; }
 
-#user_location {
+#user_meets_attended, #user_member_groups, #user_meets_hosted, #user_location {
   display: flex;
   width: 100%;
   height: 100%; }
-  #user_location .address_city {
+  #user_meets_attended .number, #user_member_groups .number, #user_meets_hosted .number, #user_location .number, #user_meets_attended .state, #user_member_groups .state, #user_meets_hosted .state, #user_location .state {
+    font-size: 3.5rem;
+    color: white;
+    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    @media screen and (max-width: 766px) {
+  #user_meets_attended .number, #user_member_groups .number, #user_meets_hosted .number, #user_location .number, #user_meets_attended .state, #user_member_groups .state, #user_meets_hosted .state, #user_location .state {
+    font-size: 2.5rem; } }
+    #user_meets_attended .number p, #user_member_groups .number p, #user_meets_hosted .number p, #user_location .number p, #user_meets_attended .state p, #user_member_groups .state p, #user_meets_hosted .state p, #user_location .state p {
+      text-align: center;
+      margin: 1rem; }
+  #user_meets_attended .number:hover, #user_member_groups .number:hover, #user_meets_hosted .number:hover, #user_location .number:hover {
+    background-color: darkgreen;
+    color: #9fc;
+    cursor: pointer;
+    cursor: hand; }
+  #user_meets_attended .address_city, #user_member_groups .address_city, #user_meets_hosted .address_city, #user_location .address_city, #user_meets_attended .title, #user_member_groups .title, #user_meets_hosted .title, #user_location .title {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     justify-content: center; }
-  #user_location .city {
+  #user_meets_attended .title, #user_member_groups .title, #user_meets_hosted .title, #user_location .title {
+    font-size: 2rem; }
+  #user_meets_attended .city, #user_member_groups .city, #user_meets_hosted .city, #user_location .city {
     font-size: 2.5rem; }
-  #user_location .state {
-    margin-left: auto;
-    font-size: 3.5rem;
-    color: white;
-    background-color: green;
-    display: flex;
-    align-items: center;
-    justify-content: center; }
-    @media screen and (max-width: 600px) {
-  #user_location .state {
-    font-size: 2.5rem; } }
-    #user_location .state p {
-      text-align: center;
-      margin: 1rem; }
 
-#user_member_groups, #user_meets_attended {
-  display: flex;
-  width: 100%;
-  height: 100%; }
-  #user_member_groups .title, #user_meets_attended .title {
-    font-size: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    justify-content: center; }
-  #user_member_groups .number, #user_meets_attended .number {
-    margin-right: auto;
-    font-size: 3.5rem;
-    color: white;
-    background-color: green;
-    display: flex;
-    align-items: center;
-    justify-content: center; }
-    @media screen and (max-width: 600px) {
-  #user_member_groups .number, #user_meets_attended .number {
-    font-size: 2.5rem; } }
-    #user_member_groups .number p, #user_meets_attended .number p {
-      text-align: center;
-      margin: 1rem; }
+#user_location .number, #user_meets_hosted .number, #user_location .state, #user_meets_hosted .state {
+  margin-left : auto; }
 
-#user_meets_hosted {
-  display: flex;
-  width: 100%;
-  height: 100%; }
-  #user_meets_hosted .title {
-    font-size: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    justify-content: center; }
-  #user_meets_hosted .number {
-    margin-left: auto;
-    font-size: 3.5rem;
-    color: white;
-    background-color: green;
-    display: flex;
-    align-items: center;
-    justify-content: center; }
-    @media screen and (max-width: 600px) {
-  #user_meets_hosted .number {
-    font-size: 2.5rem; } }
-    #user_meets_hosted .number p {
-      text-align: center;
-      margin: 1rem; }
+#user_meets_attended .number, #user_member_groups .number {
+  margin-right: auto; }
+
+#user_location div.state.is_current_user, .user_icon_container.is_current_user {
+  position: relative; }
+  #user_location div.state.is_current_user .overlay, .user_icon_container.is_current_user .overlay {
+    transition: 0.5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
+    #user_location div.state.is_current_user .overlay i, .user_icon_container.is_current_user .overlay i {
+      background-color: green;
+      color: white;
+      font-size: 16px;
+      padding: 16px;
+      border-radius: 50px; }
+      #user_location div.state.is_current_user .overlay i.active, .user_icon_container.is_current_user .overlay i.active {
+        color: #9fc; }
+  #user_location div.state.is_current_user:hover .overlay, .user_icon_container.is_current_user:hover .overlay {
+    opacity: 1;
+    cursor: pointer;
+    cursor: hand; }
+  #user_location div.state.is_current_user img, .user_icon_container.is_current_user img {
+    backface-visibility: hidden;
+    transition: 0.5s ease; }
+  #user_location div.state.is_current_user:hover img, .user_icon_container.is_current_user:hover img, #user_location div.state.is_current_user:hover p, .user_icon_container.is_current_user:hover p {
+    opacity: 0.3; }
+
+#edit-user-info, #edit-contact-info {
+  cursor: pointer;
+  cursor: hand; }
+  #edit-user-info:active, #edit-contact-info:active {
+    color: #9fc; }

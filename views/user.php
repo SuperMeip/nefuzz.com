@@ -5,6 +5,99 @@ class User_View extends View {
   
   public $user = null;
   public $contact_methods = [];
+  public $attendee_types = []; // CHANGE
+  
+  public function username() {
+    return $this->user->username;
+  }
+  
+  public function user_icon() {
+    $icon_url = $this->user->get_icon();
+    return "
+      <div class=\"user_icon_container" . ($this->user->is_current_user ? " is_current_user" : "") . "\"
+        style=\"
+          box-shadow: 2px 6px 10px darkgrey;
+          width: 179px;
+          height: 179px;
+          border-radius: 100px;
+          display:flex
+        \"
+      >
+        <img class=\"large_icon round\" src=\"$icon_url\" /> " .
+        ($this->user->is_current_user ? "
+        <div class=\"overlay\">
+          <i id=\"edit-icon-info\" class=\"fa fa-pencil\" aria-hidden=\"true\"></i>
+        </div>" : "") . "
+      </div>
+    ";
+  }
+  
+  public function meets_attended() {
+    $attended = 0;
+    foreach ($this->user->event_info as $id => $attendee_type) {
+      if ($attendee_type < 3) {
+        $attended++;
+      }
+    }
+    $body = "
+      <div id=\"user_meets_attended\">
+        <div class=\"number\">
+          <p>$attended</p>
+        </div>
+        <div class=\"title\">
+          Meets Attended
+        </div>
+      </div>
+    ";
+    return new Grid_Block([
+      "height" => "mini",
+      "width" => "full",
+      "body" => $body
+    ]);
+  }
+  
+  public function meets_hosted() {
+    $hosted = 0;
+    foreach ($this->user->event_info as $id => $attendee_type) {
+      if ($attendee_type == 1) {
+        $hosted++;
+      }
+    }
+    $body = "
+      <div id=\"user_meets_hosted\">
+        <div class=\"title\">
+          Meets Hosted
+        </div>
+        <div class=\"number\">
+          <p>$hosted</p>
+        </div>
+      </div>
+    ";
+    return new Grid_Block([
+      "height" => "mini",
+      "width" => "full",
+      "body" => $body
+    ]);
+  }
+  
+  public function group_membership() {
+    $groups = count($this->user->group_info);
+    $body = "
+      <div id=\"user_member_groups\">
+        <div class=\"number\">
+          <p>$groups</p>
+        </div>
+        <div class=\"title\">
+          Groups I'm In
+        </div>
+      </div>
+    ";
+    return new Grid_Block([
+      "height" => "mini",
+      "width" => "full",
+      "body" => $body
+    ]);
+  }
   
   public function redirect() {
     if(!$this->user) {
@@ -16,7 +109,7 @@ class User_View extends View {
     }
   }
   
-  function contact_info_grid_block() {
+  public function contact_info_grid_block() {
     $display_methods = [];
     foreach ($this->user->contact_info as $method_id => $method_info) {
       foreach ($this->contact_methods as $method) {
@@ -46,15 +139,7 @@ class User_View extends View {
     ]);
   }
   
-  public function username() {
-    return $this->user->username;
-  }
-  
-  public function user_icon() {
-    return $this->user->get_icon();
-  }
-  
-  function user_info_grid_block() {
+  public function user_info_grid_block() {
     foreach ($this->contact_methods as $method) {
       if ($method['id'] == $this->user->contact_method) {
         $contact_method = $method['name'];
@@ -83,7 +168,7 @@ class User_View extends View {
     ]);
   }
   
-  function location_grid_item() {
+  public function location_grid_item() {
     $address = ($this->user->is_current_user ? $this->user->location->address : "") ;
     $address = ($address ? "<div class=\"address\">$address</div>" : "");
     $city = $this->user->location->city;
@@ -94,7 +179,13 @@ class User_View extends View {
           $address
           <div class=\"city\">$city</div>
         </div>
-        <div class = \"state\"><p>$state</p></div>
+        <div class = \"state" . ($this->user->is_current_user ? " is_current_user" : "") . "\">
+          <p>$state</p>" .
+          ($this->user->is_current_user ? "
+          <div class=\"overlay\">
+            <i id=\"edit-location-info\" class=\"fa fa-pencil\" aria-hidden=\"true\"></i>
+          </div>" : "") . "
+        </div>
       </div>
     ";
     return new Grid_Block([
@@ -102,6 +193,25 @@ class User_View extends View {
       "height" => "mini",
       "body" => $body
     ]);
+  }
+  
+  public function em_info_grid_block() {
+    if ($this->user->is_current_user) {
+      $em_info = $this->user->emergency_info->get_as_array(true);
+      $table = new Info_Table([
+        "values" => $em_info
+      ]);
+      return new Grid_Block([
+        "title" => "Emergency Info",
+        "width" => "large",
+        "height" => "large",
+        "content" => $table,
+        "extra_icon" => ($this->user->is_current_user ? "pencil" : ""),
+        "extra_icon_id" => "edit-user-info"
+      ]);
+    } else {
+      return "";
+    }
   }
 
   protected function js() {
