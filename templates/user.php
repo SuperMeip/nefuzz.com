@@ -20,22 +20,5 @@
   </div>
   <div class="row grid center mobile_column">
     <?=$this->em_info_grid_block();?>
-    <div class="grid_block h_large w_medium">
-      test content
-    </div>
-  </div>
-  <div class="row grid center mobile_column">
-    <div class="grid_block h_small w_small">
-      test content
-    </div>
-    <div class="grid_block h_small w_small">
-      test content
-    </div>
-    <div class="grid_block h_small w_small">
-      test content
-    </div>
-    <div class="grid_block h_small w_small">
-      test content
-    </div>
   </div>
 </div>

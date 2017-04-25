@@ -57,14 +57,14 @@ class Location {
     $curl_handle = curl_init();
     curl_setopt( $curl_handle, CURLOPT_URL, $url );
     curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, true );
-    $distance_info = json_decode(curl_exec( $curl_handle ));
+    $distance_info = json_decode(curl_exec( $curl_handle ), true);
     curl_close( $curl_handle );
-    if (!isset($distance_info->rows[0]->elements[0]->distance)) {
+    if (!isset($distance_info['rows'][0]['elements'][0]['distance'])) {
       return false;
     }
     return [
-      'time' => $distance_info->rows[0]->elements[0]->duration,
-      'length' => $distance_info->rows[0]->elements[0]->distance
+      'time' => $distance_info['rows'][0]['elements'][0]['duration'],
+      'length' => $distance_info['rows'][0]['elements'][0]['distance']
     ];
   }
   
@@ -77,6 +77,37 @@ class Location {
     ",'',[]);
     $DB->quit();
     return $result;
+  }
+  
+  public function added_distance($checkpoint, $destination) {
+    $normal_dist = $this->distance($destination);
+    
+    $first_leg = $this->distance($checkpoint);
+    $second_leg = $checkpoint->distance($destination);
+    
+    if(!$normal_dist || !$first_leg || !$second_leg) {
+      return false;
+    }
+    
+    $added_length = ($first_leg['length']['value'] + $second_leg['length']['value']) - $normal_dist['length']['value'];
+    $added_time = ($first_leg['time']['value'] + $second_leg['time']['value']) - $normal_dist['time']['value'];
+  
+    $miles = round($added_length/1609.34, 1);
+    $length_text = "$miles mi";
+    $hours = floor($added_time/3600);
+    $minuets = floor(($added_time%3600)/60);
+    $hours_and_minuets = ($hours ? "$hours hours " : "") . "$minuets mins";
+    echo "Difference 1-2-3 vs 1-3 \n";
+    return [
+      "length" => [
+        "text" => $length_text,
+        "value" => $added_length
+      ],
+      "time" => [
+        "text" => $hours_and_minuets,
+        "value" => $added_time
+      ]
+    ];
   }
   
   /**
@@ -99,5 +130,13 @@ class Location {
     return new Location(json_decode($json, true));
   }
 }
+//testing 
 
-//var_dump((new Location('TN'))->dist(new Location('Ma', 'Boston', 'State st')));
+/*$location_1 = new Location(["state" => "MA", "city" => "boston"]);
+$location_2 = new Location(["state" => "MA", "city" => "worcester"]);
+$location_3 = new Location(["state" => "MA", "city" => "springfield"]);
+
+var_dump($location_1->distance($location_2));
+var_dump($location_2->distance($location_3));
+var_dump($location_1->distance($location_3));
+var_dump($location_1->added_distance($location_2, $location_3));*/
