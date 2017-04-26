@@ -6,7 +6,7 @@ $(document).ready(function(){
     
     $.ajax({
       type: $theForm.attr("method"),
-      url: $theForm.attr("action") + "?ajax=true",
+      url: $theForm.attr("action") + "?action=add_new_user",
       data: new FormData( this ),
       dataType: "json",
       processData: false,

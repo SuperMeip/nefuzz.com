@@ -81,7 +81,7 @@ class User {
     //grab all parts of the user data from DB
     $user_info = self::get_user_info($username);
     $user_info['is_current_user'] = $is_current_user;
-    $location_obj = self::get_location_obj($username);
+    $location_obj = self::get_location_obj($username, false);
     $meet_info = self::get_meet_info($username);
     $event_info = self::get_event_info($username);
     $contact_info = self::get_contact_info($username);
@@ -128,7 +128,10 @@ class User {
     return $results[0];
   }
   
-  private static function get_location_obj($username) {
+  public static function get_location_obj($username, $DB = true) {
+    if ($DB) {
+      $GLOBALS["DB"] = new DBC();
+    }
     $query = "
       SELECT
         u.address,
@@ -142,6 +145,9 @@ class User {
         u.username = ?;
     ";
     $results = $GLOBALS["DB"]->query_to_array($query, "s", [$username]);
+    if ($DB) {
+      $GLOBALS["DB"]->quit();
+    }
     return new Location($results[0]);
   }
   
@@ -386,6 +392,19 @@ class User {
     return ($this->has_icon ? "img/user/icon/$this->id.png" : "img/user/icon/NONE.png");
   }
   
+  public function get_icon_by_username($username) {
+    $DB = new DBC();
+    $query = "
+      SELECT 
+        has_icon,
+        id
+      FROM users
+      WHERE username = ?
+    ";
+    $result = $DB->query_to_array($query, 's', [$username])[0];
+    return ($result['has_icon'] ? "img/user/icon/{$result['id']}.png" : "img/user/icon/NONE.png");
+  }
+  
   /**
    * Get this user's user page link
    * 
@@ -395,12 +414,16 @@ class User {
     return "/user.php?username=$this->username";
   }
   
+  public function get_page_link_from_username($username) {
+    return "/user.php?username=$username";
+  }
+  
   /**
    * Get's a list of all contact methods a user can have
    * 
    * @return array - returns an array of associative arrays [[name=>$method_name][id=>$method_id]]
    */
-   public static function get_all_contact_methods() {
+  public static function get_all_contact_methods() {
      
   require_once($_SERVER['DOCUMENT_ROOT']."/php/db.php");
     $DB = new DBC();
@@ -412,6 +435,19 @@ class User {
     return $result;
    }
   
+  public static function get_all_usernames() {
+    $DB = new DBC();
+    $query = "
+      SELECT username
+      FROM users
+    ";
+    $result = $DB->query_to_array($query);
+    $list = [];
+    foreach ($result as $name) {
+      array_push($list, $name['username']);
+    }
+    return $list;
+  }
   /**
    * Checks if the user with the username exists, if a password is provided this also can be used to
    *    authorize a username/password combination.

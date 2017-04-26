@@ -1,51 +1,81 @@
-<script>
-// This example creates circles on the map, representing populations in North
-// America.
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=<?=$GLOBALS['google_maps_key'];?>&callback=initMap">
+</script>
 
-// First, create an object containing LatLng and population for each city.
-var citymap = {
-  chicago: {
-    center: {lat: 41.878, lng: -87.629},
-    population: 2714856
-  },
-  newyork: {
-    center: {lat: 40.714, lng: -74.005},
-    population: 8405837
-  },
-  losangeles: {
-    center: {lat: 34.052, lng: -118.243},
-    population: 3857799
-  },
-  vancouver: {
-    center: {lat: 49.25, lng: -123.1},
-    population: 603502
-  }
-};
+<script>
+function generateMapData(users_and_locations, callback) {
+  var locations = [];
+  var number_complete = 0;
+  var total = users_and_locations.length;
+  users_and_locations.forEach(function(user) {
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode( {  address: user.location}, function(results, status) {
+      number_complete++;
+      if (status == 'OK') {
+        var location_coord = results[0].geometry.location;
+        var location_latlog = results[0].geometry.location.lat() + " " +results[0].geometry.location.lng();
+        var found_id = 0;
+        var exists = locations.find(function(location, index) {
+          found_id = index;
+          return location.latlog === location_latlog;
+        });
+        if (exists) {
+          locations[found_id].users.push(user.username);
+        } else {
+          locations.push({
+            latlog: results[0].geometry.location.lat() + " " +results[0].geometry.location.lng(),
+            name: user.location,
+            coord: location_coord,
+            users: [user.username]
+          });
+        }
+      } else {
+        console.log('Geocode was not successful for the following reason: ' + status);
+      }
+      if (number_complete == total) {
+        if (typeof callback == 'function') {
+          callback(locations);
+        }
+      }
+    });
+  });
+}
 
 function initMap() {
-  // Create the map.
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
-    center: {lat: 37.090, lng: -95.712},
-    mapTypeId: 'terrain'
+  var map = new google.maps.Map(document.getElementById('everyone_map'), {
+    zoom: 7,
+    center: {lat: 42.9956, lng: -71.4548}, 
+    mapTypeId: 'roadmap'
   });
-
-  // Construct the circle for each value in citymap.
-  // Note: We scale the area of the circle based on the population.
-  for (var city in citymap) {
-    // Add the circle for this city to the map.
-    var cityCircle = new google.maps.Circle({
-      strokeColor: '#FF0000',
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: '#FF0000',
-      fillOpacity: 0.35,
-      map: map,
-      center: citymap[city].center,
-      radius: Math.sqrt(citymap[city].population) * 100
+  generateMapData(<?=json_encode($this->users_and_locations);?>, function(locations) {
+    locations.forEach(function(location) {
+      var cityCircle = new google.maps.Circle({
+        strokeColor: 'green',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: 'lightgreen',
+        fillOpacity: 0.35,
+        map: map,
+        center: {lat: location.coord.lat(), lng: location.coord.lng()},
+        radius: location.users.length * 400
+      });
+      var content = "";
+      var cityWindow = new google.maps.InfoWindow({
+        content: location.users.toString()
+      });
+      google.maps.event.addListener(cityCircle, 'click', function() {
+        $.ajax({
+          type: "POST",
+          url: "/controllers/map.php?action=get_user_icons",
+          data: {user_list: location.users},
+          dataType: "json",
+          success: function(data) {
+            cityWindow.setContent(data);
+            cityWindow.setPosition(cityCircle.getCenter());
+            cityWindow.open(map, cityCircle);
+          }
+        });
+      });
     });
-  }
+  });
 }
-</script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=<?=$GLOBALS['google_maps_key'];?>&callback=initMap">
 </script>

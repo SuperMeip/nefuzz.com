@@ -3,7 +3,7 @@
 <form
   class="main"
   id="registration-form"
-  action="controls/registration/add_new_user.php"
+  action="controllers/registration.php"
   method="POST"
 >
   <?=new Block([

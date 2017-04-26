@@ -34,7 +34,7 @@
       <a class="item" href="/"><i class="fa fa-home" aria-hidden="true"></i><span class="desktop margin_left_small">Home</span></a>
       <a class="item" href="#"><i class="fa fa-list" aria-hidden="true"></i><span class="desktop margin_left_small">Meets</span></a>
       <a class="item" href="#"><i class="fa fa-calendar" aria-hidden="true"></i><span class="desktop margin_left_small">Calendar</span></a>
-      <a class="item" href="#"><i class="fa fa-map" aria-hidden="true"></i><span class="desktop margin_left_small">Map</span></a>
+      <a class="item" href="/map.php"><i class="fa fa-map" aria-hidden="true"></i><span class="desktop margin_left_small">Map</span></a>
       <a class="item" href="#"><i class="fa fa-search" aria-hidden="true"></i><span class="desktop margin_left_small">Search</span></a>
       <?=$this->login_or_logout($_SESSION['user'] ?? null);?>
     </div>

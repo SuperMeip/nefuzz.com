@@ -1,3 +1,26 @@
 #everyone_map {
-  height: 100%;
+    height: 86%;
+    width: 90%;
+    min-height: 400px;
+    max-width: 1000px;
+    max-height: 700px;
+    position: absolute !important;
+  @media screen and (max-width: $medium-width) {
+    height: 400px;
+    width: 100%;
+  }
+}
+
+.map_city_icon_list {
+  .map_city_icon_row {
+    display: flex; 
+    
+    a {
+      text-decoration: none;
+    }
+    
+    img {
+      margin: 3px;
+    }
+  }
 }
