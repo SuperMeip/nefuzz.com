@@ -1,5 +1,7 @@
 <?=$this->redirect()?>
-
+<div class="row center">
+  <h1 class="page_title">Register</h1>
+</div>
 <form
   class="main"
   id="registration-form"

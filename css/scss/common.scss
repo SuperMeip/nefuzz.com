@@ -1,5 +1,7 @@
 $main-color: green;
-$light-color: #9FC;
+$light-color: #8BC34A;
+$medium-color: #149c14;
+$alt-color: #32982b;
 $dark-color: darkgreen;
 $small-width: 766px;
 $medium-width: 766px;
@@ -28,6 +30,16 @@ html {
   color: $main-color;
 }
 
+.page_title {
+  margin: 5px;
+  text-align: center;
+  font-size: 2.5rem;
+  color: #777;
+  @media screen and (max-width: $small-width) {
+    font-size: 2rem;
+  }
+}
+
 form.main {
   flex-grow: 1;
   width: 100%;
@@ -53,8 +65,11 @@ main {
   display: flex;
   align-items: center;
   flex-direction: column;
-  overflow: hidden;
   position: relative;
+}
+
+.hide {
+  display: none !important;
 }
 
 .row {
@@ -72,6 +87,8 @@ main {
       .input_small,
       .input_mini,
       .input_big,
+      .input_full,
+      .input_large,
       .input_medium {
         width: 97.5%;
       }
@@ -151,5 +168,20 @@ main {
     td {
       border-bottom-width: 0;
     }
+  }
+}
+
+.only_show_on_small {
+  display: none;
+}
+.only_show_on_large {
+  display: block;
+}
+@media screen and (max-width: $small-width) {
+  .only_show_on_small {
+    display: block;
+  }
+  .only_show_on_large {
+    display: none;
   }
 }

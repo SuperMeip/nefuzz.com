@@ -5,6 +5,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/model/location.php");
 
 class Event_Details {
   public $id = 0;
+  public $has_icon = 0;
   public $description = "";
   public $short_info = "";
   public $url = "";

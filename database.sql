@@ -145,8 +145,9 @@ INSERT INTO attendee_types (
 CREATE TABLE event_details (
     id              INT             NOT NULL AUTO_INCREMENT,
     description     TEXT            NOT NULL,
+    has_icon        TINYINT(1)      NOT NULL DEFAULT 0,
     short_info      VARCHAR(20)     NOT NULL DEFAULT "",
-    url             VARCHAR(20)     NOT NULL DEFAULT "",
+    url             VARCHAR(256)    NOT NULL DEFAULT "",
     tag_bitwise     INT             NOT NULL DEFAULT 0,
     
     location_name   VARCHAR(50)     NOT NULL,
@@ -177,6 +178,7 @@ CREATE TABLE meets (
     
     name            VARCHAR(30)     NOT NULL,
     rrule           TEXT            NOT NULL DEFAULT "",
+    rrule_approved  TINYINT(1)      NOT NULL DEFAULT 0,
     overview        TEXT            NOT NULL DEFAULT "",
     is_con          TINYINT(1)      NOT NULL DEFAULT 0,
     

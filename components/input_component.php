@@ -13,6 +13,7 @@ abstract class Input_Component extends Component {
 	  "small",
 	  "medium",
 	  "normal",
+	  "large",
 	  "big",
 	  "full"
 	];

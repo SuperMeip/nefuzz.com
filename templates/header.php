@@ -4,6 +4,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/cleave.min.js"></script>
   <script type="text/javascript" src="js/cleave-phone.us.js"></script>
+  <script src="https://unpkg.com/babel-polyfill@6.2.0/dist/polyfill.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rome/2.1.22/rome.standalone.js"></script>
+  <script src="js/material-datetime-picker.js" charset="utf-8"></script>
+  <!--<link rel="stylesheet" href="css/material-datetime-picker.css" />-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
   <?=((require_once($_SERVER['DOCUMENT_ROOT']."/components/common.php"))?"":"");?>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<link rel="icon" sizes="192x192" href="img/iconsquare.png">

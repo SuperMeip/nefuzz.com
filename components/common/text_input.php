@@ -6,8 +6,11 @@ class Text_Input extends Input_Component {
   public $pattern = "";
   public $cleave = [];
   public $is_password = false;
+  public $is_textarea = false;
+  public $rows = 0;
   public $max_characters = 0;
   public $error_message = "";
+  public $value = "";
   public $invalid_message = "";
 
   public function get_component() {
@@ -15,6 +18,8 @@ class Text_Input extends Input_Component {
     oninput=\"setCustomValidity('')\"" : "");
     $max_characters = ($this->max_characters ? "maxLength=\"$this->max_characters\"" : "");
     $pattern = ($this->pattern ? "pattern=\"$this->pattern\"" : "");
+    $element_type = ($this->is_textarea ? "textarea" : "input");
+    $textarea_close = ($this->is_textarea ? ">$this->value</textarea>" : "value=\"$this->value\"/>");
     $type = "type=" . ($this->is_password ? "\"password\"" : "\"text\"");
     $error_tooltip = $this->error_message ? new Tooltip([
       "id" => $this->id . "-error",
@@ -55,7 +60,7 @@ class Text_Input extends Input_Component {
     return "
     <div {$this->class()}>
       $cleave
-      <input $invalid_message {$this->id()} data-validation=\"true\" $type {$this->name()} $pattern $max_characters {$this->required()}/>
+      <$element_type $invalid_message {$this->id()} data-validation=\"true\" $type {$this->name()} $pattern $max_characters {$this->required()} $textarea_close
       <label {$this->label_class()}>
         $error_tooltip
       </label>

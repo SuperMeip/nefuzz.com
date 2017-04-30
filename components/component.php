@@ -4,6 +4,7 @@ abstract class Component {
   protected $component_class = "change_me";
   public $extra_classes = "";
   public $id = "";
+  public $container_id = "";
 
   function __construct($args){
     foreach ($args as $key => $val) {
@@ -16,6 +17,10 @@ abstract class Component {
   
   protected function id($prefix = "") {
       return ($this->id ? "id=\"$this->id\"" : "");
+  }
+  
+  protected function container_id($prefix = "") {
+      return ($this->container_id ? "id=\"$this->container_id\"" : "");
   }
   
   protected function class() {

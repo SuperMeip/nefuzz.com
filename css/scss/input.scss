@@ -12,6 +12,9 @@
 		margin: 0;
     margin-top: 10px;
     margin-left: 20px;
+    @media screen and (max-width: $small-width) {
+      margin-left: 10px;
+    }
 
     &.required:after {
       content:"*";
@@ -20,7 +23,7 @@
     }
 	}
 
-	input, select{
+	input, select, textarea{
 	  padding: 0;
 		border-width: 0 0 1px 0;
     background-color: white;
@@ -36,6 +39,23 @@
       font-size: 1.2rem;
     }
     color: #666;
+    
+    &[multiple] {
+      height: 1.85rem;
+      overflow: auto;
+      @media screen and (max-width: $small-width) {
+        height: 1.6rem;
+      }
+      
+      option {
+        font-size: 1.1rem;
+        margin-right:10px;
+        @media screen and (max-width: $small-width) {
+          margin: 0px;
+        }
+        display: inline-block;
+      }
+    }
 
     &:hover, &:focus {
 		border-width: 0 0 2px 0;
@@ -56,7 +76,7 @@
 .input_error {
   color: red;
 
-  input {
+  input, textarea {
     color: red;
     border-width: 0 0 2px 0;
     border-color: red;
@@ -177,6 +197,9 @@
     margin: 0;
     margin-top: 10px;
     margin-left: 20px;
+    @media screen and (max-width: $small-width) {
+      margin-left: 10px;
+    }
   }
 }
 
@@ -185,6 +208,14 @@
 
   input, select, .value_text {
     width: 97.5%;
+  }
+}
+
+.input_large {
+  width: 83.5%;
+
+  input, select, .value_text {
+    width: 96%;
   }
 }
 
@@ -216,6 +247,6 @@
   width: 16.6%;
 
   input, select, .value_text {
-    width: 90%;
+    width: 80%;
   }
 }

@@ -60,6 +60,14 @@ class Registration_Controller extends Controller {
     
     $contact_info = [];
     
+    if(
+      (!isset($_POST['contact_method_' . $_POST['contact_method']]) ||
+      ($_POST['contact_method_' . $_POST['contact_method']] == "@")) &&
+      ($_POST['contact_method'] > 1)
+    ) {
+      return "Prefered contact ({$_POST['contact_method']}) not filled in";
+    }
+    
     foreach ($data as $name => $value) {
       if(strpos($name, "method_")) {
         if (($value != "@" && $value)){
