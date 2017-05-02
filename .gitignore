@@ -1,5 +1,5 @@
 # Auth files
-php/auth.php
-php/dbinfo.php
+static/php/auth.php
+static/php/dbinfo.php
 .c9/
-img/user/icon/
+static/img/user/icon/

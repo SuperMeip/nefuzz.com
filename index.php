@@ -1,5 +1,8 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/controllers/home.php");
-?>
+require "vendor/autoload.php";
 
-<?=(new Home_Controller())->load();?>
+Flight::route("/", function() {
+    (new \Nefuzz\Controllers\Home())->load();
+});
+
+Flight::start();
