@@ -1,5 +1,6 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/php/auth.php");
+
+namespace Nefuzz/Models;
 
 class Location {
   public $name = "";          //string

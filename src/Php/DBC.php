@@ -1,6 +1,8 @@
 <?php 
-class DBC { 
 
+namespace Nefuzz\Php;
+
+class DBC { 
     private $db;
     private $errors;
 

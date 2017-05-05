@@ -1,7 +1,8 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/views/view.php");
 
-class Login_Modal_Header_View extends View {
+namespace Nefuzz\Views\Header;
+
+class Login_Modal extends \Nefuzz\Views\Base_View {
 
   protected function js() {
     return ["header/login_modal"];

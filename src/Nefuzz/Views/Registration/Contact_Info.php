@@ -1,7 +1,8 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/views/view.php");
 
-class Contact_Info_Registration_View extends View {
+namespace Nefuzz\Views\Registration;
+
+class Contact_Info extends \Nefuzz\Views\Base_View {
     
   private $contact_methods = [];
   

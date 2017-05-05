@@ -1,7 +1,8 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/views/view.php");
 
-class Registration_View extends View {
+namespace Nefuzz\Views;
+
+class Registration extends \Nefuzz\Views\Base_View {
 
   public function redirect() {
     if (isset($_SESSION["user"])){
@@ -11,12 +12,6 @@ class Registration_View extends View {
         </script>
       ";
     }
-  }
-  
-  protected function preload() {
-    require_once($_SERVER['DOCUMENT_ROOT']."/views/registration/names.php");
-    require_once($_SERVER['DOCUMENT_ROOT']."/views/registration/address.php");
-    require_once($_SERVER['DOCUMENT_ROOT']."/views/registration/contact_info.php");
   }
 
   protected function js() {

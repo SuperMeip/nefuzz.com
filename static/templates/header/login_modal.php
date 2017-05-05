@@ -1,8 +1,7 @@
-
 <div class="center_column">
   <form method="POST" action="controllers/login_logout.php?action=login" id="login-form">
     <div class="row center">
-      <?=new Text_Input([
+      <?=new \Nefuzz\Components\Text_Input([
         "id" => "login-username",
         "label" => "Username",
         "name" => "username",
@@ -12,7 +11,7 @@
       ]);?>
     </div>
     <div class="row center">
-      <?=new Text_Input([
+      <?=new \Nefuzz\Components\Text_Input([
         "id" => "login-password",
         "label" => "Password",
         "name" => "password",
@@ -23,14 +22,14 @@
       ]);?>
     </div>
     <div class="center">
-      <?=new Button([
+      <?=new \Nefuzz\Components\Button([
         "label" => "Login",
         "is_submit" => true,
         "extra_classes" => "right"
       ]);?>
-      <?=new Button([
+      <?=new \Nefuzz\Components\Button([
         "label" => "Register",
-        "link" => "/registration.php",
+        "link" => "/registration",
         "extra_classes" => "right"
       ]);?>
     </div>

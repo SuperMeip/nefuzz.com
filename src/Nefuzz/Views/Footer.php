@@ -1,7 +1,8 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/views/view.php");
 
-class Footer_View extends View {
+namespace Nefuzz\Views;
+
+class Footer extends \Nefuzz\Views\Base_View {
     
     protected function template() {
         return 'footer';

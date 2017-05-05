@@ -1,11 +1,10 @@
 <?php
-//require_once($_SERVER['DOCUMENT_ROOT']."/models/location.php");
-//require_once($_SERVER['DOCUMENT_ROOT']."/models/em_info.php");
-//require_once($_SERVER['DOCUMENT_ROOT']."/php/common.php");
-//require_once($_SERVER['DOCUMENT_ROOT']."/php/db.php");
-//require_once($_SERVER['DOCUMENT_ROOT']."/php/auth.php");
 
-class User {
+namespace Nefuzz\Models;
+
+use Nefuzz\Php\DBC as DBC;
+
+class User extends \Nefuzz\Models\Base_Model {
   public $id = -1;                    //int
   public $is_current_user = false;    //bool
   public $username = "";              //string
@@ -389,7 +388,7 @@ class User {
    * @return string - the address of the user icon as a string.
    */
   public function get_icon() {
-    return ($this->has_icon ? "img/user/icon/$this->id.png" : "img/user/icon/NONE.png");
+    return ($this->has_icon ? "static/img/user/icon/$this->id.png" : "img/user/icon/NONE.png");
   }
   
   public function get_icon_by_username($username) {
@@ -411,11 +410,11 @@ class User {
    * @return string - returns the link addess to this user's page
    */
   public function get_page_link() {
-    return "/user.php?username=$this->username";
+    return "user/$this->username";
   }
   
   public function get_page_link_from_username($username) {
-    return "/user.php?username=$username";
+    return "user/$username";
   }
   
   /**
@@ -425,7 +424,6 @@ class User {
    */
   public static function get_all_contact_methods() {
      
-  require_once($_SERVER['DOCUMENT_ROOT']."/php/db.php");
     $DB = new DBC();
     $result = ($DB)->query_to_array("
         SELECT *
@@ -465,9 +463,12 @@ class User {
       );
     } else {
       $result = $DB->query_to_array(
-        'SELECT username from users where auth = ?;',
+        'SELECT
+          username
+        FROM users
+        WHERE auth = ?;',
         's',
-        [makeHash($username,$password)]
+        [\Nefuzz\Php\Auth::make_hash($username,$password)]
       );
     }
     $DB->quit();

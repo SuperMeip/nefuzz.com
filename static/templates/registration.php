@@ -8,43 +8,43 @@
   action="controllers/registration.php"
   method="POST"
 >
-  <?=new Block([
+  <?=new \Nefuzz\Components\Block([
     "title" => "Name and Password",
-    "content" => new Names_Registration_View()
+    "content" => new \Nefuzz\Views\Names_Registration_View()
   ]);?>
   
-  <?=new Block([
+  <?=new \Nefuzz\Components\Block([
     "title" => "Upload an Icon",
     "template" => "registration/upload_icon",
     "is_expandable" => true,
     "starts_closed" => true
   ]);?>
   
-  <?=new Block([
+  <?=new \Nefuzz\Components\Block([
     "title" => "Address",
-    "content" => new Address_Registration_View()
+    "content" => new \Nefuzz\Views\Address_Registration_View()
   ]);?>
   
-  <?=new Block([
+  <?=new \Nefuzz\Components\Block([
     "title" => "Contact Information",
-    "content" => new Contact_Info_Registration_View()
+    "content" => new \Nefuzz\Views\Contact_Info_Registration_View()
   ]);?>
   
-  <?=new Block([
+  <?=new \Nefuzz\Components\Block([
     "title" => "Emergency Information",
     "template" => "registration/emergency_info",
     "is_expandable" => true,
     "starts_closed" => true
   ]);?>
   
-  <?=new Button([
+  <?=new \Nefuzz\Components\Button([
     "is_submit" => true,
     "label" => "Submit",
     "extra_classes" => "large lone"
   ]);?>
 </form>
   
-<?=new Modal([
+<?=new \Nefuzz\Components\Modal([
   "uncloseable" => true,
   "title" => "Success :)",
   "id" => "registration-success",
@@ -56,7 +56,7 @@
                 page!</p>"
 ]);?>  
 
-<?=new Modal([
+<?=new \Nefuzz\Components\Modal([
   "title" => "Error :(",
   "id" => "registration-failed",
   "content" =>  "<p class=\"modal_text\">

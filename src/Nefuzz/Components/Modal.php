@@ -1,20 +1,10 @@
-<script type="text/javascript">
-//modal open/close
-$(document).ready(function(){
-  $('.modal_container .activator').click(function() {
-    $(this).siblings('.modal').css('display', 'block');
-  });
-  $('.modal_container .close').click(function() {
-    $(this).closest ('.modal').css ('display', 'none');
-  });
-});
-</script>
-
 <?php
-require_once("components/component.php");
 
-class Modal extends Component {
+namespace Nefuzz\Components;
+
+class Modal extends \Nefuzz\Components\Base_Component {
   protected $component_class = "modal";
+  protected $js = "modal";
   public $title = "";
   public $activator = "";
   public $content = "";

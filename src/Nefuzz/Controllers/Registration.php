@@ -1,17 +1,17 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/controllers/controller.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/views/registration.php");
 
-class Registration_Controller extends Controller {
+namespace Nefuzz\Controllers;
+
+use \Nefuzz\Models\User as User;
+
+class Registration extends \Nefuzz\Controllers\Base_Controller {
 
   protected function page_body() {
-    $view = new Registration_View();
+    $view = new \Nefuzz\Views\Registration();
     $view->load();
   }
   
   public static function user_exists($username) {
-    require_once($_SERVER['DOCUMENT_ROOT']."/models/user.php");
-  
     if (!$username) {
       return false;
     }
@@ -31,8 +31,6 @@ class Registration_Controller extends Controller {
   }
   
   public static function add_new_user($data) {
-    require_once($_SERVER['DOCUMENT_ROOT']."/models/user.php");
-    
     $user_info = [
       "username" => $data["username"],
       "has_icon" => ($_FILES["icon"]["tmp_name"] ? 1 : 0),
@@ -98,7 +96,7 @@ class Registration_Controller extends Controller {
       return "The Database rejected your submission for unknown reasons!";
     }
     
-    $target_path = $_SERVER['DOCUMENT_ROOT']."/img/user/icon/$new_id.png";
+    $target_path = $_SERVER['DOCUMENT_ROOT']."/static/img/user/icon/$new_id.png";
     move_uploaded_file($_FILES["icon"]["tmp_name"], $target_path);
     return $new_id;
   }

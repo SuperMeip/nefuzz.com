@@ -1,7 +1,10 @@
 <?php
 
-abstract class Component {
+namespace Nefuzz\Components;
+
+abstract class Base_Component {
   protected $component_class = "change_me";
+  protected $js = false;
   public $extra_classes = "";
   public $id = "";
   public $container_id = "";
@@ -12,6 +15,9 @@ abstract class Component {
       if (isset($this->{$name})) {
         $this->{$name} = $val;
       }
+    }
+    if ($this->js) {
+      require_once($_SERVER['DOCUMENT_ROOT']."/static/js/components/$this->js.php");
     }
   }
   
@@ -46,10 +52,10 @@ abstract class Component {
   }
 
   abstract public function get_component();
-}
 
-function Template($name){
-  ob_start();
-  include("templates/" . $name . ".php");
-  return ob_get_clean();
+  function Template($name){
+    ob_start();
+    include("templates/" . $name . ".php");
+    return ob_get_clean();
+  }
 }

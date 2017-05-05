@@ -1,18 +1,10 @@
-<script>
-//Block open/close
-$(document).ready(function(){
-  $('.block .extend').click(function() {
-    $(this).toggleClass('rotated');
-    $(this).closest('.header').siblings('.body').slideToggle();
-  });
-});
-</script>
-
 <?php
-require_once("components/component.php");
 
-class Block extends Component {
+namespace Nefuzz\Components;
+
+class Block extends \Nefuzz\Components\Base_Component {
   protected $component_class = "block";
+  protected $js = "block";
   public $title = "";
   public $is_expandable = false;
   public $starts_closed = false;

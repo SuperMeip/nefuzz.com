@@ -1,14 +1,16 @@
 <?php
 
-abstract class View {
+namespace Nefuzz\Views;
+
+abstract class Base_View {
     
   public function load() {
     $this->preload();
     $template = $this->template();
-    require_once($_SERVER['DOCUMENT_ROOT']."/templates/$template.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/static/templates/$template.php");
     $js_files = $this->js();
     foreach ($js_files as $file) {
-      require_once($_SERVER['DOCUMENT_ROOT']."/js/views/$file.php");
+      require_once($_SERVER['DOCUMENT_ROOT']."/static/js/views/$file.php");
     }
   }
   
@@ -16,10 +18,10 @@ abstract class View {
     $this->preload();
     $content = "";
     $template = $this->template();
-    $content .= $this->get_file_data($_SERVER['DOCUMENT_ROOT']."/templates/$template.php");
+    $content .= $this->get_file_data($_SERVER['DOCUMENT_ROOT']."/static/templates/$template.php");
     $js_files = $this->js();
     foreach ($js_files as $file) {
-       $content .= $this->get_file_data($_SERVER['DOCUMENT_ROOT']."/js/views/$file.php");
+       $content .= $this->get_file_data($_SERVER['DOCUMENT_ROOT']."/static/js/views/$file.php");
     }
     return $content;
   }

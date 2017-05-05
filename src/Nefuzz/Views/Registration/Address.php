@@ -1,10 +1,11 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/views/view.php");
 
-class Address_Registration_View extends View {
-  
+namespace Nefuzz\Views;
+
+use Nefuzz\Models\Location as Location;
+
+class Address extends \Nefuzz\Views\Base_View {
   function region_options() {
-    require_once($_SERVER['DOCUMENT_ROOT']."/models/location.php");
     $raw_regions = Location::get_all_regions();
     $regions = [];
     foreach ($raw_regions as $region) {

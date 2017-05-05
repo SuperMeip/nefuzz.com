@@ -2,14 +2,13 @@
 
 namespace Nefuzz\Controllers;
 
-abstract class Controller {
+abstract class Base_Controller {
   protected $header_arguments = [];
   
   protected function page_header() {
-    require_once($_SERVER['DOCUMENT_ROOT']."/src/Nefuzz/models/user.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/src/Nefuzz/Models/User.php");
     session_start();
-    require_once($_SERVER['DOCUMENT_ROOT']."/src/Nefuzz/views/header.php");
-    $header = new Header_View();
+    $header = new \Nefuzz\Views\Header();
     $header->user = ($_SESSION['user'] ?? null);
     foreach ($this->header_arguments as $key => $val) {
       if (isset($header->{$key})) {
@@ -22,8 +21,7 @@ abstract class Controller {
   protected abstract function page_body();
   
   protected function page_footer() {
-    require_once($_SERVER['DOCUMENT_ROOT']."/src/Nefuzz/views/footer.php");
-    $footer = new Footer_View();
+    $footer = new \Nefuzz\Views\Footer();
     $footer->load();
   }
   

@@ -1,7 +1,8 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/views/view.php");
 
-class Header_View extends View {
+namespace Nefuzz\Views;
+
+class Header extends \Nefuzz\Views\Base_View {
   
   public $user = null;
   public $title = "The New England Fuzz";
@@ -20,17 +21,17 @@ class Header_View extends View {
   }
 
   private function login_modal() {
-      $modal = new Modal([
+      $modal = new \Nefuzz\Components\Modal([
         "id" => "login",
         "title" => "Login",
-        "content" => new Login_Modal_Header_View(),
+        "content" => new \Nefuzz\Views\Header\Login_Modal(),
         "activator" => (
           '<a class="row info item" href="#">
-            <img src="img/login.png" class="small_icon round"/>
+            <img src="static/img/login.png" class="small_icon round"/>
           </a>'
           ),
       ]);
-      return new Tooltip([
+      return new \Nefuzz\Components\Tooltip([
         "focus" => $modal,
         "position" => "left",
         "content" => "Login",
@@ -77,7 +78,7 @@ class Header_View extends View {
   
   protected function preload() {
     error_reporting( E_ALL );
-    require_once($_SERVER['DOCUMENT_ROOT']."/views/header/login_modal.php");
+    //require_once($_SERVER['DOCUMENT_ROOT']."/views/header/login_modal.php");
   }
   
   protected function js() {

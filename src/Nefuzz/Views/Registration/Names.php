@@ -1,7 +1,8 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/views/view.php");
 
-class Names_Registration_View extends View {
+namespace Nefuzz\Views\Registration;
+
+class Names extends \Nefuzz\Views\Base_View {
   
   protected function js() {
     return ["registration/names"];
