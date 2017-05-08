@@ -1,8 +1,6 @@
 <?php
 
-namespace Nefuzz\Components;
-
-class Button extends \Nefuzz\Components\Base_Component {
+class Button extends Base_Component {
   protected $component_class = "button";
   public $label = "";
   public $is_submit = false;

@@ -1,4 +1,3 @@
-
 <div class="row center">
   <p class="info">
     You must provide at least your state here. 

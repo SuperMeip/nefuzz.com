@@ -1,8 +1,6 @@
 <?php
 
-namespace Nefuzz\Components;
-
-class Text_Input extends \Nefuzz\Components\Input_Component {
+class Text_Input extends Input_Component {
   protected $component_class = "text_input";
   public $pattern = "";
   public $cleave = [];

@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Nefuzz\\' => array($baseDir . '/src/Nefuzz'),
+    '' => array($baseDir . '/src/Components'),
 );

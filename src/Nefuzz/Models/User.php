@@ -388,7 +388,7 @@ class User extends \Nefuzz\Models\Base_Model {
    * @return string - the address of the user icon as a string.
    */
   public function get_icon() {
-    return ($this->has_icon ? "static/img/user/icon/$this->id.png" : "img/user/icon/NONE.png");
+    return ($this->has_icon ? "/static/img/user/icon/$this->id.png" : "/static/img/user/icon/NONE.png");
   }
   
   public function get_icon_by_username($username) {
@@ -401,7 +401,7 @@ class User extends \Nefuzz\Models\Base_Model {
       WHERE username = ?
     ";
     $result = $DB->query_to_array($query, 's', [$username])[0];
-    return ($result['has_icon'] ? "img/user/icon/{$result['id']}.png" : "img/user/icon/NONE.png");
+    return ($result['has_icon'] ? "/static/img/user/icon/{$result['id']}.png" : "/static/img/user/icon/NONE.png");
   }
   
   /**
@@ -410,11 +410,11 @@ class User extends \Nefuzz\Models\Base_Model {
    * @return string - returns the link addess to this user's page
    */
   public function get_page_link() {
-    return "user/$this->username";
+    return "/user/$this->username";
   }
   
   public function get_page_link_from_username($username) {
-    return "user/$username";
+    return "/user/$username";
   }
   
   /**

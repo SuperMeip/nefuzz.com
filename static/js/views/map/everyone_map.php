@@ -1,4 +1,4 @@
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=<?=$GLOBALS['google_maps_key'];?>&callback=initMap">
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=<?=\Nefuzz\Php\Auth::google_maps_key?>&callback=initMap">
 </script>
 
 <script>
@@ -10,7 +10,7 @@ function generateMapData(users_and_locations, callback) {
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode( {  address: user.location}, function(results, status) {
       number_complete++;
-      if (status == 'OK') {
+      if ((status == 'OK')) {
         var location_coord = results[0].geometry.location;
         var location_latlog = results[0].geometry.location.lat() + " " +results[0].geometry.location.lng();
         var found_id = 0;
@@ -65,7 +65,7 @@ function initMap() {
       google.maps.event.addListener(cityCircle, 'click', function() {
         $.ajax({
           type: "POST",
-          url: "/controllers/map.php?action=get_user_icons",
+          url: "/map/request/get_user_icons",
           data: {user_list: location.users},
           dataType: "json",
           success: function(data) {

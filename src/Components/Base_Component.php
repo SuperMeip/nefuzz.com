@@ -1,7 +1,5 @@
 <?php
 
-namespace Nefuzz\Components;
-
 abstract class Base_Component {
   protected $component_class = "change_me";
   protected $js = false;
@@ -53,9 +51,9 @@ abstract class Base_Component {
 
   abstract public function get_component();
 
-  function Template($name){
+  public static function get_template($name){
     ob_start();
-    include("templates/" . $name . ".php");
+    include("static/templates/" . $name . ".php");
     return ob_get_clean();
   }
 }

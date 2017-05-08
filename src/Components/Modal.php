@@ -1,8 +1,6 @@
 <?php
 
-namespace Nefuzz\Components;
-
-class Modal extends \Nefuzz\Components\Base_Component {
+class Modal extends Base_Component {
   protected $component_class = "modal";
   protected $js = "modal";
   public $title = "";

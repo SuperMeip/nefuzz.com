@@ -1,5 +1,4 @@
 <?php
-require_once("components/input_component.php");
 
 class Checkbox_Input extends Input_Component {
   protected $component_class = "checkbox_input";

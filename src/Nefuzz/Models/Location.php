@@ -1,6 +1,6 @@
 <?php
 
-namespace Nefuzz/Models;
+namespace Nefuzz\Models;
 
 class Location {
   public $name = "";          //string
@@ -71,8 +71,7 @@ class Location {
   }
   
   public static function get_all_regions() {
-    require_once($_SERVER['DOCUMENT_ROOT']."/php/db.php");
-    $DB = new DBC();
+    $DB = new \Nefuzz\Php\DBC();
     $result = ($DB)->query_to_array("
       SELECT *
       FROM regions;
@@ -111,6 +110,20 @@ class Location {
     ];
   }
   
+  public function city_coords() {
+    if (!$this->city) {
+      return false;
+    }
+    $address = "$this->city+$this->state";
+    $google_api_key = \Nefuzz\Php\Auth::google_maps_key;
+    $url = "https://maps.googleapis.com/maps/api/geocode/json?address=$address&key=$google_api_key";$curl_handle = curl_init();
+    curl_setopt( $curl_handle, CURLOPT_URL, $url );
+    curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, true );
+    $choord_info = json_decode(curl_exec( $curl_handle ), true);
+    curl_close( $curl_handle );
+    return $choord_info['results'][0]['geometry']['location'];
+  }
+  
   /**
    * serialize the object as a json string
    * 
@@ -131,13 +144,3 @@ class Location {
     return new Location(json_decode($json, true));
   }
 }
-//testing 
-/*
-$location_1 = new Location(["state" => "MA", "city" => "boston"]);
-$location_2 = new Location(["state" => "MA", "city" => "worcester"]);
-$location_3 = new Location(["state" => "MA", "city" => "springfield"]);
-
-var_dump($location_1->distance($location_2));
-var_dump($location_2->distance($location_3));
-var_dump($location_1->distance($location_3));
-var_dump($location_1->added_distance($location_2, $location_3));*/

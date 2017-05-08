@@ -11,6 +11,22 @@ class Registration extends \Nefuzz\Controllers\Base_Controller {
     $view->load();
   }
   
+  public function request($action, $argument) {
+    if ($action == "add_new_user") {
+      if (empty($_POST)) {
+        return false;
+      };
+      echo json_encode(self::add_new_user($_POST ?? ""));
+      return true;
+    }
+    elseif ($action == "user_exists") {
+      echo json_encode(self::user_exists($argument ?? ($_POST['username'] ?? "")));
+      return true;
+    } else {
+      return false;
+    }
+  }
+  
   public static function user_exists($username) {
     if (!$username) {
       return false;
@@ -101,15 +117,4 @@ class Registration extends \Nefuzz\Controllers\Base_Controller {
     return $new_id;
   }
   
-}
-
-//AJAX HANDLER
-
-if (isset($_GET['action'])) {
-  if ($_GET['action'] == "add_new_user") {
-    echo json_encode(Registration_Controller::add_new_user($_POST ?? ""));
-  }
-  if ($_GET['action'] == "user_exists") {
-    echo json_encode(Registration_Controller::user_exists($_POST['username'] ?? ""));
-  }
 }

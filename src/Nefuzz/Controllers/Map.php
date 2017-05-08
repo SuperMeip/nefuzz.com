@@ -1,12 +1,13 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/controllers/controller.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/models/user.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/views/map/everyone_map.php");
 
-class Map_Controller extends Controller {
+namespace Nefuzz\Controllers;
+
+use \Nefuzz\Models\User as User;
+
+class Map extends \Nefuzz\Controllers\Base_Controller {
 
   protected function page_body() {
-    $view = new Everyone_Map_View();
+    $view = new \Nefuzz\Views\Map\Everyone_Map();
     $users_and_locations = [];
     foreach (User::get_all_usernames() as $username) {
       $location = User::get_location_obj($username);
@@ -19,6 +20,15 @@ class Map_Controller extends Controller {
     }
     $view->users_and_locations = $users_and_locations;
     $view->load();
+  }
+  
+  public function request($action, $argument) {
+    if ($action == "get_user_icons") {
+      echo json_encode(self::get_user_icons($_POST['user_list'] ?? []));
+      return true;
+    } else {
+      return false;
+    }
   }
   
   public static function get_user_icons($user_list) {
@@ -48,13 +58,5 @@ class Map_Controller extends Controller {
       </div>
     ";
     return $html;
-  }
-} 
-
-//AJAX HANDLER
-
-if (isset($_GET['action'])) {
-  if ($_GET['action'] == "get_user_icons") {
-    echo json_encode(Map_Controller::get_user_icons($_POST['user_list'] ?? []));
   }
 }

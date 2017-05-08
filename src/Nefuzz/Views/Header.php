@@ -21,17 +21,17 @@ class Header extends \Nefuzz\Views\Base_View {
   }
 
   private function login_modal() {
-      $modal = new \Nefuzz\Components\Modal([
+      $modal = new \Modal([
         "id" => "login",
         "title" => "Login",
         "content" => new \Nefuzz\Views\Header\Login_Modal(),
         "activator" => (
           '<a class="row info item" href="#">
-            <img src="static/img/login.png" class="small_icon round"/>
+            <img src="/static/img/login.png" class="small_icon round"/>
           </a>'
           ),
       ]);
-      return new \Nefuzz\Components\Tooltip([
+      return new \Tooltip([
         "focus" => $modal,
         "position" => "left",
         "content" => "Login",

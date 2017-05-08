@@ -7,8 +7,7 @@ class DBC {
     private $errors;
 
     function __construct() {
-        include("dbinfo.php");
-        $mysqli = new mysqli($DBservername, $DBusername, $DBpassword, $DBname);
+        $mysqli = new \mysqli(\Nefuzz\Php\Auth::DBservername, \Nefuzz\Php\Auth::DBusername, \Nefuzz\Php\Auth::DBpassword, \Nefuzz\Php\Auth::DBname);
         if (mysqli_connect_errno()) {
             printf("Connect failed: %s\n", mysqli_connect_error());
             $this->db = null;

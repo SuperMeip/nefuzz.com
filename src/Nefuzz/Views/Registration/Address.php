@@ -1,8 +1,8 @@
 <?php
 
-namespace Nefuzz\Views;
+namespace Nefuzz\Views\Registration;
 
-use Nefuzz\Models\Location as Location;
+use \Nefuzz\Models\Location as Location;
 
 class Address extends \Nefuzz\Views\Base_View {
   function region_options() {

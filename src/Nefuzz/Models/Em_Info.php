@@ -1,5 +1,7 @@
 <?php
 
+namespace Nefuzz\Models;
+
 class Em_Info {
   public $emergency_contacts = [];    //array[assoc[name=>string, phone_number=>string]]
   public $allergies = "";             //string

@@ -1,8 +1,6 @@
 <?php
 
-namespace Nefuzz\Components;
-
-class Block extends \Nefuzz\Components\Base_Component {
+class Block extends Base_Component {
   protected $component_class = "block";
   protected $js = "block";
   public $title = "";
@@ -25,7 +23,7 @@ class Block extends \Nefuzz\Components\Base_Component {
           "</div>
         </div>" : "");
     $body_class = "class=\"body" . ($this->starts_closed ? " hidden" : "") . "\"";
-    $content = ($this->template ? Template($this->template) : $this->content);
+    $content = ($this->template ? self::get_template($this->template) : $this->content);
 
     return "
     <div {$this->class()} {$this->id()}>

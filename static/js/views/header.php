@@ -20,7 +20,7 @@ $(document).ready(function() {
   $('#logout').click(function() {
     $.ajax({
       type: 'POST',
-      url: 'controllers/login_logout.php?action=logout',
+      url: '/home/request/logout',
       success: function() {
         location.reload();
       }

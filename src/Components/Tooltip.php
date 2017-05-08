@@ -1,8 +1,6 @@
 <?php
 
-namespace Nefuzz\Components;
-
-class Tooltip extends \Nefuzz\Components\Base_Component {
+class Tooltip extends Base_Component {
   protected $component_class = "tooltip_container";
   public $focus = "";
   public $content = "";

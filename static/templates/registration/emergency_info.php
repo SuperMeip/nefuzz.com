@@ -1,7 +1,3 @@
-<?php
-require_once("components/common.php");
-?>
-
 <div class="row center">
   <p class="info">
     This emergency info will only be shared

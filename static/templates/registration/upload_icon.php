@@ -1,6 +1,3 @@
-<?php
-require_once("components/common.php");
-?>
 <div class="row center">
   <p class="info">
     Icons must be .png image files with dimensions

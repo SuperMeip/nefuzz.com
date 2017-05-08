@@ -1,7 +1,6 @@
 <?php
-require_once("components/component.php");
 
-class Grid_Block extends Component {
+class Grid_Block extends Base_Component {
   protected $component_class = "grid_block";
   public $title = "";
   public $content = "";

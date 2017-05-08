@@ -1,7 +1,6 @@
 <?php
-require_once("components/component.php");
 
-class Info_Table extends Component {
+class Info_Table extends Base_Component {
   protected $component_class = "info_table";
   public $values = [];
   

@@ -7,7 +7,7 @@ class Contact_Info extends \Nefuzz\Views\Base_View {
   private $contact_methods = [];
   
   public function __construct() {
-    $raw_methods = User::get_all_contact_methods();
+    $raw_methods = \Nefuzz\Models\User::get_all_contact_methods();
 
     foreach ($raw_methods as $method) {
       $this->contact_methods[$method['name']] = $method['id'];
@@ -38,7 +38,7 @@ class Contact_Info extends \Nefuzz\Views\Base_View {
         ];
       }
       if($name != "Email") {
-        $output .= new Text_Input([
+        $output .= new \Text_Input([
           "id" => str_replace(" ", "-", $name."Input"),
           "name" => "contact_method_" . $id,
           "pattern" => ($name == "Discord" ? ".*#[0-9]{4,6}" : ""),

@@ -1,8 +1,6 @@
 <?php
 
-namespace Nefuzz\Components;
-
-abstract class Input_Component extends \Nefuzz\Components\Base_Component {
+abstract class Input_Component extends Base_Component {
 	public $size = "";
   public $name = "";
   public $label = "";

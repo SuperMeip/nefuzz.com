@@ -1,7 +1,8 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/views/view.php");
 
-class User_View extends View {
+namespace Nefuzz\Views;
+
+class User extends \Nefuzz\Views\Base_View {
   
   public $user = null;
   public $contact_methods = [];
@@ -49,7 +50,7 @@ class User_View extends View {
         </div>
       </div>
     ";
-    return new Grid_Block([
+    return new \Grid_Block([
       "height" => "mini",
       "width" => "full",
       "body" => $body
@@ -73,7 +74,7 @@ class User_View extends View {
         </div>
       </div>
     ";
-    return new Grid_Block([
+    return new \Grid_Block([
       "height" => "mini",
       "width" => "full",
       "body" => $body
@@ -92,7 +93,7 @@ class User_View extends View {
         </div>
       </div>
     ";
-    return new Grid_Block([
+    return new \Grid_Block([
       "height" => "mini",
       "width" => "full",
       "body" => $body
@@ -126,10 +127,10 @@ class User_View extends View {
       }
     }
     
-    $table = new Info_Table([
+    $table = new \Info_Table([
       "values" => $display_methods
     ]);
-    return new Grid_Block([
+    return new \Grid_Block([
       "title" => "Contact Info",
       "width" => "normal",
       "height" => "big",
@@ -155,10 +156,10 @@ class User_View extends View {
     $bio_info["Species:"] = $this->user->species;
     $bio_info["Bio:"] = $this->user->bio;
     
-    $table = new Info_Table([
+    $table = new \Info_Table([
       "values" => $bio_info
     ]);
-    return new Grid_Block([
+    return new \Grid_Block([
       "title" => "User Info",
       "width" => "full",
       "height" => "large",
@@ -188,7 +189,7 @@ class User_View extends View {
         </div>
       </div>
     ";
-    return new Grid_Block([
+    return new \Grid_Block([
       "width" => "full",
       "height" => "mini",
       "body" => $body
@@ -198,10 +199,10 @@ class User_View extends View {
   public function em_info_grid_block() {
     if ($this->user->is_current_user) {
       $em_info = $this->user->emergency_info->get_as_array(true);
-      $table = new Info_Table([
+      $table = new \Info_Table([
         "values" => $em_info
       ]);
-      return new Grid_Block([
+      return new \Grid_Block([
         "title" => "Emergency Info",
         "width" => "large",
         "height" => "large",

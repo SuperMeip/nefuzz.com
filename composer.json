@@ -13,7 +13,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Nefuzz\\": "src/Nefuzz"
+            "Nefuzz\\": "src/Nefuzz",
+            "": "src/Components/"
         }
     }
 }

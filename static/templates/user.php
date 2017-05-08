@@ -1,4 +1,3 @@
-
 <?=$this->redirect();?>
 
 <div class="center_column">
