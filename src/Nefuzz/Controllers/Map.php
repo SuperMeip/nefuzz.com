@@ -14,7 +14,7 @@ class Map extends \Nefuzz\Controllers\Base_Controller {
       if ($location->city) {
         $info = [];
         $info['username'] = $username;
-        $info['location'] = "$location->city, $location->state";
+        $info['location'] = $location;
         array_push($users_and_locations, $info);
       }
     }

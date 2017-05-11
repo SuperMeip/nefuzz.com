@@ -262,11 +262,12 @@ CREATE TABLE announcements (
 );
 
 CREATE TABLE coordinates (
-    user_not_event  TINYINT(1)      NOT NULL DEFAULT 0;
+    user_not_event  TINYINT(1)      NOT NULL DEFAULT 0,
     user            INT             DEFAULT NULL,
     `event`         INT             DEFAULT NULL,
     lat             VARCHAR(30)     NOT NULL,
     lng             VARCHAR(30)     NOT NULL,
     
     FOREIGN KEY (user) REFERENCES users(id),
-    FOREIGN KEY (`event`) REFERENCES events(id),
+    FOREIGN KEY (`event`) REFERENCES events(id)
+);

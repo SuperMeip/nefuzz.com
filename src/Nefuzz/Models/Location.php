@@ -11,6 +11,8 @@ class Location {
   public $state = "";         //string
   public $zip = "";           //string
   public $country = "";       //string
+  public $lat = 0;            //float
+  public $lng = 0;            //float
   
   /**
    * constructs a new Location object using an array
@@ -45,6 +47,8 @@ class Location {
   /*
    * Finds the distance between this location and another
    *
+   * @param Location $other_loc - the location to check distance against 
+   *
    * @return array | false
    *  The array contains 2 elements , length and time, which each have a text, and value option.
    *  Returns false if something goes wrong
@@ -70,6 +74,11 @@ class Location {
     ];
   }
   
+  /**
+   * Returns a list of all available regions from the DB
+   * 
+   * @return array - a list of available regions
+   */
   public static function get_all_regions() {
     $DB = new \Nefuzz\Php\DBC();
     $result = ($DB)->query_to_array("
@@ -80,6 +89,16 @@ class Location {
     return $result;
   }
   
+  /**
+   * A function that finds the distance added by adding a stop between two points
+   *
+   * @param \Nefuzz\Models\Location $checkpoint - the added stop between this and the destination 
+   * @param \Nefuzz\Models\Location $destination - the final destination after the checkpoint
+   * 
+   * @return array|bool|string
+   *  The array contains 2 elements , length and time, which each have a text, and value option.
+   *  Returns a string with an error message or false if something goes wrong.
+   */
   public function added_distance($checkpoint, $destination) {
     $normal_dist = $this->distance($destination);
     
@@ -110,18 +129,64 @@ class Location {
     ];
   }
   
-  public function city_coords() {
+  /**
+   * A function to generate and store the coordinates of the location in the location
+   *  object, this uses google's geocoder api.
+   * 
+   * @param bool $city_only - calculates from the city level as opposed to the
+   *  address level. This is true by default to protect user locations.
+   * 
+   * @return array|bool - this returns an associative aray with the 'lat' and 'lng' of
+   *  the location, or false if it failed for any reason.
+   */
+  public function gen_coords($city_only = true) {
     if (!$this->city) {
       return false;
     }
-    $address = "$this->city+$this->state";
+    $place = "";
+    if (!$city_only) {
+      $name = str_replace(str_split("_ -/\\&?"), "+", $this->name);
+      $address = str_replace(str_split("_ -/\\&?"), "+", $this->address);
+      $place = "$name+$address+";
+    }
+    $address = "$place$this->city+$this->state";
     $google_api_key = \Nefuzz\Php\Auth::google_maps_key;
     $url = "https://maps.googleapis.com/maps/api/geocode/json?address=$address&key=$google_api_key";$curl_handle = curl_init();
     curl_setopt( $curl_handle, CURLOPT_URL, $url );
     curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, true );
     $choord_info = json_decode(curl_exec( $curl_handle ), true);
     curl_close( $curl_handle );
-    return $choord_info['results'][0]['geometry']['location'];
+    if ($choord_info["status"] === "OK") {
+      $result = $choord_info['results'][0]['geometry']['location'];
+      $this->lat = $result["lat"];
+      $this->lng = $result["lng"];
+      return $result;
+    } elseif ($choord_info["status"] === "OVER_QUERY_LIMIT") {
+      throw new Exception("OVER_QUERY_LIMIT");
+    } else {
+      return false;
+    }
+  }
+  
+  /**
+   * This function gets an array of the lat lng coordinates, either returning
+   *  them or grabbign them if they are not yet set.
+   * 
+   * @param bool $city_only - calculates from the city level as opposed to the
+   *  address level. This is true by default to protect user locations.
+   * 
+   * @return array|bool - this returns an associative aray with the 'lat' and 'lng' of
+   *  the location, or false if it failed for any reason.
+   */
+  public function get_coords($city_only = true) {
+    if($this->lat && $this->lng) {
+      return [
+        "lat" => $this->lat,
+        "lng" => $this->lng
+      ];
+    } else {
+      return $this->gen_coords($city_only);
+    }
   }
   
   /**
@@ -138,7 +203,7 @@ class Location {
    * 
    * @param $json string = the string to get the location from
    * 
-   * @return obj(Location) - the location built from the json
+   * @return \Nefuzz\Models\Location - the location built from the json
    */
   public static function deserialize() {
     return new Location(json_decode($json, true));

@@ -144,10 +144,23 @@ class User extends \Nefuzz\Models\Base_Model {
         u.username = ?;
     ";
     $results = $GLOBALS["DB"]->query_to_array($query, "s", [$username]);
+    
+    $query = "
+      SELECT
+        c.lat,
+        c.lng,
+      FROM coordinates c
+        JOIN users u on u.id = c.user
+      WHERE
+        u.username = ?;
+    ";
+    $lat_lng = $GLOBALS["DB"]->query_to_array($query, "s", [$username])[0];
+    $results[0]["lng"] = $lat_lng["lng"];
+    $results[0]["lat"] = $lat_lng["lat"];
+    return new Location($results[0]);
     if ($DB) {
       $GLOBALS["DB"]->quit();
     }
-    return new Location($results[0]);
   }
   
   private static function get_meet_info($username) {
@@ -257,7 +270,39 @@ class User extends \Nefuzz\Models\Base_Model {
   
   /*///////////////////////////////////////////////////////////////////////*/
   
-  public function save_user_info() {}
+  public function save_user_info($old_password = false, $new_password = false) {
+    $GLOBALS["DB"] = new DBC();
+    $new_password_line = ($new_password ? ", auth = ? " : "");
+    $new_password_letter = ($new_password ? "s" : "");
+    $query = "
+      UPDATE users
+      SET
+        has_icon = ?,
+        fur_name = ?,
+        real_name = ?,
+        bio = ?,
+        species = ?,
+        contact_method = ?
+        $new_password_line
+      WHERE
+        username = ?;
+    ";
+    $values = [
+      $this->validate(),
+      $this->validate(),
+      $this->validate(),
+      $this->validate(),
+      $this->validate(),
+      $this->validate(),
+    ];
+    if ($new_password) {
+      array_push($values, \Nefuzz\Php\Auth::make_hash($this->username, $new_password));
+    }
+    array_push($values, $this->username);
+    $results = $GLOBALS["DB"]->query($query, "iss$new_password_letter", $values);
+    $GLOBALS["DB"]->quit();
+    return $results;
+  }
   public function save_location() {}
   public function save_contact_info() {}
   public function save_em_info() {}
@@ -275,8 +320,8 @@ class User extends \Nefuzz\Models\Base_Model {
     
     $DB->query("START TRANSACTION");
     $auth = makeHash(
-      validate($this->username, "^[a-zA-Z0-9_]{1,20}$", "Problem in Username field", $DB),
-      validate($password, "^(?=.*\d).{8,20}$", "Problem in Password field", $DB)
+      $this->validate($this->username, "^[a-zA-Z0-9_]{1,20}$", "Problem in Username field", $DB),
+      $this->validate($password, "^(?=.*\d).{8,20}$", "Problem in Password field", $DB)
     );
     $query = "
       INSERT INTO users(
@@ -297,13 +342,14 @@ class User extends \Nefuzz\Models\Base_Model {
       $this->username,
       $auth,
       $this->has_icon,
-      validate($this->fur_name, 50, "Problem in Fur Name field", $DB),
-      validate($this->real_name, 50, "Problem in Real Name field", $DB),
-      validate($this->contact_method, true, "Problem with Prefered Contact Method Selection", $DB),
-      validate($this->location->address, 50, "Problem with Address field", $DB),
-      validate($this->location->region_id, true, "Problem with state selection", $DB),
-      validate($this->location->city, 25, "Problem with City field", $DB)
+      $this->validate($this->fur_name, 50, "Problem in Fur Name field", $DB),
+      $this->validate($this->real_name, 50, "Problem in Real Name field", $DB),
+      $this->validate($this->contact_method, true, "Problem with Prefered Contact Method Selection", $DB),
+      $this->validate($this->location->address, 50, "Problem with Address field", $DB),
+      $this->validate($this->location->region_id, true, "Problem with state selection", $DB),
+      $this->validate($this->location->city, 25, "Problem with City field", $DB)
     ]);
+    
     if(!$worked){
       $DB->query("ROLLBACK");
       $DB->quit();
@@ -311,6 +357,31 @@ class User extends \Nefuzz\Models\Base_Model {
     }
     
     $id = $DB->get_insert_id();
+    
+    if ($this->location->gen_coords) {
+      $query = "
+        INSERT INTO coordinates(
+          user_not_event,
+          user,
+          lat,
+          lng
+        ) VALUES (
+          1,?,?,?
+        );
+      ";
+      $worked = $DB->query($query, "iss", [
+        $id,
+        $this->location->lat,
+        $this->location->lng
+      ]);
+      
+      if(!$worked){
+        $DB->query("ROLLBACK");
+        $DB->quit();
+        return 0;
+      }
+    }
+    
     $values = [];
     $types = "";
     $query = "
@@ -322,14 +393,14 @@ class User extends \Nefuzz\Models\Base_Model {
     ";
     foreach ($this->contact_info as $method => $method_info) {
       if ($method == 1) {
-        validate($method_info, "^[^@]+@[^@]+\.[^@]+$", "Problem in Email field", $DB);
+        $this->validate($method_info, "^[^@]+@[^@]+\.[^@]+$", "Problem in Email field", $DB);
       }
       $query .= "(?, ?, ?),";
       array_push(
         $values,
         $id,
         $method,
-        validate($method_info, 40, "Problem in Contact Method field #$method", $DB)
+        $this->validate($method_info, 40, "Problem in Contact Method field #$method", $DB)
       );
       $types .= "iis";
     }
@@ -360,12 +431,12 @@ class User extends \Nefuzz\Models\Base_Model {
     ";
     $worked = $DB->query($query, "issssssii", [
       $id,
-      validate($this->emergency_info->emergency_contacts[0]["name"], 50, "Problem in Name for Emergency Contact 1", $DB),
-      validate($this->emergency_info->emergency_contacts[0]["phone_number"], 20, "Problem in Phone Number for Emergency Contact 1", $DB),
-      validate($this->emergency_info->emergency_contacts[1]["name"], 50, "Problem in Name for Emergency Contact 2", $DB),
-      validate($this->emergency_info->emergency_contacts[1]["phone_number"], 20, "Problem in Phone Number for Emergency Contact 2", $DB),
-      validate($this->emergency_info->allergies, 50 , "Problem in Allergies field", $DB),
-      validate($this->emergency_info->medical_issues, 50 , "Problem in Medical Issues field", $DB),
+      $this->validate($this->emergency_info->emergency_contacts[0]["name"], 50, "Problem in Name for Emergency Contact 1", $DB),
+      $this->validate($this->emergency_info->emergency_contacts[0]["phone_number"], 20, "Problem in Phone Number for Emergency Contact 1", $DB),
+      $this->validate($this->emergency_info->emergency_contacts[1]["name"], 50, "Problem in Name for Emergency Contact 2", $DB),
+      $this->validate($this->emergency_info->emergency_contacts[1]["phone_number"], 20, "Problem in Phone Number for Emergency Contact 2", $DB),
+      $this->validate($this->emergency_info->allergies, 50 , "Problem in Allergies field", $DB),
+      $this->validate($this->emergency_info->medical_issues, 50 , "Problem in Medical Issues field", $DB),
       $this->emergency_info->bee_allergy,
       $this->emergency_info->food_allergy
     ]);

@@ -7,10 +7,10 @@
   <script src="https://unpkg.com/babel-polyfill@6.2.0/dist/polyfill.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/rome/2.1.22/rome.standalone.js"></script>
-  <script src="static/js/material-datetime-picker.js" charset="utf-8"></script>
+  <script src="/static/js/material-datetime-picker.js" charset="utf-8"></script>
   <!--<link rel="stylesheet" href="css/material-datetime-picker.css" />-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type='text/css'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<link rel="icon" sizes="192x192" href="/static/img/iconsquare.png">
 	<link rel="apple-touch-icon" href="/static/img/iconsquare.png">
