@@ -24,9 +24,6 @@ class User extends \Nefuzz\Models\Base_Model {
   public $meet_info = [];             //array[int]
   public $group_info = [];            //assoc[$group_id=>role(string)]
   
-  private static $DB = false;         //object(DBC)
-  
-  
   /**
    * Builds a User object from the provided arrays
    * 
@@ -71,24 +68,24 @@ class User extends \Nefuzz\Models\Base_Model {
    */
   public static function get($username, $password = false) {
     //connect to DB and verify user
-    $GLOBALS["DB"] = new DBC();
+    $DB = new DBC();
     if (!self::exists($username, $password)) {
       return false;
     }
     $is_current_user = $password ? true : false;
     
     //grab all parts of the user data from DB
-    $user_info = self::get_user_info($username);
+    $user_info = self::get_user_info($username, $DB);
     $user_info['is_current_user'] = $is_current_user;
-    $location_obj = self::get_location_obj($username, false);
-    $meet_info = self::get_meet_info($username);
-    $event_info = self::get_event_info($username);
-    $contact_info = self::get_contact_info($username);
-    $group_info = self::get_group_info($username);
-    $emergency_obj = self::get_emergency_obj($username);
+    $location_obj = self::get_location_obj($username, $DB);
+    $meet_info = self::get_meet_info($username, $DB);
+    $event_info = self::get_event_info($username, $DB);
+    $contact_info = self::get_contact_info($username, $DB);
+    $group_info = self::get_group_info($username, $DB);
+    $emergency_obj = self::get_emergency_obj($username, $DB);
     
     //close DB connection and return a constructed User
-    $GLOBALS["DB"]->quit();
+    $DB->quit();
     return new User(
       $user_info, 
       $meet_info, 
@@ -106,7 +103,13 @@ class User extends \Nefuzz\Models\Base_Model {
    *    Each is used to grab a part of the user object, each takes the username and connects to the
    *    DB to get the required info as an assoc array
    */
-  private static function get_user_info($username) {
+  private static function get_user_info($username, $Parent_DBC = false) {
+    if (!$Parent_DBC) {
+      $DB = new DBC();
+    } else {
+      $DB = $Parent_DBC;
+    }
+    
     $query = "
       SELECT
         id,
@@ -123,13 +126,18 @@ class User extends \Nefuzz\Models\Base_Model {
       WHERE
         username = ?;
     ";
-    $results = $GLOBALS["DB"]->query_to_array($query, "s", [$username]);
+    $results = $DB->query_to_array($query, "s", [$username]);
+    if (!$Parent_DBC) {
+      $DB->quit();
+    }
     return $results[0];
   }
   
-  public static function get_location_obj($username, $DB = true) {
-    if ($DB) {
-      $GLOBALS["DB"] = new DBC();
+  public static function get_location_obj($username, $Parent_DBC = false) {
+    if (!$Parent_DBC) {
+      $DB = new DBC();
+    } else {
+      $DB = $Parent_DBC;
     }
     $query = "
       SELECT
@@ -143,27 +151,35 @@ class User extends \Nefuzz\Models\Base_Model {
       WHERE
         u.username = ?;
     ";
-    $results = $GLOBALS["DB"]->query_to_array($query, "s", [$username]);
+    $results = $DB->query_to_array($query, "s", [$username]);
     
     $query = "
       SELECT
         c.lat,
-        c.lng,
+        c.lng
       FROM coordinates c
         JOIN users u on u.id = c.user
       WHERE
         u.username = ?;
     ";
-    $lat_lng = $GLOBALS["DB"]->query_to_array($query, "s", [$username])[0];
-    $results[0]["lng"] = $lat_lng["lng"];
-    $results[0]["lat"] = $lat_lng["lat"];
-    return new Location($results[0]);
-    if ($DB) {
-      $GLOBALS["DB"]->quit();
+    $lat_lng = $DB->query_to_array($query, "s", [$username]);
+    if (!empty($lat_lng)) {
+      $lat_lng = $lat_lng[0];
+      $results[0]["lng"] = $lat_lng["lng"];
+      $results[0]["lat"] = $lat_lng["lat"];
     }
+    if (!$Parent_DBC) {
+      $DB->quit();
+    }
+    return new Location($results[0]);
   }
   
-  private static function get_meet_info($username) {
+  private static function get_meet_info($username, $Parent_DBC = false) {
+    if (!$Parent_DBC) {
+      $DB = new DBC();
+    } else {
+      $DB = $Parent_DBC;
+    }
     $query = "
       SELECT
         m.id
@@ -172,7 +188,7 @@ class User extends \Nefuzz\Models\Base_Model {
       WHERE
         u.username = ?;
     ";
-    $results_solo = $GLOBALS["DB"]->query_to_array($query, "s", [$username]);
+    $results_solo = $DB->query_to_array($query, "s", [$username]);
     $ids_solo = [];
     foreach($results_solo as $result) {
       array_push($id_solo, $result["id"]);
@@ -188,15 +204,23 @@ class User extends \Nefuzz\Models\Base_Model {
       WHERE
         u.username = ? AND gr.id < 3;
     ";
-    $results_groups = $GLOBALS["DB"]->query_to_array($query, "s", [$username]);
+    $results_groups = $DB->query_to_array($query, "s", [$username]);
     $ids_groups = [];
     foreach($results_groups as $result) {
       array_push($id_groups, $result["id"]);
     }
+    if (!$Parent_DBC) {
+      $DB->quit();
+    }
     return array_unique(array_merge($ids_groups, $ids_solo), SORT_REGULAR);
   }
   
-  private static function get_event_info($username) {
+  private static function get_event_info($username, $Parent_DBC = false) {
+    if (!$Parent_DBC) {
+      $DB = new DBC();
+    } else {
+      $DB = $Parent_DBC;
+    }
     $query = "
       SELECT
         e.id,
@@ -208,15 +232,23 @@ class User extends \Nefuzz\Models\Base_Model {
       WHERE
         u.username = ?;
     ";
-    $results = $GLOBALS["DB"]->query_to_array($query, "s", [$username]);
+    $results = $DB->query_to_array($query, "s", [$username]);
     $event_info = [];
     foreach($results as $result) {
       $event_info[$result["id"]] = $result["name"];
     }
+    if (!$Parent_DBC) {
+      $DB->quit();
+    }
     return $event_info;
   }
   
-  private static function get_contact_info($username) {
+  private static function get_contact_info($username, $Parent_DBC = false) {
+    if (!$Parent_DBC) {
+      $DB = new DBC();
+    } else {
+      $DB = $Parent_DBC;
+    }
     $query = "
       SELECT
         cm.id,
@@ -227,15 +259,23 @@ class User extends \Nefuzz\Models\Base_Model {
       WHERE
         u.username = ?;
     ";
-    $results = $GLOBALS["DB"]->query_to_array($query, "s", [$username]);
+    $results = $DB->query_to_array($query, "s", [$username]);
     $contact_info = [];
     foreach($results as $result) {
       $contact_info[$result["id"]] = $result["method_info"];
     }
+    if (!$Parent_DBC) {
+      $DB->quit();
+    }
     return $contact_info;
   }
   
-  private static function get_emergency_obj($username) {
+  private static function get_emergency_obj($username, $Parent_DBC = false) {
+    if (!$Parent_DBC) {
+      $DB = new DBC();
+    } else {
+      $DB = $Parent_DBC;
+    }
     $query = "
       SELECT
         ei.*
@@ -244,11 +284,19 @@ class User extends \Nefuzz\Models\Base_Model {
       WHERE
         u.username = ?;
     ";
-    $results = $GLOBALS["DB"]->query_to_array($query, "s", [$username]);
+    $results = $DB->query_to_array($query, "s", [$username]);
+    if (!$Parent_DBC) {
+      $DB->quit();
+    }
     return new Em_Info($results[0]);
   }
   
-  private static function get_group_info($username) {
+  private static function get_group_info($username, $Parent_DBC = false) {
+    if (!$Parent_DBC) {
+      $DB = new DBC();
+    } else {
+      $DB = $Parent_DBC;
+    }
     $query = "
       SELECT
         g.name AS `group`,
@@ -260,10 +308,13 @@ class User extends \Nefuzz\Models\Base_Model {
       WHERE
         u.username = ?;
     ";
-    $results = $GLOBALS["DB"]->query_to_array($query, "s", [$username]);
+    $results = $DB->query_to_array($query, "s", [$username]);
     $group_info = [];
     foreach($results as $result) {
       $contact_info[$result["group"]] = $result["role"];
+    }
+    if (!$Parent_DBC) {
+      $DB->quit();
     }
     return $group_info;
   }
@@ -271,7 +322,7 @@ class User extends \Nefuzz\Models\Base_Model {
   /*///////////////////////////////////////////////////////////////////////*/
   
   public function save_user_info($old_password = false, $new_password = false) {
-    $GLOBALS["DB"] = new DBC();
+    $DB = new DBC();
     $new_password_line = ($new_password ? ", auth = ? " : "");
     $new_password_letter = ($new_password ? "s" : "");
     $query = "
@@ -299,8 +350,8 @@ class User extends \Nefuzz\Models\Base_Model {
       array_push($values, \Nefuzz\Php\Auth::make_hash($this->username, $new_password));
     }
     array_push($values, $this->username);
-    $results = $GLOBALS["DB"]->query($query, "iss$new_password_letter", $values);
-    $GLOBALS["DB"]->quit();
+    $results = $DB->query($query, "iss$new_password_letter", $values);
+    $DB->quit();
     return $results;
   }
   public function save_location() {}
@@ -319,7 +370,7 @@ class User extends \Nefuzz\Models\Base_Model {
     $DB = new DBC();
     
     $DB->query("START TRANSACTION");
-    $auth = makeHash(
+    $auth = \Nefuzz\Php\Auth::make_hash(
       $this->validate($this->username, "^[a-zA-Z0-9_]{1,20}$", "Problem in Username field", $DB),
       $this->validate($password, "^(?=.*\d).{8,20}$", "Problem in Password field", $DB)
     );
@@ -358,7 +409,7 @@ class User extends \Nefuzz\Models\Base_Model {
     
     $id = $DB->get_insert_id();
     
-    if ($this->location->gen_coords) {
+    if ($this->location->gen_coords()) {
       $query = "
         INSERT INTO coordinates(
           user_not_event,
@@ -451,6 +502,29 @@ class User extends \Nefuzz\Models\Base_Model {
     
     $DB->quit();
     return($id);
+  }
+  
+  
+  /**
+   * Get the user's id based on a username 
+   * 
+   * @return int|bool - the id of the user, false if failed
+   */
+  public static function get_id_by_username($username) {
+    $DB = new DBC();
+    $query = "
+      SELECT
+        id
+      FROM
+        users
+      WHERE
+        username = ?;
+    ";
+    $result = $DB->query_to_array($query, "s", [$username]);
+    if (!empty($result)) {
+      return $result[0]['id'];
+    }
+    return false;
   }
   
   /**

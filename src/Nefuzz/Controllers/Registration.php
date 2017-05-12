@@ -55,13 +55,13 @@ class Registration extends \Nefuzz\Controllers\Base_Controller {
       "contact_method" => $data["contact_method"]
     ];
     
-    $location_obj = new Location([
+    $location_obj = new \Nefuzz\Models\Location([
       "address" => $data["address"] ?? "",
       "city" => $data["city"] ?? "",
       "region" => $data["region"]
     ]);
     
-    $emergency_obj = new Em_Info([
+    $emergency_obj = new \Nefuzz\Models\Em_Info([
       "em_phone_1" => $data["em_phone_1"] ?? "",
       "em_phone_2" => $data["em_phone_2"] ?? "",
       "em_name_1" => $data["em_name_1"] ?? "",

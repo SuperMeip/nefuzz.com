@@ -97,7 +97,7 @@ class Location {
    * 
    * @return array|bool|string
    *  The array contains 2 elements , length and time, which each have a text, and value option.
-   *  Returns a string with an error message or false if something goes wrong.
+   *  Returns false if something goes wrong.
    */
   public function added_distance($checkpoint, $destination) {
     $normal_dist = $this->distance($destination);
@@ -162,6 +162,7 @@ class Location {
       $this->lng = $result["lng"];
       return $result;
     } elseif ($choord_info["status"] === "OVER_QUERY_LIMIT") {
+      // This is thrown if too many addresses are querried at once
       throw new Exception("OVER_QUERY_LIMIT");
     } else {
       return false;
@@ -179,6 +180,9 @@ class Location {
    *  the location, or false if it failed for any reason.
    */
   public function get_coords($city_only = true) {
+    if (!$this->city) {
+      return false;
+    }
     if($this->lat && $this->lng) {
       return [
         "lat" => $this->lat,
