@@ -18,7 +18,7 @@
   left: 50%;
   top: 45%;
   transform: translate(-50%, -50%);
-  background: white;
+  background: $page-color;
   border: 0;
   width: 300px;
   text-align: center;
@@ -39,7 +39,7 @@
 .c-datepicker__header-day {
   height: 32px;
   background: $alt-color;
-  color: white;
+  color: $bold-color;
   line-height: 32px;
   font-size: 12px;
   font-weight: bolder;
@@ -64,7 +64,7 @@
 .c-datepicker__back, .c-datepicker__next, .c-datepicker__toggle {
   position: absolute;
   border: 0;
-  background: white;
+  background: $page-color;
   font-family: 'Material Icons';
   text-rendering: optimizeLegibility;
   font-feature-settings: "liga" 1;
@@ -95,17 +95,17 @@
 
 .c-datepicker--show-time:after {
   content: 'access_time';
-  color: white;
+  color: $bold-color;
   visibility: visible; }
 
 .c-datepicker--show-calendar:after {
   content: 'grid_on';
-  color: white;
+  color: $bold-color;
   visibility: visible; }
 
 .c-datepicker__header-date span {
   display: block;
-  color: white;
+  color: $bold-color;
   margin: 4px 0;
   transition: opacity 100ms ease-in-out; }
 
@@ -152,7 +152,7 @@
   cursor: pointer;
   position: relative; }
   .c-datepicker__day-body:hover {
-    /* color: white; */ }
+    /* color: $bold-color; */ }
 
 .c-datepicker__day--selected::after {
   content: "";
@@ -203,7 +203,7 @@
 .c-datepicker__header-toggle {
   position: absolute;
   top: 50%;
-  color: white;
+  color: $bold-color;
   cursor: pointer; }
   .c-datepicker__header-toggle i {
     font-size: 26px; }
@@ -431,7 +431,7 @@
     transform: translate(-50%, -50%);
     transition: width 100ms ease-in-out, height 100ms ease-in-out; }
   .u-hover-ball-effect:hover, .c-datepicker__day-body:hover, .c-datepicker__clock__num:hover, .c-datepicker__clock__am-pm-toggle label:hover {
-    color: white; }
+    color: $bold-color; }
     .u-hover-ball-effect:hover:before, .c-datepicker__day-body:hover:before, .c-datepicker__clock__num:hover:before, .c-datepicker__clock__am-pm-toggle label:hover:before {
       background: $main-color;
       width: 35px;
@@ -439,7 +439,7 @@
       z-index: -1; }
 
 .c-datepicker__day-body--active:not(.hide-hand), .c-datepicker__clock__num--active:not(.hide-hand) {
-  color: white; }
+  color: $bold-color; }
   .c-datepicker__day-body--active:not(.hide-hand):before, .c-datepicker__clock__num--active:not(.hide-hand):before {
     background: $main-color;
     width: 35px;

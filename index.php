@@ -20,7 +20,6 @@ Flight::map('notFound', function(){
  */ 
 Flight::route("/style.css", function() {
   require ("src/sass/style.php");
-  return true;
 });
 
 

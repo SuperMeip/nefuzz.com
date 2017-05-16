@@ -165,8 +165,8 @@ class User extends \Nefuzz\Models\Base_Model {
     $lat_lng = $DB->query_to_array($query, "s", [$username]);
     if (!empty($lat_lng)) {
       $lat_lng = $lat_lng[0];
-      $results[0]["lng"] = $lat_lng["lng"];
-      $results[0]["lat"] = $lat_lng["lat"];
+      $results[0]["lng"] = floatval($lat_lng["lng"]);
+      $results[0]["lat"] = floatval($lat_lng["lat"]);
     }
     if (!$Parent_DBC) {
       $DB->quit();

@@ -74,8 +74,8 @@ class Registration extends \Nefuzz\Controllers\Base_Controller {
     
     $contact_info = [];
     
-    if(
-      (!isset($_POST['contact_method_' . $_POST['contact_method']]) ||
+    if (
+      (empty($_POST['contact_method_' . $_POST['contact_method']]) ||
       ($_POST['contact_method_' . $_POST['contact_method']] == "@")) &&
       ($_POST['contact_method'] > 1)
     ) {
@@ -84,7 +84,7 @@ class Registration extends \Nefuzz\Controllers\Base_Controller {
     
     foreach ($data as $name => $value) {
       if(strpos($name, "method_")) {
-        if (($value != "@" && $value)){
+        if (($value != "@") && !empty($value)){
           $id = explode('_', $name)[2];
           $contact_info[$id] = $value;
         }

@@ -1,10 +1,11 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/views/view.php");
 
-class Alternate_Event_Host_View extends View {
+namespace Nefuzz\Views\Make_Meet;
+
+class Alternate_Host extends \Nefuzz\Views\Base_View {
     
   public function __construct() {
-    $raw_methods = User::get_all_contact_methods();
+    $raw_methods = \Nefuzz\Models\User::get_all_contact_methods();
 
     foreach ($raw_methods as $method) {
       $this->contact_methods[$method['name']] = $method['id'];
@@ -16,6 +17,6 @@ class Alternate_Event_Host_View extends View {
   }
   
   protected function template() {
-    return "addedit_meet/alternate_event_host";
+    return "make_meet/alternate_host";
   }
 }

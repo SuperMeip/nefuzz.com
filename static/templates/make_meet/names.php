@@ -15,7 +15,7 @@
     "pattern" => "^[a-zA-Z0-9_ \-!?&+:,\/\(\)]{1,30}$",
     "id" => "meet-name",
   ]);?>
-  <?=new CheckBox_Input([
+  <?=new Checkbox_Input([
     "size" => "small",
     "label" => "Is a Con?",
     "name" => "is_con"

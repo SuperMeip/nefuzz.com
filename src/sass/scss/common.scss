@@ -1,10 +1,18 @@
 $main-color: green;
 $light-color: #8BC34A;
 $medium-color: #149c14;
+$page-color: white;
+$background-color: #e6e6e6;
 $alt-color: #32982b;
 $dark-color: darkgreen;
+$tooltip-color: black;
 $small-width: 766px;
-$medium-width: 766px;
+$bold-color: white;
+$title-color: darkgrey;
+$header-color: #333333;
+$text-color: #5f5f5f;
+$border-color: lightgrey;
+$error-color: red;
 
 html {
 	font-size: 14px;
@@ -12,12 +20,12 @@ html {
 }
 
 .error_message {
-    background-color: lightgray;
+    background-color: $background-color;
     border-radius: 10px;
     font-family: courier;
-    border-left: red solid 1px;
+    border-left: $error-color solid 1px;
     margin: 10px;
-    border-right: red solid 1px;
+    border-right: $error-color solid 1px;
     
     p {
       padding: 10px;
@@ -34,10 +42,22 @@ html {
   margin: 5px;
   text-align: center;
   font-size: 2.5rem;
-  color: #777;
+  color: $title-color;
   @media screen and (max-width: $small-width) {
     font-size: 2rem;
   }
+}
+
+@mixin box-shadow-set($darkness) {
+    box-shadow: 0 4px 8px 0 rgba($darkness, $darkness, $darkness, 0.2),0 6px 20px 0 rgba($darkness, $darkness, $darkness, 0.19);
+}
+
+@mixin block-shadow() {
+  @include box-shadow-set(100);
+}
+
+@mixin header-shadow() {
+  box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2),0 0px 20px 0 rgba(0,0,0,0.19);
 }
 
 form.main {
@@ -50,7 +70,7 @@ form.main {
 
 body {
   min-height: 100vh;
-  background-color: #EEE;
+  background-color: $background-color;
 	margin: 0px;
 	font-family: arial;
   display: flex;
@@ -102,11 +122,11 @@ main {
 }
 
 .center_column {
-  //min-width: 80%;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   max-width: 80%;
   width: 1000px;
-  @media screen and (max-width: $medium-width) {
+  @media screen and (max-width: $small-width) {
   max-width: 100%;
   }
 }
@@ -136,7 +156,7 @@ main {
 
 ::selection {
   background: $light-color;
-  color: black;
+  color: $header-color;
 }
 
 .info_table {
@@ -145,21 +165,21 @@ main {
   @media screen and (max-width: $small-width) {
     font-size: 1rem;
   }
-  color: #5f5f5f;
+  color: $header-color;
   border-spacing: 5px;
   font-weight: bold;
   
   .item_value {
     width: 50%;
     vertical-align: bottom;
-    color: grey;
+    color: $text-color;
   }
   
   .item_title {
     vertical-align: top;
   }
   td {
-    border-bottom: darkgrey solid 1px;
+    border-bottom: $border-color solid 1px;
   }
   td:last-child {
     width: 70%;

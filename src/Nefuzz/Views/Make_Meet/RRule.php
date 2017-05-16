@@ -1,7 +1,8 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/views/view.php");
 
-class RRule_View extends View {
+namespace Nefuzz\Views\Make_Meet;
+
+class RRule extends \Nefuzz\Views\Base_View {
     
   public $weekdays = [
     "Sunday" => "SU",
@@ -40,10 +41,10 @@ class RRule_View extends View {
   ];
   
   protected function template() {
-    return 'addedit_meet/rrule';
+    return 'make_meet/rrule';
   }
   
   protected function js() {
-    return ['addedit_meet/rrule'];
+    return ['make_meet/rrule'];
   }
 }

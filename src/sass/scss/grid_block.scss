@@ -15,17 +15,17 @@
 }
 
 .grid_block {
-  background-color: white;
+  background-color: $page-color;
   overflow: hidden;
   min-width: 200px;
   margin: 10px;
-  box-shadow: 0 4px 8px 0 rgba(100,100,100,0.2),0 6px 20px 0 rgba(100,100,100,0.19);
-
+  @include block-shadow;
+  
   .header {
     width: 100%;
-    background-color: green;
-    color: white;
-    box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2),0 0px 20px 0 rgba(0,0,0,0.19);
+    background-color: $main-color;
+    color: $bold-color;
+    @include header-shadow;
     display: flex;
     align-items: center;
     
@@ -53,7 +53,7 @@
 .grid_column {
   
   .body {
-    @media screen and (max-width: $medium-width){
+    @media screen and (max-width: $small-width){
       height: 240px !important;
     }
   }
@@ -132,7 +132,7 @@
     min-width: 135px;
   }
   
-  @media screen and (max-width: $medium-width){
+  @media screen and (max-width: $small-width){
     width: 90% !important;
     min-width: 300px !important;
     height: 300px !important;
@@ -157,7 +157,7 @@
   }
 }
 
-@media screen and (max-width: $medium-width){
+@media screen and (max-width: $small-width){
   .row {
     &.grid {
       flex-direction: column;

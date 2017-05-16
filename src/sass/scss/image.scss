@@ -1,17 +1,16 @@
-.small_icon {
-	width: 40px;
-	height: 40px;
+@mixin icon($size) {
+	width: $size * 10px;
+	height: $size * 10px;
 
 	&.round {
-		clip-path: circle(20px at center);
+		clip-path: circle(($size *5px) at center);
 	}
 }
 
-.large_icon {
-	width: 180px;
-	height: 180px;
+.small_icon {
+	@include icon(4);
+}
 
-	&.round {
-		clip-path: circle(90px at center);
-	}
+.large_icon {
+	@include icon(18);
 }

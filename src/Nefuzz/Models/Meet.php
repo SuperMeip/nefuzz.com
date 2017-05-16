@@ -1,5 +1,8 @@
 <?php
-class Meet{
+
+namespace Nefuzz\Models;
+
+class Meet extends \Nefuzz\Models\Base_Model {
   public $id = 0;                   //int
   public $user = 0;                 //int
   public $group = 0;                //int

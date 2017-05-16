@@ -15,7 +15,7 @@ function initMap() {
       strokeOpacity: 0.8,
       strokeWeight: 2,
       fillColor: 'lightgreen',
-      fillOpacity: 0.35,
+      fillOpacity: 0.30,
       map: map,
       center: {lat: location.coords.lat, lng: location.coords.lng},
       radius: location.users.length * 400
