@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'RRule\\' => array($vendorDir . '/rlanvin/php-rrule/src'),
     'Nefuzz\\' => array($baseDir . '/src/Nefuzz'),
     '' => array($baseDir . '/src/Components'),
 );

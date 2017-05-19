@@ -6,7 +6,6 @@ class Meet extends \Nefuzz\Models\Base_Model {
   public $id = 0;                   //int
   public $user = 0;                 //int
   public $group = 0;                //int
-  public $details = 0;              //int
   public $name = "";                //string
   public $rrule = "";               //string
   public $overview = "";            //string
@@ -14,8 +13,9 @@ class Meet extends \Nefuzz\Models\Base_Model {
   public $created_time = "";        //date(string)
   
   public $events = [];              //array[int]
+  public $details = [];             //obj(Event_Details)
   
-  public function __construct($meet_info, $event_list) {
+  public function __construct($meet_info, $event_list, $rrule_info) {
     foreach ($meet_info as $key => $value) {
       if (isset($this->{$key})) {
         $this->{$key} = $value;
@@ -56,7 +56,7 @@ class Meet extends \Nefuzz\Models\Base_Model {
     
   }
   
-  public function build_rrule() {
+  public function build_rrule($rrule_info) {
     
   }
   

@@ -4,6 +4,7 @@
     min-height: 400px;
     max-width: 1000px;
     max-height: 700px;
+    border-radius: 8px;
     @include block-shadow;
     position: relative !important;
   @media screen and (max-width: $small-width) {

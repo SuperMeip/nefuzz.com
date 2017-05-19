@@ -27,7 +27,7 @@ class Header extends \Nefuzz\Views\Base_View {
         "content" => new \Nefuzz\Views\Header\Login_Modal(),
         "activator" => (
           '<a class="row info item" href="#">
-            <img src="/static/img/login.png" class="small_icon round"/>
+            <img src="/static/img/login.png" class="small_icon square"/>
           </a>'
           ),
       ]);
@@ -44,7 +44,7 @@ class Header extends \Nefuzz\Views\Base_View {
     $link = $this->user->get_page_link();
     return "
       <a class=\"right row item info\" href=\"$link\">
-        <img src=\"$icon\" class=\"small_icon round\"/>
+        <img src=\"$icon\" class=\"small_icon square\"/>
       </a>
       <a class=\"item\" href=\"#\">
         <i class=\"fa fa-sign-out\" id=\"logout\" aria-hidden=\"true\"></i>

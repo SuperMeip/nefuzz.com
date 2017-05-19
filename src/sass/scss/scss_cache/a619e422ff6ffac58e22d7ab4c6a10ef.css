@@ -1,4 +1,4 @@
-/* compiled by scssphp v0.0.12 on Mon, 15 May 2017 23:58:06 -0400 (0.1151s) */
+/* compiled by scssphp v0.0.12 on Wed, 17 May 2017 15:25:10 -0400 (0.1229s) */
 
 html {
   font-size: 14px;
@@ -209,12 +209,14 @@ header {
 
 .grid_block {
   background-color: white;
+  border-radius: 8px;
   overflow: hidden;
   min-width: 200px;
   margin: 10px;
   box-shadow: 0 4px 8px 0 rgba(100, 100, 100, 0.2), 0 6px 20px 0 rgba(100, 100, 100, 0.19); }
   .grid_block .header {
     width: 100%;
+    border-radius: 8px 8px 0 0;
     background-color: green;
     color: white;
     box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2), 0 0px 20px 0 rgba(0, 0, 0, 0.19);
@@ -299,12 +301,16 @@ header {
   height: 40px; }
   .small_icon.round {
     clip-path: circle(20px at center); }
+  .small_icon.square {
+    border-radius: 8px; }
 
 .large_icon {
   width: 180px;
   height: 180px; }
   .large_icon.round {
     clip-path: circle(90px at center); }
+  .large_icon.square {
+    border-radius: 8px; }
 
 .modal {
   display: none;
@@ -323,10 +329,11 @@ header {
     background-color: white;
     margin: auto;
     padding: 0;
+    border-radius: 8px;
     width: 90%;
     max-width: 500px;
     min-width: 300px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(100, 100, 100, 0.2), 0 6px 20px 0 rgba(100, 100, 100, 0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.8s;
     animation-name: animatetop;
@@ -338,6 +345,7 @@ header {
     max-width: 700px; }
   .modal .header {
     color: white;
+    border-radius: 8px 8px 0 0;
     width: 100%;
     background-color: green; }
     .modal .header h1 {
@@ -454,6 +462,7 @@ p.modal_text {
 .button {
   cursor: pointer;
   cursor: hand;
+  border-radius: 8px;
   text-decoration: none;
   background-color: green;
   color: white;
@@ -557,6 +566,8 @@ p.modal_text {
 .block {
   background-color: white;
   width: 800px;
+  border-radius: 8px;
+  overflow: hidden;
   max-width: 95%;
   margin-top: 20px;
   box-shadow: 0 4px 8px 0 rgba(100, 100, 100, 0.2), 0 6px 20px 0 rgba(100, 100, 100, 0.19); }
@@ -594,6 +605,7 @@ p.modal_text {
       color: green; }
   .block .header {
     color: white;
+    border-radius: 8px 8px 0 0;
     width: 100%;
     background-color: green;
     box-shadow: 0 4px 8px 0 rgba(100, 100, 100, 0.2), 0 6px 20px 0 rgba(100, 100, 100, 0.19); }
@@ -755,6 +767,7 @@ footer {
     cursor: pointer;
     cursor: hand; }
   #user_meets_attended .address_city, #user_member_groups .address_city, #user_meets_hosted .address_city, #user_location .address_city, #user_meets_attended .title, #user_member_groups .title, #user_meets_hosted .title, #user_location .title {
+    color: #333;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -812,6 +825,7 @@ footer {
   min-height: 400px;
   max-width: 1000px;
   max-height: 700px;
+  border-radius: 8px;
   box-shadow: 0 4px 8px 0 rgba(100, 100, 100, 0.2), 0 6px 20px 0 rgba(100, 100, 100, 0.19);
   position: relative !important; }
   @media screen and (max-width: 766px) {

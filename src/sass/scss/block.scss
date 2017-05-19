@@ -1,6 +1,8 @@
 .block {
   background-color: $page-color;
   width: 800px;
+  border-radius: 8px;
+  overflow: hidden;
   max-width: 95%;
   margin-top: 20px;
   @include block-shadow;
@@ -53,6 +55,7 @@
 
   .header {
     color: $bold-color;
+    border-radius: 8px 8px 0 0;
     width: 100%;
     background-color: $main-color;
     @include block-shadow;

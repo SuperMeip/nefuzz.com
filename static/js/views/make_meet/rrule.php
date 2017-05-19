@@ -1,6 +1,3 @@
-
-
-
 <script>
 $(document).ready(function() {
   $("#rrule-type-select").change(function() {

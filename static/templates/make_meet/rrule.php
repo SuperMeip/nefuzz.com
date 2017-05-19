@@ -13,7 +13,7 @@
   <?=new Select_Input([
     "id" => "rrule-type-select",
     "label" => "Repeat",
-    "name" => "rr_repeat",
+    "name" => "frequency",
     "size" => "big",
     "options" => [
       "Weekly" => "weekly",
@@ -30,7 +30,7 @@
   <?=new Text_Input([
     "id" => "datetimepicker",
     "label" => "Every X Weeks",
-    "name" => "rr_interval_weeks",
+    "name" => "interval",
     "size" => "mini",
     "max_characters" => 1
   ]);?>
@@ -55,7 +55,7 @@
   <div class="row center">
     <?=new Text_Input([
       "label" => "Every X months",
-      "name" => "rr_interval_months",
+      "name" => "interval",
       "size" => "normal",
       "max_characters" => 1
     ]);?>

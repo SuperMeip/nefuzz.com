@@ -16,6 +16,7 @@
 
 .grid_block {
   background-color: $page-color;
+  border-radius: 8px;
   overflow: hidden;
   min-width: 200px;
   margin: 10px;
@@ -23,6 +24,7 @@
   
   .header {
     width: 100%;
+    border-radius: 8px 8px 0 0;
     background-color: $main-color;
     color: $bold-color;
     @include header-shadow;

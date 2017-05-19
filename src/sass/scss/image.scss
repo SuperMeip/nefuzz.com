@@ -5,6 +5,9 @@
 	&.round {
 		clip-path: circle(($size *5px) at center);
 	}
+	&.square {
+    border-radius: 8px;
+	}
 }
 
 .small_icon {
