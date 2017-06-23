@@ -1,11 +1,13 @@
+<?=$this->redirect();?>
+
 <div class="row center">
-  <h1 class="page_title">Add/Edit Meet</h1>
+  <h1 class="page_title">Add New Meet</h1>
 </div>
 <form 
   class="main"
-  id="addedit_meet-form"
+  id="make-meet-form"
   method="POST"
-  action="/make_meet/request/<?=$this->add_or_edit()?>"
+  action=""
 >
   <?=new Block([
     "title" => "Meet Info",
@@ -37,4 +39,33 @@
     "is_expandable" => true,
     "starts_closed" => true
   ]);?>
+  
+  <?=new Button([
+    "is_submit" => true,
+    "label" => "Submit",
+    "extra_classes" => "large lone"
+  ]);?>
 </form>
+  
+<?=new Modal([
+  "uncloseable" => true,
+  "title" => "Success :)",
+  "id" => "registration-success",
+  "content" =>  "<p class=\"modal_text\">
+                You have successfully subbmitted a new meet!
+                Taking you back to your meets page...</p>"
+]);?>  
+
+<?=new Modal([
+  "title" => "Error :(",
+  "id" => "registration-failed",
+  "content" =>  "<p class=\"modal_text\">
+                We applologize but it seems
+                something went wrong trying
+                to make this new meet. Try
+                verifying everything you've entered
+                and submitting again, if the
+                issue persists contact a site
+                administrator.</br></br> ERROR:
+                <div class=\"error_message\"><p></p></div></p>"
+]);?>

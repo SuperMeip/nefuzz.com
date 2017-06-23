@@ -16,15 +16,14 @@ class Registration extends \Nefuzz\Controllers\Base_Controller {
       if (empty($_POST)) {
         return false;
       };
-      echo json_encode(self::add_new_user($_POST ?? ""));
+      echo json_encode(self::add_new_user($_POST ?? []));
       return true;
     }
     elseif ($action == "user_exists") {
       echo json_encode(self::user_exists($argument ?? ($_POST['username'] ?? "")));
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
   
   public static function user_exists($username) {
@@ -47,6 +46,9 @@ class Registration extends \Nefuzz\Controllers\Base_Controller {
   }
   
   public static function add_new_user($data) {
+    if (empty($data)) {
+      return "No information received";
+    }
     $user_info = [
       "username" => $data["username"],
       "has_icon" => ($_FILES["icon"]["tmp_name"] ? 1 : 0),

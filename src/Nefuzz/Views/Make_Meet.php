@@ -17,7 +17,13 @@ class Make_Meet extends \Nefuzz\Views\Base_View {
     return ['make_meet'];
   }
   
-  public function add_or_edit() {
-    return ($this->meet ? "add_meet" : "edit_meet");
+  public function redirect() {
+    if (!isset($_SESSION["user"])){
+      echo "
+        <script>
+          window.location = \"https://nefuzz.com\";
+        </script>
+      ";
+    }
   }
 }

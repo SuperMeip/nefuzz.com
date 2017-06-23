@@ -28,74 +28,31 @@
 </div>
 <div class="row center rr_weekly">
   <?=new Text_Input([
-    "id" => "datetimepicker",
+    //"id" => "datetimepicker",
     "label" => "Every X Weeks",
-    "name" => "interval",
+    "name" => "interval_w",
     "size" => "mini",
     "max_characters" => 1
   ]);?>
-  <?=new Select_Input([
-    "extra_classes" => "only_show_on_large",
-    "label" => "On",
-    "multiple" => true,
-    "name" => "rr_days_of_week",
-    "size" => "large",
-    "options" => $this->weekdays,
-  ]);?>
-  <?=new Select_Input([
-    "extra_classes" => "only_show_on_small",
-    "label" => "On",
-    "multiple" => true,
-    "name" => "rr_days_of_week",
-    "size" => "large",
-    "options" => $this->weekdays_small,
-  ]);?>
+  <div id="day_picker_w"></div>
 </div>
 <div class="rr_monthly hide">
   <div class="row center">
     <?=new Text_Input([
       "label" => "Every X months",
-      "name" => "interval",
+      "name" => "interval_m",
       "size" => "normal",
       "max_characters" => 1
     ]);?>
     <?=new Text_Input([
       "label" => "On Date... Or",
-      "name" => "rr_by_month_day",
+      "name" => "bymonthday",
       "size" => "normal",
       "max_characters" => 2
     ]);?>
   </div>
   <div class="row center">
-    <?=new Select_Input([
-      "extra_classes" => "only_show_on_large",
-      "label" => "Position",
-      "name" => "rr_by_month_pos",
-      "size" => "mini",
-      "options" => $this->day_position,
-    ]);?>
-    <?=new Select_Input([
-      "extra_classes" => "only_show_on_small",
-      "label" => "On The",
-      "name" => "rr_by_month_pos",
-      "size" => "mini",
-      "options" => $this->day_position_small,
-    ]);?>
-    <?=new Select_Input([
-      "extra_classes" => "only_show_on_large",
-      "label" => "Day Of Week",
-      "multiple" => true,
-      "name" => "rr_days_of_week",
-      "size" => "large",
-      "options" => $this->weekdays,
-    ]);?>
-    <?=new Select_Input([
-      "extra_classes" => "only_show_on_small",
-      "label" => "Day Of Week",
-      "multiple" => true,
-      "name" => "rr_days_of_week",
-      "size" => "large",
-      "options" => $this->weekdays_small,
-    ]);?>
+    <div id="bysetpos_picker"></div>
+    <div id="day_picker_m"></div>
   </div>
 </div>

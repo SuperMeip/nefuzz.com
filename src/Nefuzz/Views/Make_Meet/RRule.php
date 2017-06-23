@@ -25,6 +25,7 @@ class RRule extends \Nefuzz\Views\Base_View {
   ];
   
   public $day_position = [
+    "" => 0,
     "First" => 1,
     "Seccond" => 2,
     "Third" => 3,
@@ -33,6 +34,7 @@ class RRule extends \Nefuzz\Views\Base_View {
   ];
   
   public $day_position_small = [
+    "" => 0,
     "1st" => 1,
     "2nd" => 2,
     "3rd" => 3,

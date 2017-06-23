@@ -14,14 +14,18 @@ class Meet extends \Nefuzz\Models\Base_Model {
   
   public $events = [];              //array[int]
   public $details = [];             //obj(Event_Details)
+  public $rrule_obj = [];           //obj(RRule);
   
-  public function __construct($meet_info, $event_list, $rrule_info) {
+  public function __construct($meet_info, $event_list, $rrule_info = []) {
     foreach ($meet_info as $key => $value) {
       if (isset($this->{$key})) {
         $this->{$key} = $value;
       }
     }
     $this->events = $event_list;
+    if (!empty($rrule_info)) {
+      $this->rrule = $this->build_rrule_string($rrule_info);
+    }
   }
   
   public static function get($meet_id) {
@@ -52,12 +56,49 @@ class Meet extends \Nefuzz\Models\Base_Model {
     
   }
   
+  public function RRule() {
+    if (!$this->rrule) {
+      return false;
+    }
+    if ($this->rrule_obj === []) {
+      $this->rrule_obj = self::gen_rrule_obj($this->rrule);
+    }
+    return $this->rrule_obj;
+  }
+  
   public function get_user() {
     
   }
   
-  public function build_rrule($rrule_info) {
-    
+  public function build_rrule_string($rrule_info, $ex_dates = []) {
+    if (empty($rrule_info)) {
+      return "";
+    }
+    $rset = new \RRule\RSet();
+    $rset->addRRule($rrule_info);
+    foreach ($ex_dates as $ex_date) {
+      $rset->addExDate($ex_date);
+    }
+    $RRString = $rset->getRRules()[0]->rfcString($include_timezone = true);
+	  $ExDateStrings = [];
+	  foreach($rset->getEXDates() as $Ex) {
+		  array_push($ExDateStrings, $Ex->format("U"));
+	  }
+	  $RRString .= " EXDATES:" . implode(",", $ExDateStrings);
+
+    $this->rrule = $RRString;
+	  return $RRString;
+  }
+  
+  public static function gen_rrule_obj($rrule_string) {
+    $parts = explode(" ", $rrule_string);
+  	$rset = new \RRule\RSet();
+  	$rset->addRRule($parts[0]);
+  	$ex_dates = explode(",", explode(":",$parts[1])[1]);
+  	foreach($ex_dates as $ex_date) {
+  		$rset->addExDate($ex_date);
+  	}
+  	return $rset;
   }
   
   public function get_group() {
