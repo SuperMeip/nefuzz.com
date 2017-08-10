@@ -3,6 +3,8 @@
 namespace Nefuzz\Controllers;
 
 use \Nefuzz\Models\Meet as Meet;
+use \Nefuzz\Models\Event_Details as Event_Details;
+use \Nefuzz\Models\Location as Location;
 
 class Make_Meet extends \Nefuzz\Controllers\Base_Controller {
   
@@ -34,7 +36,9 @@ class Make_Meet extends \Nefuzz\Controllers\Base_Controller {
       return "No information received";
     }
     if (!isset($_SESSION['user']->id)) {
-      return "You don't seem to be logged in";
+      return "You don't seem to be logged in.
+      \n Log in in a new tab to avoid data loss
+      and then try submitting again without refreshing this page";
     }
     /*if(!$_SESSION['user']->is_a_member_of_group($data['group'])) {
       return "Sorry, you do not have permission to make meets for this group";
@@ -58,7 +62,6 @@ class Make_Meet extends \Nefuzz\Controllers\Base_Controller {
       $rrule_info['INTERVAL'] = $data["interval$WM"] ?? null;
       if ($WM == "_m") {
         $bysetpos = $data["bysetpos"] ? true : false;
-        //$rrule_info['test'] = $data["bysetpos"];
         if ($bysetpos) {
           $rrule_info['BYSETPOS'] = $data["bysetpos"] ?? null;
           $rrule_info['BYDAY'] = $data["byday$WM"] ?? null;
@@ -74,22 +77,38 @@ class Make_Meet extends \Nefuzz\Controllers\Base_Controller {
     } else {
       $rrule_info = [];
     }
-    $event_list = [];
+    $event_details_info = [
+      'description' => $data['description'],
+      'short_info' => $data['short_info'],
+      'url' => $data['url'],
+      //'tags' => $data['tags'],
+      'max_attendees' => $data['max_attendees'],
+      'must_rsvp' => $data['must_rsvp'],
+      "has_icon" => ($_FILES["icon"]["tmp_name"] ? 1 : 0)
+    ];
     
-    $meet = new Meet($meet_info, $event_list, $rrule_info);
+    $location_obj = new Location([
+      'name' => $data['undisclosed_location'] ? "undisclosed_location" : $data['location_name'],
+      'address' => $data['address'],
+      'city' => $data['city'],
+      'region' => $data['region']
+    ]);
     
-    $dates = [];
-    $rset = $meet->RRule();
-    $i = 10;
-    foreach($rset as $date) {
-      $i--;
-      $dates[] = $date;
-      if ($i<1) {
-        break;
-      }
+    if (isset($data['has_alt_host'])) {
+      $alt_host_info = [
+          "name" => $data['alt_name'],
+          "contact_info" => $data['alt_contact'],
+          "contact_method" => $data['alt_method']
+      ];
+    } else {
+      $alt_host_info = [];
     }
     
-    return $dates;
+    $event_details = new Event_Details($event_details_info, $location_obj, $alt_host_info);
+    
+    $event_list = [];
+    
+    $meet = new Meet($meet_info, $event_list, $event_details, $rrule_info);
     
     $details_info = [
       

@@ -16,13 +16,14 @@ class Meet extends \Nefuzz\Models\Base_Model {
   public $details = [];             //obj(Event_Details)
   public $rrule_obj = [];           //obj(RRule);
   
-  public function __construct($meet_info, $event_list, $rrule_info = []) {
+  public function __construct($meet_info, $event_list, $event_details_obj, $rrule_info = []) {
     foreach ($meet_info as $key => $value) {
       if (isset($this->{$key})) {
         $this->{$key} = $value;
       }
     }
     $this->events = $event_list;
+    $this->details = $event_details_obj;
     if (!empty($rrule_info)) {
       $this->rrule = $this->build_rrule_string($rrule_info);
     }
