@@ -1,0 +1,15 @@
+<?php
+
+namespace Nefuzz\Php;
+
+class Auth {
+  const DBservername = "localhost";
+  const DBusername = "";
+  const DBpassword = "";
+  const DBname = "";
+  const google_maps_key = "";
+
+  public static function make_hash($username,$password){
+      return hash("sha256", strtolower($username) . $password);
+  }
+}
