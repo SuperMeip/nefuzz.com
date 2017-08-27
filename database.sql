@@ -40,7 +40,8 @@ INSERT INTO contact_methods (
     ("Twitter"),
     ("Furaffinity"),
     ("Skype"),
-    ("Phone Number");
+    ("Phone Number"),
+    ("Discord");
 
 CREATE TABLE users (
     id              INT             NOT NULL AUTO_INCREMENT,
