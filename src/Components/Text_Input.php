@@ -87,6 +87,7 @@ class Text_Input extends Input_Component {
       "position" => "right",
       ""
     ]) : "$this->label";
+    //@TODO: see if I can get away with just json serializing the whole cleave array
     if(!empty($this->cleave['datePattern'])) {
       $this->cleave['datePattern'] = json_encode($this->cleave['datePattern']);
     }
