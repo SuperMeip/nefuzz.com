@@ -3,5 +3,6 @@ src/Nefuzz/Php/Auth.php
 .c9/
 static/img/user/icon/
 .idea/
-src/sass/scss_cache/
+src/sass/scss/scss_cache/
+
 
