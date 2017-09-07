@@ -1,0 +1,253 @@
+.text_input, .select_input {
+	width: 50%;
+	margin-top: 10px;
+  margin-bottom: 10px;
+  @media screen and (max-width: $small-width) {
+    margin: 5px;
+  }
+
+	label {
+		color: $border-color;
+		display: block;
+		margin: 0;
+    margin-top: 10px;
+    margin-left: 20px;
+    @media screen and (max-width: $small-width) {
+      margin-left: 10px;
+    }
+
+    &.required:after {
+      content:"*";
+      color: $error-color; 
+      font-weight: bolder;
+    }
+	}
+
+	input, select, textarea{
+	  padding: 0;
+		border-width: 0 0 1px 0;
+    background-color: $page-color;
+		border-color: $border-color;
+		font-size: 1.2em;
+		display: block;
+    width: 95%;
+    margin: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.5rem;
+    @media screen and (max-width: $small-width) {
+      font-size: 1.2rem;
+    }
+    color: $text-color;
+    
+    &[multiple] {
+      height: 1.85rem;
+      overflow: auto;
+      @media screen and (max-width: $small-width) {
+        height: 1.6rem;
+      }
+      
+      option {
+        font-size: 1.1rem;
+        margin-right:10px;
+        @media screen and (max-width: $small-width) {
+          margin: 0px;
+        }
+        display: inline-block;
+      }
+    }
+
+    &:hover, &:focus {
+		border-width: 0 0 2px 0;
+		border-color: $main-color;
+    color: $header-color;
+    }
+
+    &:hover + label, &:focus + label {
+    	color: $main-color;
+    }
+	}
+}
+
+.select_input select{
+    margin-top: -1px;
+}
+
+.input_error {
+  color: $error-color;
+
+  input, textarea {
+    color: $error-color;
+    border-width: 0 0 2px 0;
+    border-color: $error-color;
+  }
+
+  label {
+    color:  $error-color;
+  }
+
+  span {
+    font-size: 0.8rem;
+    color:  $error-color;
+  }
+}
+
+.button {
+  cursor: pointer;
+  cursor: hand;
+  border-radius: 8px;
+  text-decoration: none;
+  background-color: $main-color;
+  color: $bold-color;
+  font-size: 1.2rem;
+  border-style: none;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  margin: 10px;
+  
+  &.large {
+    font-size: 1.5rem;
+    border-style: none;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    margin: 2rem;
+  }
+  
+  &.lone {
+    @include block-shadow;
+  }
+}
+
+.checkbox_input {
+  width: 25%;
+  margin-top: 10px;
+}
+
+.upload {
+  width: 50%;
+}
+
+.checkbox_input, .upload{
+  margin-bottom: 10px;
+  @media screen and (max-width: $small-width) {
+        margin: 5px;
+  }
+
+  .label_container:hover {
+    .value_text {
+      border-color: $main-color;
+      border-width: 0 0 2px 0;
+      color: $header-color;
+    }
+  }
+
+  .label_container:hover + .label {
+    color: $main-color;
+  }
+
+  input[type=checkbox]{
+    display: none;
+  }
+
+  input[type=file] {
+    opacity: 0;
+  }
+  
+
+  input[type=checkbox]:checked + .value_text {
+    .true { 
+      display: block;
+    }
+
+    .false {
+      display: none;
+    }
+}
+
+  .value_text{
+    cursor: pointer;
+    cursor: hand;
+    border-width: 0 0 1px 0;
+    border-color: $border-color;
+    border-style: solid;
+    font-size: 1.5rem;
+    @media screen and (max-width: $small-width) {
+      font-size: 1.2rem;
+    }
+    margin-right: auto;
+    color: #666;
+    width: 90%;
+
+    .true { 
+      display: none;
+    }
+    
+    .false {
+      display: block;
+    }
+
+    i {
+      float: right;
+    }
+
+    span {
+    }
+  }
+
+  .label {
+    color: $border-color;
+    display: block;
+    margin: 0;
+    margin-top: 10px;
+    margin-left: 20px;
+    @media screen and (max-width: $small-width) {
+      margin-left: 10px;
+    }
+  }
+}
+
+.input_full {
+  width: 100%;
+
+  input, select, .value_text {
+    width: 97.5%;
+  }
+}
+
+.input_large {
+  width: 83.5%;
+
+  input, select, .value_text {
+    width: 96%;
+  }
+}
+
+.input_big {
+  width: 75%;
+
+  input, select, .value_text {
+    width: 95%;
+  }
+}
+
+.input_medium {
+  width: 33%;
+
+  input, select, .value_text {
+    width: 92.5%;
+  }
+}
+
+.input_small {
+  width: 25%;
+
+  input, select, .value_text {
+    width: 90%;
+  }
+}
+
+.input_mini {
+  width: 16.6%;
+
+  input, select, .value_text {
+    width: 80%;
+  }
+}

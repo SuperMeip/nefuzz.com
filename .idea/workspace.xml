@@ -1,0 +1,930 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b1d558ff-08d5-4a00-8091-367c13b5692e" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <expand>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="dev-nefweb@localhost" type="e3449647:DbNodeDescriptor" />
+      </path>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="dev-nefweb@localhost" type="e3449647:DbNodeDescriptor" />
+        <item name="dev-nefweb" type="e3449647:DbNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
+      <file leaf-file-name="Modal.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Components/Modal.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="18" column="4" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
+              <folding>
+                <marker date="1504301890416" expanded="true" signature="1384:1421" ph="..." />
+                <marker date="1504301890416" expanded="true" signature="1873:1923" ph="..." />
+                <marker date="1504301890416" expanded="true" signature="1968:2337" ph="..." />
+                <marker date="1504301890416" expanded="true" signature="1999:2041" ph="..." />
+                <marker date="1504301890416" expanded="true" signature="2086:2324" ph="..." />
+                <marker date="1504301890416" expanded="true" signature="2120:2309" ph="..." />
+                <marker date="1504301890416" expanded="true" signature="2155:2217" ph="..." />
+                <marker date="1504301890416" expanded="true" signature="2250:2292" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Text_Input.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Components/Text_Input.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2175">
+              <caret line="87" column="8" lean-forward="true" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+              <folding>
+                <marker date="1504302669360" expanded="true" signature="2488:3494" ph="..." />
+                <marker date="1504302669360" expanded="true" signature="2524:3479" ph="{...}" />
+                <marker date="1504302669360" expanded="true" signature="2572:3469" ph="{&quot;EXTERNAL_FRAGMENT&quot;: EXTERNAL_FRAGMENT...}" />
+                <marker date="1504302669360" expanded="true" signature="3552:3812" ph="..." />
+                <marker date="1504302669360" expanded="true" signature="3763:3801" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Tooltip.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Components/Tooltip.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1494212891000" expanded="true" signature="628:731" ph="..." />
+                <marker date="1494212891000" expanded="true" signature="678:718" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Upload.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Components/Upload.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1494213754000" expanded="true" signature="848:1652" ph="..." />
+                <marker date="1494213754000" expanded="true" signature="888:1542" ph="..." />
+                <marker date="1494213754000" expanded="true" signature="906:1527" ph="..." />
+                <marker date="1494213754000" expanded="true" signature="926:1298" ph="..." />
+                <marker date="1494213754000" expanded="true" signature="1337:1508" ph="..." />
+                <marker date="1494213754000" expanded="true" signature="1357:1489" ph="..." />
+                <marker date="1494213754000" expanded="true" signature="1599:1639" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>Location</find>
+      <find>database</find>
+      <find>lat</find>
+      <find>WIDTH</find>
+      <find>rows</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>HEIGHT</replace>
+    </replaceStrings>
+  </component>
+  <component name="FrameworkCommandLineHistory">
+    <commandsHistory>
+      <command text="nefuzz.com" />
+    </commandsHistory>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/Nefuzz/Controllers/Map.php" />
+        <option value="$PROJECT_DIR$/src/Nefuzz/Controllers/Base_Controller.php" />
+        <option value="$PROJECT_DIR$/src/Nefuzz/Controllers/Home.php" />
+        <option value="$PROJECT_DIR$/src/Nefuzz/Controllers/Make_Meet.php" />
+        <option value="/MySQL Fragment (Location.php:3014).sql" />
+        <option value="$PROJECT_DIR$/src/Nefuzz/Controllers/Not_Found.php" />
+        <option value="$PROJECT_DIR$/src/Nefuzz/Controllers/Registration.php" />
+        <option value="$PROJECT_DIR$/src/Nefuzz/Controllers/User.php" />
+        <option value="$PROJECT_DIR$/src/Nefuzz/Models/Base_Model.php" />
+        <option value="$PROJECT_DIR$/src/Nefuzz/Models/Em_Info.php" />
+        <option value="$PROJECT_DIR$/src/Nefuzz/Models/Event_Details.php" />
+        <option value="$PROJECT_DIR$/src/Nefuzz/Models/Location.php" />
+        <option value="$PROJECT_DIR$/src/Nefuzz/Views/Map/Everyone_Map.php" />
+        <option value="$PROJECT_DIR$/src/Nefuzz/Models/User.php" />
+        <option value="$PROJECT_DIR$/src/Components/Base_Component.php" />
+        <option value="$PROJECT_DIR$/src/Components/Checkbox_Input.php" />
+        <option value="$PROJECT_DIR$/src/Nefuzz/Views/User.php" />
+        <option value="$PROJECT_DIR$/src/Components/Input_Component.php" />
+        <option value="$PROJECT_DIR$/src/Components/Grid_Block.php" />
+        <option value="$PROJECT_DIR$/src/Components/Block.php" />
+        <option value="$PROJECT_DIR$/src/Components/Button.php" />
+        <option value="$PROJECT_DIR$/src/Components/Info_Table.php" />
+        <option value="$PROJECT_DIR$/src/Nefuzz/Php/Common.php" />
+        <option value="$PROJECT_DIR$/src/Nefuzz/Php/Log.php" />
+        <option value="$PROJECT_DIR$/src/Components/Modal.php" />
+        <option value="$PROJECT_DIR$/src/Components/Select_Input.php" />
+        <option value="$PROJECT_DIR$/src/Components/Text_Input.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>false</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>false</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="787" />
+    <option name="y" value="-26" />
+    <option name="width" value="1889" />
+    <option name="height" value="2170" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>GeneralJavaScript</id>
+          </State>
+          <State>
+            <id>JavaScript</id>
+          </State>
+          <State>
+            <id>PHP</id>
+          </State>
+          <State>
+            <id>SQL</id>
+          </State>
+          <State>
+            <id>XML</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>SqlNoDataSourceInspection</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="nefuzz.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nefuzz.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="nefuzz.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nefuzz.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="nefuzz.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nefuzz.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Components" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="nefuzz.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nefuzz.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Nefuzz" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="nefuzz.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nefuzz.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Nefuzz" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Php" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="nefuzz.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nefuzz.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Nefuzz" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Views" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="nefuzz.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nefuzz.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="sass" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="nefuzz.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nefuzz.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="sass" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="scss" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="nefuzz.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nefuzz.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="static" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="nefuzz.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nefuzz.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="static" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="css" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="nefuzz.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nefuzz.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="static" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="nefuzz.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nefuzz.com" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="static" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="make_meet" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="nefuzz.com" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="settings.editor.selected.configurable" value="web.server" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\super\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b1d558ff-08d5-4a00-8091-367c13b5692e" name="Default" comment="" />
+      <created>1500512476965</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1500512476965</updated>
+      <workItem from="1500512478820" duration="5982000" />
+      <workItem from="1502923277064" duration="4958000" />
+      <workItem from="1503016675584" duration="3859000" />
+      <workItem from="1504296353634" duration="6467000" />
+      <workItem from="1504822367999" duration="147000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="21413000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-11" y="-11" width="3761" height="2182" extended-state="6" />
+    <layout>
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12703931" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32950574" sideWeight="0.44027853" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1559061" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32950574" sideWeight="0.55972147" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.024813896" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952854" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/Nefuzz/Models/User.php</url>
+          <line>160</line>
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Components/Checkbox_Input.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="12" column="15" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding>
+            <marker date="1504297576697" expanded="true" signature="1106:1795" ph="..." />
+            <marker date="1504297576697" expanded="true" signature="1146:1687" ph="..." />
+            <marker date="1504297576697" expanded="true" signature="1164:1672" ph="..." />
+            <marker date="1504297576697" expanded="true" signature="1267:1653" ph="..." />
+            <marker date="1504297576697" expanded="true" signature="1302:1449" ph="..." />
+            <marker date="1504297576697" expanded="true" signature="1485:1634" ph="..." />
+            <marker date="1504297576697" expanded="true" signature="1744:1782" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1125">
+          <caret line="45" column="113" lean-forward="false" selection-start-line="45" selection-start-column="105" selection-end-line="45" selection-end-column="113" />
+          <folding>
+            <marker date="1502924993525" expanded="true" signature="4336:4569" ph="SELECT id, u... users" />
+            <marker date="1502924993525" expanded="true" signature="4908:5118" ph="SELECT u.add... users" />
+            <marker date="1502924993525" expanded="true" signature="5215:5348" ph="SELECT c.lat... coordinates" />
+            <marker date="1502924993525" expanded="true" signature="5871:5982" ph="SELECT m.id meets" />
+            <marker date="1502924993525" expanded="true" signature="6188:6460" ph="SELECT m.id user_group_roles" />
+            <marker date="1502924993525" expanded="true" signature="6972:7210" ph="SELECT e.id,... events" />
+            <marker date="1502924993525" expanded="true" signature="7665:7875" ph="SELECT cm.id... user_contact_methods" />
+            <marker date="1502924993525" expanded="true" signature="8344:8466" ph="SELECT ei.* emergency_info" />
+            <marker date="1502924993525" expanded="true" signature="8817:9071" ph="SELECT g.nam... user_group_roles" />
+            <marker date="1502924993525" expanded="true" signature="9759:9973" ph="UPDATE users... " />
+            <marker date="1502924993525" expanded="true" signature="11152:11378" ph="INSERT INTO users... " />
+            <marker date="1502924993525" expanded="true" signature="12232:12374" ph="INSERT INTO coordinates... " />
+            <marker date="1502924993525" expanded="true" signature="12682:12780" ph="INSERT INTO user_contact_methods... " />
+            <marker date="1502924993525" expanded="true" signature="13428:13691" ph="INSERT INTO emergency_info... " />
+            <marker date="1502924993525" expanded="true" signature="15060:15135" ph="SELECT id FR... users" />
+            <marker date="1502924993525" expanded="true" signature="15815:15893" ph="SELECT has_i... users" />
+            <marker date="1502924993525" expanded="true" signature="16852:16889" ph="SELECT * FRO... contact_methods" />
+            <marker date="1502924993525" expanded="true" signature="17039:17071" ph="SELECT usern... users" />
+            <marker date="1502924993525" expanded="true" signature="17773:17818" ph="SELECT usern... users" />
+            <marker date="1502924993525" expanded="true" signature="17923:17990" ph="SELECT usern... users" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Controllers/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="950">
+          <caret line="38" column="1" lean-forward="true" selection-start-line="38" selection-start-column="1" selection-end-line="38" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Base_Component.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3425">
+          <caret line="137" column="21" lean-forward="false" selection-start-line="137" selection-start-column="21" selection-end-line="137" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Button.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="13" column="5" lean-forward="false" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Block.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1350">
+          <caret line="54" column="4" lean-forward="false" selection-start-line="54" selection-start-column="4" selection-end-line="54" selection-end-column="4" />
+          <folding>
+            <marker date="1504300021636" expanded="true" signature="1098:1355" ph="..." />
+            <marker date="1504300021636" expanded="true" signature="1115:1340" ph="..." />
+            <marker date="1504300021636" expanded="true" signature="1155:1200" ph="..." />
+            <marker date="1504300021636" expanded="true" signature="1596:1675" ph="..." />
+            <marker date="1504300021636" expanded="true" signature="1634:1664" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Controllers/Registration.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="975">
+          <caret line="39" column="34" lean-forward="true" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1502924993525" expanded="true" signature="4336:4569" ph="SELECT id, u... users" />
+            <marker date="1502924993525" expanded="true" signature="4908:5118" ph="SELECT u.add... users" />
+            <marker date="1502924993525" expanded="true" signature="5215:5348" ph="SELECT c.lat... coordinates" />
+            <marker date="1502924993525" expanded="true" signature="5871:5982" ph="SELECT m.id meets" />
+            <marker date="1502924993525" expanded="true" signature="6188:6460" ph="SELECT m.id user_group_roles" />
+            <marker date="1502924993525" expanded="true" signature="6972:7210" ph="SELECT e.id,... events" />
+            <marker date="1502924993525" expanded="true" signature="7665:7875" ph="SELECT cm.id... user_contact_methods" />
+            <marker date="1502924993525" expanded="true" signature="8344:8466" ph="SELECT ei.* emergency_info" />
+            <marker date="1502924993525" expanded="true" signature="8817:9071" ph="SELECT g.nam... user_group_roles" />
+            <marker date="1502924993525" expanded="true" signature="9759:9973" ph="UPDATE users... " />
+            <marker date="1502924993525" expanded="true" signature="11152:11378" ph="INSERT INTO users... " />
+            <marker date="1502924993525" expanded="true" signature="12232:12374" ph="INSERT INTO coordinates... " />
+            <marker date="1502924993525" expanded="true" signature="12682:12780" ph="INSERT INTO user_contact_methods... " />
+            <marker date="1502924993525" expanded="true" signature="13428:13691" ph="INSERT INTO emergency_info... " />
+            <marker date="1502924993525" expanded="true" signature="15060:15135" ph="SELECT id FR... users" />
+            <marker date="1502924993525" expanded="true" signature="15815:15893" ph="SELECT has_i... users" />
+            <marker date="1502924993525" expanded="true" signature="16852:16889" ph="SELECT * FRO... contact_methods" />
+            <marker date="1502924993525" expanded="true" signature="17039:17071" ph="SELECT usern... users" />
+            <marker date="1502924993525" expanded="true" signature="17773:17818" ph="SELECT usern... users" />
+            <marker date="1502924993525" expanded="true" signature="17923:17990" ph="SELECT usern... users" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Models/Em_Info.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="925">
+          <caret line="37" column="5" lean-forward="true" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Models/Meet.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Controllers/Map.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="18" column="52" lean-forward="true" selection-start-line="18" selection-start-column="52" selection-end-line="18" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Php/DBC.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/10352a82-60ac-423a-8e98-31085c32d301/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/1683ecc0-2c4f-43b6-a968-782faf86f347/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/261dfc10/1683ecc0-2c4f-43b6-a968-782faf86f347/the_fuzz.event_tags">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Controllers/Not_Found.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Controllers/Make_Meet.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="21" column="26" lean-forward="false" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Models/Base_Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="7" column="28" lean-forward="true" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Models/Event.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Models/Event_Details.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="27" column="33" lean-forward="true" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Models/Em_Info.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="925">
+          <caret line="37" column="5" lean-forward="false" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/_types.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="105" column="13" lean-forward="false" selection-start-line="105" selection-start-column="13" selection-end-line="105" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Models/Meet.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3875">
+          <caret line="155" column="30" lean-forward="true" selection-start-line="155" selection-start-column="30" selection-end-line="155" selection-end-column="30" />
+          <folding>
+            <marker date="1502924993525" expanded="true" signature="4336:4569" ph="SELECT id, u... users" />
+            <marker date="1502924993525" expanded="true" signature="4908:5118" ph="SELECT u.add... users" />
+            <marker date="1502924993525" expanded="true" signature="5215:5348" ph="SELECT c.lat... coordinates" />
+            <marker date="1502924993525" expanded="true" signature="5871:5982" ph="SELECT m.id meets" />
+            <marker date="1502924993525" expanded="true" signature="6188:6460" ph="SELECT m.id user_group_roles" />
+            <marker date="1502924993525" expanded="true" signature="6972:7210" ph="SELECT e.id,... events" />
+            <marker date="1502924993525" expanded="true" signature="7665:7875" ph="SELECT cm.id... user_contact_methods" />
+            <marker date="1502924993525" expanded="true" signature="8344:8466" ph="SELECT ei.* emergency_info" />
+            <marker date="1502924993525" expanded="true" signature="8817:9071" ph="SELECT g.nam... user_group_roles" />
+            <marker date="1502924993525" expanded="true" signature="9759:9973" ph="UPDATE users... " />
+            <marker date="1502924993525" expanded="true" signature="11152:11378" ph="INSERT INTO users... " />
+            <marker date="1502924993525" expanded="true" signature="12232:12374" ph="INSERT INTO coordinates... " />
+            <marker date="1502924993525" expanded="true" signature="12682:12780" ph="INSERT INTO user_contact_methods... " />
+            <marker date="1502924993525" expanded="true" signature="13428:13691" ph="INSERT INTO emergency_info... " />
+            <marker date="1502924993525" expanded="true" signature="15060:15135" ph="SELECT id FR... users" />
+            <marker date="1502924993525" expanded="true" signature="15815:15893" ph="SELECT has_i... users" />
+            <marker date="1502924993525" expanded="true" signature="16852:16889" ph="SELECT * FRO... contact_methods" />
+            <marker date="1502924993525" expanded="true" signature="17039:17071" ph="SELECT usern... users" />
+            <marker date="1502924993525" expanded="true" signature="17773:17818" ph="SELECT usern... users" />
+            <marker date="1502924993525" expanded="true" signature="17923:17990" ph="SELECT usern... users" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Controllers/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="950">
+          <caret line="38" column="1" lean-forward="false" selection-start-line="38" selection-start-column="1" selection-end-line="38" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Controllers/Registration.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="975">
+          <caret line="39" column="34" lean-forward="false" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Controllers/Base_Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1056">
+          <caret line="51" column="18" lean-forward="false" selection-start-line="51" selection-start-column="18" selection-end-line="51" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/templates/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Controllers/Home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="19" column="18" lean-forward="false" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/templates/footer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="11" column="7" lean-forward="false" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Views/Map/Everyone_Map.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="24" column="75" lean-forward="false" selection-start-line="24" selection-start-column="75" selection-end-line="24" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Models/Location.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1150">
+          <caret line="46" column="50" lean-forward="false" selection-start-line="46" selection-start-column="50" selection-end-line="46" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/templates/make_meet.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="21" column="16" lean-forward="true" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sass/scss/grid_block.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1250">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Base_Component.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="5" lean-forward="true" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Views/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2454">
+          <caret line="131" column="7" lean-forward="true" selection-start-line="131" selection-start-column="7" selection-end-line="131" selection-end-column="7" />
+          <folding>
+            <marker date="1494217107000" expanded="true" signature="764:863" ph="..." />
+            <marker date="1494217107000" expanded="true" signature="1142:1298" ph="..." />
+            <marker date="1494217107000" expanded="true" signature="1173:1215" ph="..." />
+            <marker date="1494217107000" expanded="true" signature="1245:1285" ph="..." />
+            <marker date="1494217107000" expanded="true" signature="1656:1808" ph="..." />
+            <marker date="1494217107000" expanded="true" signature="1686:1724" ph="..." />
+            <marker date="1494217107000" expanded="true" signature="1755:1795" ph="..." />
+            <marker date="1494217107000" expanded="true" signature="2069:2222" ph="..." />
+            <marker date="1494217107000" expanded="true" signature="2100:2140" ph="..." />
+            <marker date="1494217107000" expanded="true" signature="2170:2209" ph="..." />
+            <marker date="1494217107000" expanded="true" signature="2430:2500" ph="..." />
+            <marker date="1494217107000" expanded="true" signature="4667:5127" ph="..." />
+            <marker date="1494217107000" expanded="true" signature="4704:4780" ph="..." />
+            <marker date="1494217107000" expanded="true" signature="4876:5114" ph="..." />
+            <marker date="1494217107000" expanded="true" signature="4981:5088" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/templates/user.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="21" column="8" lean-forward="true" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Input_Component.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="5" lean-forward="true" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Block.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+          <folding>
+            <marker date="1504300021636" expanded="true" signature="1098:1355" ph="..." />
+            <marker date="1504300021636" expanded="true" signature="1115:1340" ph="..." />
+            <marker date="1504300021636" expanded="true" signature="1155:1200" ph="..." />
+            <marker date="1504300021636" expanded="true" signature="1596:1675" ph="..." />
+            <marker date="1504300021636" expanded="true" signature="1634:1664" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Button.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="754">
+          <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Checkbox_Input.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="54" column="19" lean-forward="true" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="19" />
+          <folding>
+            <marker date="1504297576697" expanded="true" signature="1106:1795" ph="..." />
+            <marker date="1504297576697" expanded="true" signature="1146:1687" ph="..." />
+            <marker date="1504297576697" expanded="true" signature="1164:1672" ph="..." />
+            <marker date="1504297576697" expanded="true" signature="1267:1653" ph="..." />
+            <marker date="1504297576697" expanded="true" signature="1302:1449" ph="..." />
+            <marker date="1504297576697" expanded="true" signature="1485:1634" ph="..." />
+            <marker date="1504297576697" expanded="true" signature="1744:1782" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Php/Log.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Grid_Block.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" column="19" lean-forward="true" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+          <folding>
+            <marker date="1504299795544" expanded="true" signature="2063:2126" ph="..." />
+            <marker date="1504299795544" expanded="true" signature="2856:2886" ph="..." />
+            <marker date="1504299795544" expanded="true" signature="2950:2993" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Info_Table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="775">
+          <caret line="31" column="16" lean-forward="true" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+          <folding>
+            <marker date="1504300021597" expanded="true" signature="643:750" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Php/Common.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nefuzz/Php/Auth.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="21" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Tooltip.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1494212891000" expanded="true" signature="628:731" ph="..." />
+            <marker date="1494212891000" expanded="true" signature="678:718" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Upload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1494213754000" expanded="true" signature="848:1652" ph="..." />
+            <marker date="1494213754000" expanded="true" signature="888:1542" ph="..." />
+            <marker date="1494213754000" expanded="true" signature="906:1527" ph="..." />
+            <marker date="1494213754000" expanded="true" signature="926:1298" ph="..." />
+            <marker date="1494213754000" expanded="true" signature="1337:1508" ph="..." />
+            <marker date="1494213754000" expanded="true" signature="1357:1489" ph="..." />
+            <marker date="1494213754000" expanded="true" signature="1599:1639" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Select_Input.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="27" column="5" lean-forward="true" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+          <folding>
+            <marker date="1504301890438" expanded="true" signature="789:995" ph="..." />
+            <marker date="1504301890438" expanded="true" signature="866:903" ph="..." />
+            <marker date="1504301890438" expanded="true" signature="942:982" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Modal.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="18" column="4" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
+          <folding>
+            <marker date="1504301890416" expanded="true" signature="1384:1421" ph="..." />
+            <marker date="1504301890416" expanded="true" signature="1873:1923" ph="..." />
+            <marker date="1504301890416" expanded="true" signature="1968:2337" ph="..." />
+            <marker date="1504301890416" expanded="true" signature="1999:2041" ph="..." />
+            <marker date="1504301890416" expanded="true" signature="2086:2324" ph="..." />
+            <marker date="1504301890416" expanded="true" signature="2120:2309" ph="..." />
+            <marker date="1504301890416" expanded="true" signature="2155:2217" ph="..." />
+            <marker date="1504301890416" expanded="true" signature="2250:2292" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Components/Text_Input.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2175">
+          <caret line="87" column="8" lean-forward="true" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+          <folding>
+            <marker date="1504302669360" expanded="true" signature="2488:3494" ph="..." />
+            <marker date="1504302669360" expanded="true" signature="2524:3479" ph="{...}" />
+            <marker date="1504302669360" expanded="true" signature="2572:3469" ph="{&quot;EXTERNAL_FRAGMENT&quot;: EXTERNAL_FRAGMENT...}" />
+            <marker date="1504302669360" expanded="true" signature="3552:3812" ph="..." />
+            <marker date="1504302669360" expanded="true" signature="3763:3801" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

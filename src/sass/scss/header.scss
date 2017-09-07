@@ -1,0 +1,26 @@
+header {
+	width: 100%;
+
+	.logo {
+    max-height: 100px;
+    max-width: 28%;
+    @media screen and (max-width: $small-width) {
+      max-height: 100px;
+      width: auto;
+    }
+	}
+
+	.name {
+		max-width: 70%;
+    max-height: 70px
+	}
+
+  .site_banner {
+      background-color: $light-color;
+  }
+
+  .nav_bar{
+    @include header-shadow;
+  }
+}
+

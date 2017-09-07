@@ -1,0 +1,121 @@
+.block {
+  background-color: $page-color;
+  width: 800px;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 95%;
+  margin-top: 20px;
+  @include block-shadow;
+  
+  &.medium {
+    max-width: 580px;
+  }
+  
+  &.icon {
+    width: 180px !important;
+    height: 180px;
+    .body {
+      margin: 0px;
+      
+      img {
+        margin: 10px;
+      }
+    }
+    
+  }
+  
+  &.tiny {
+    width: 200px;
+  }
+  
+  p.info {
+    font-size: 1.1rem;
+    color: $header-color;
+    width: 95%;
+    text-align: justify;
+    border-left: #CCC 2px solid;
+    border-right: #CCC 2px solid;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0px;
+    margin-bottom: 15px;
+    background-color: $background-color;
+    @media screen and (max-width: $small-width) {
+      font-size: 0.9rem;
+      margin: 5px;
+      margin-bottom: 15px;
+    }
+    
+    &::before {
+      font-family: FontAwesome;
+      content: "\f059";
+      color: $main-color;
+    }
+  }
+
+  .header {
+    color: $bold-color;
+    border-radius: 8px 8px 0 0;
+    width: 100%;
+    background-color: $main-color;
+    @include block-shadow;
+    
+    div {
+      padding: 5px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    span {
+      font-size: 2rem;
+      font-weight: bold;
+      transition: transform 0.5s;
+
+      @media screen and (max-width: $small-width) {
+        font-size: 2rem;
+      }
+
+      &.rotated {
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        -webkit-transition: transform 0.7s;
+        transition: transform 0.7s;
+      }
+
+      &:hover {
+        color: $light-color;
+        cursor: pointer;
+      }
+
+      &:active {
+        color: $dark-color;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .body {
+    margin: 20px;
+    margin-bottom: 40px;
+    @media screen and (max-width: $small-width) {
+      margin: 5px;
+      margin-top: 10px;
+      margin-bottom: 30px;
+    }
+    
+    &.hidden {
+      display: none;
+    }
+  }
+}
+
+.row .block {
+  width: 95%;
+  margin: 10px;
+  min-width: 200px;
+  @media screen and (max-width: $small-width) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

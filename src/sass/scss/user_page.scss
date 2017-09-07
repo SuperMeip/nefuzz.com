@@ -1,0 +1,124 @@
+#user_meets_attended,
+#user_member_groups,
+#user_meets_hosted,
+#user_location {
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  .number,
+  .state {
+    font-size: 3.5rem;
+    @media screen and (max-width: $small-width) {
+      font-size: 2.5rem;
+    }
+    color: $bold-color;
+    background-color: $main-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    p {
+      text-align: center;
+      margin: 1rem;
+    }
+  }
+  
+  .number {
+    &:hover {
+      background-color: $dark-color;
+      color: $light-color;
+      cursor: pointer;
+      cursor: hand;
+    }
+  }
+  
+  .address_city,
+  .title {
+    color: $header-color;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+    
+  .city {
+    font-size: 2.5rem;
+  }
+}
+
+#user_location,
+#user_meets_hosted {
+  .number,
+  .state {
+    margin-left : auto;
+  }
+}
+
+#user_meets_attended,
+#user_member_groups, {
+  .number {
+    margin-right: auto;
+  }
+}
+
+#user_location div.state,
+.user_icon_container {
+  &.is_current_user {
+    position: relative;
+    
+    .overlay {
+      transition: .5s ease;
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      align-items: center;
+      display: flex;
+      
+      i {
+        background-color: $main-color;
+        color: $bold-color;
+        font-size: 16px;
+        padding: 16px;
+        border-radius: 50px;
+        
+        &.active {
+          color: $light-color;
+        }
+      }
+    }
+      
+    &:hover .overlay{
+      opacity: 1;
+      cursor: pointer;
+      cursor: hand;
+    }
+    
+    img {
+      backface-visibility: hidden;
+      transition: .5s ease;
+    }
+      
+    &:hover img,
+    &:hover p {
+      opacity: 0.3;
+    }
+  }
+}
+
+#edit-user-info,
+#edit-contact-info {
+  cursor: pointer;
+  cursor: hand;
+  
+  &:active {
+    color: $light-color;
+  }
+}

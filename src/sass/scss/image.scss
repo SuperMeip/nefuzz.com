@@ -1,0 +1,19 @@
+@mixin icon($size) {
+	width: $size * 10px;
+	height: $size * 10px;
+
+	&.round {
+		clip-path: circle(($size *5px) at center);
+	}
+	&.square {
+    border-radius: 8px;
+	}
+}
+
+.small_icon {
+	@include icon(4);
+}
+
+.large_icon {
+	@include icon(18);
+}

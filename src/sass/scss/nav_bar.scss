@@ -1,0 +1,59 @@
+.nav_bar {
+	background-color: $main-color;
+	display: flex;
+	margin-bottom: 10px;
+ 	align-items: center;	
+
+	a.item {
+    color: #fff;
+    padding: 8px 7px;
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: bold;
+    height: 40px;
+    align-items: center;
+    display: flex;
+
+		@media screen and (max-width: $small-width) {
+			font-size: 2rem;
+			padding: 8px 6px;
+		}
+
+		&:hover {
+			background-color: $dark-color;
+			color: $light-color;
+		}
+
+		&:active {
+			background-color: $light-color;
+			color: black;
+		}
+	}
+
+	div.right {
+    margin-left: auto;
+	}
+
+	a > i.fa {
+		font-size: inherit; 
+	}
+
+	.info {
+		&:hover, &:active{
+			background-color: $main-color !important;
+			color: white !important;
+		}
+	}
+}
+
+.nav_fixed{
+  top: 0;
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+}
+
+.hidden_bumper {
+	height: 60px;
+	display: none;
+}

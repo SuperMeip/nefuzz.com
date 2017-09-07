@@ -1,0 +1,168 @@
+.grid_column{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 200px;
+  margin: 10px;
+  margin-top: 0;
+  margin-bottom: 0;
+  
+  .grid_block {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}
+
+.grid_block {
+  background-color: $page-color;
+  border-radius: 8px;
+  overflow: hidden;
+  min-width: 200px;
+  margin: 10px;
+  @include block-shadow;
+  
+  .header {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+    background-color: $main-color;
+    color: $bold-color;
+    @include header-shadow;
+    display: flex;
+    align-items: center;
+    
+    
+    h1 {
+      font-size: 1.8rem;
+      margin: 0px;
+      padding: 5px;
+    }
+    
+    i {
+      font-size: 1.4rem;
+      margin: 10px;
+      margin-left: auto;
+    }
+  }
+  
+  .body {
+    margin: 10px;
+    overflow: auto;
+  }
+}
+
+.grid_block,
+.grid_column {
+  
+  .body {
+    @media screen and (max-width: $small-width){
+      height: 240px !important;
+    }
+  }
+
+  &.h_big {
+    height: 360px;
+    
+    .body {
+      height: 300px;
+    }
+  }
+  
+  &.h_large {
+    height: 300px;
+    
+    .body {
+      height: 240px;
+    }
+  };
+  
+  &.h_medium {
+    height: 200px;
+    
+    .body {
+      height: 140px;
+    }
+  };
+  
+  &.h_normal {
+    height: 240px;
+    
+    .body {
+      height: 180px;
+    }
+  }
+  
+  &.h_small {
+    height: 170px;
+    
+    .body {
+      height: 110px;
+    }
+  }
+  
+  &.h_mini {
+    height: 75px;
+    
+    .body {
+      height: 15px;
+    }
+  }
+  
+  &.w_full {
+    width: 100%;
+  }
+  
+  &.w_normal {
+    width: 49%;
+  }
+  
+  &.w_large {
+    width: 64%;
+  }
+  
+  &.w_big {
+    width: 72%;
+  }
+  
+  &.w_medium {
+    width: 32%;
+    min-width: 150px;
+  }
+  
+  &.w_small {
+    width: 24%;
+    min-width: 135px;
+  }
+  
+  @media screen and (max-width: $small-width){
+    width: 90% !important;
+    min-width: 300px !important;
+    height: 300px !important;
+    
+    .grid_block {
+      width: 100% !important;
+    }
+  }
+  
+  &.image {
+    height: 180px !important;
+    width: 180px !important;
+    min-width: 180px !important;
+    min-height: 180px !important;
+  }
+}
+
+.row {
+  &.grid {
+    align-items: center;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: $small-width){
+  .row {
+    &.grid {
+      flex-direction: column;
+    }
+  }
+}
