@@ -7,22 +7,40 @@ SET sql_mode='NO_AUTO_VALUE_ON_ZERO';
 
 CREATE TABLE regions (
     id              INT             NOT NULL AUTO_INCREMENT,
-    name            VARCHAR(25)     NOT NULL,
-    state           VARCHAR(25)     NOT NULL,
+    area            VARCHAR(50)     NOT NULL,
+    region          VARCHAR(50)     NOT NULL,
+    state           VARCHAR(50)     NOT NULL,
+    state_name      VARCHAR(50)     NOT NULL,
+    country         VARCHAR(50)     NOT NULL DEFAULT "United States",
     
     PRIMARY KEY (id),
-    UNIQUE KEY (name)
+    UNIQUE KEY (state),
+    UNIQUE KEY (region)
 );
 
 INSERT INTO regions (
-    name,               state
+    area,               region,            state_name,        state
 ) VALUES 
-    ("Massachusetts",   "MA"),
-    ("New Hampshire",   "NH"),
-    ("Vermont",         "VT"),
-    ("Maine",           "ME"),
-    ("Rhode Island",    "RI"),
-    ("Conneticut",      "CT");
+    ("New England",     "Massachusetts",   "Massachusetts",   "MA"),
+    ("New England",     "New Hampshire",   "New Hampshire",   "NH"),
+    ("New England",     "Vermont",         "Vermont",         "VT"),
+    ("New England",     "Maine",           "Maine",           "ME"),
+    ("New England",     "Rhode Island",    "Rhode Island",    "RI"),
+    ("New England",     "Conneticut",      "Conneticut",      "CT");
+
+CREATE TABLE locations (
+    id              INT             NOT NULL AUTO_INCREMENT,
+    name            VARCHAR(60)     NOT NULL DEFAULT "",
+    address         TEXT            NOT NULL DEFAULT "",
+    city            VARCHAR(60)     NOT NULL DEFAULT "",
+    region          INT             NOT NULL,
+    lat             VARCHAR(30)     NOT NULL,
+    lng             VARCHAR(30)     NOT NULL,
+
+    PRIMARY KEY (id),
+    UNIQUE KEY (city),
+    FOREIGN KEY (region) REFERENCES regions(id)
+);
 
 CREATE TABLE contact_methods (
     id              INT             NOT NULL AUTO_INCREMENT,
@@ -40,7 +58,8 @@ INSERT INTO contact_methods (
     ("Twitter"),
     ("Furaffinity"),
     ("Skype"),
-    ("Phone Number");
+    ("Phone Number"),
+    ("Discord");
 
 CREATE TABLE users (
     id              INT             NOT NULL AUTO_INCREMENT,
@@ -54,16 +73,14 @@ CREATE TABLE users (
     contact_method  INT             NOT NULL,
     is_admin        TINYINT(1)      NOT NULL DEFAULT 0,
     
-    address         VARCHAR(50)     NOT NULL DEFAULT "",
-    city            VARCHAR(25)     NOT NULL DEFAULT "",
-    region          INT             NOT NULL,
+    location        INT             NOT NULL,
     
     joined_time     DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
     
     PRIMARY KEY (id),
     UNIQUE KEY (username),
     FOREIGN KEY (contact_method) REFERENCES contact_methods(id),
-    FOREIGN KEY (region) REFERENCES regions(id)
+    FOREIGN KEY (location) REFERENCES locations(id)
 );
 
 CREATE TABLE emergency_info (
@@ -150,12 +167,7 @@ CREATE TABLE event_details (
     url             VARCHAR(256)    NOT NULL DEFAULT "",
     tag_bitwise     INT             NOT NULL DEFAULT 0,
     
-    location_name   VARCHAR(50)     NOT NULL,
-    address         VARCHAR(50)     NOT NULL,
-    city            VARCHAR(25)     NOT NULL,
-    region          INT             NOT NULL,
-    zip             VARCHAR(5)      NOT NULL,
-    country         VARCHAR(30)     DEFAULT "United States",
+    location        INT             NOT NULL,
     
     has_alt_host    TINYINT(1)      NOT NULL DEFAULT 0,
     alt_name        VARCHAR(30)     NOT NULL DEFAULT "",
@@ -166,8 +178,8 @@ CREATE TABLE event_details (
     max_attendees   INT             NOT NULL DEFAULT 0,
     
     PRIMARY KEY (id),
-    FOREIGN KEY (region) REFERENCES regions(id),
-    FOREIGN KEY (alt_method) REFERENCES contact_methods(id)
+    FOREIGN KEY (alt_method) REFERENCES contact_methods(id),
+    FOREIGN KEY (location) REFERENCES locations(id)
 );
 
 CREATE TABLE meets (
@@ -221,13 +233,11 @@ CREATE TABLE event_attendees (
 );
 
 CREATE TABLE event_tags (
-    id              INT             NOT NULL AUTO_INCREMENT,
-    name            VARCHAR(20)     NOT NULL,
     bitwise         INT             NOT NULL,
+    name            VARCHAR(20)     NOT NULL,
     
-    PRIMARY KEY (id),
-    UNIQUE KEY (name),
-    UNIQUE KEY (bitwise)
+    PRIMARY KEY (bitwise),
+    UNIQUE KEY (name)
 );
 
 INSERT INTO event_tags (
@@ -259,15 +269,4 @@ CREATE TABLE announcements (
     FOREIGN KEY (user) REFERENCES users(id),
     FOREIGN KEY (`event`) REFERENCES events(id),
     FOREIGN KEY (`group`) REFERENCES groups(id)
-);
-
-CREATE TABLE coordinates (
-    user_not_event  TINYINT(1)      NOT NULL DEFAULT 0,
-    user            INT             DEFAULT NULL,
-    `event`         INT             DEFAULT NULL,
-    lat             VARCHAR(30)     NOT NULL,
-    lng             VARCHAR(30)     NOT NULL,
-    
-    FOREIGN KEY (user) REFERENCES users(id),
-    FOREIGN KEY (`event`) REFERENCES events(id)
 );

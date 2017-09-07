@@ -1,6 +1,5 @@
 # Auth files
-static/php/auth.php
-static/php/dbinfo.php
+src/Nefuzz/Php/Auth.php
 .c9/
 static/img/user/icon/
 .idea/
