@@ -68,7 +68,7 @@ CREATE TABLE users (
     has_icon        TINYINT(1)      NOT NULL DEFAULT 0,
     fur_name        VARCHAR(50)     NOT NULL DEFAULT "",
     real_name       VARCHAR(50)     NOT NULL DEFAULT "",
-    bio             VARCHAR(256)    NOT NULL DEFAULT "",
+    bio             TEXT            NOT NULL DEFAULT "",
     species         VARCHAR(30)     NOT NULL DEFAULT "",
     contact_method  INT             NOT NULL,
     is_admin        TINYINT(1)      NOT NULL DEFAULT 0,

@@ -9,6 +9,31 @@ namespace Nefuzz\Models;
  * @package Nefuzz\Models
  */
 class Base_Model {
+
+  /**
+   * Populate the model with data from an array
+   *
+   * @param array $values - the values of the model as name => value
+   */
+  protected function populate($values) {
+    foreach ($values as $key => $value) {
+      if (isset($this->{$key})) {
+        $this->{$key} = $value;
+      }
+    }
+  }
+
+  /**
+   * Constructor, optionally populates too
+   *
+   * @param null $values
+   */
+  public function _construct($values = null) {
+    if (!empty($values)) {
+      $this->populate($values);
+    }
+  }
+
   /**
    * Provides backend validation for values depending on how the type of the validation passed
    *
@@ -21,9 +46,9 @@ class Base_Model {
    *
    * @throws \Exception - with the message dictated in $error when the validation fails
    */
-  protected function validate($value, $validation, $error, $DBC = false) {
+  public static function validate($value, $validation, $error, $DBC = false) {
     if (strpos($value, "<") !== false) {
-      throw new Exception("$error, an illegal character, '<', was detected");
+      throw new \Exception("$error, an illegal character, '<', was detected");
     }
     //if string it's regex
     if (is_string($validation)) {
@@ -34,7 +59,7 @@ class Base_Model {
           $DBC->query("ROLLBACK");
           $DBC->quit();
         }
-        throw new Exception("$error, did not match the required pattern");
+        throw new \Exception("$error, did not match the required pattern");
       }
     //if int it's max-length
     } elseif (is_int($validation)) {
@@ -45,7 +70,7 @@ class Base_Model {
           $DBC->query("ROLLBACK");
           $DBC->quit();
         }
-        throw new Exception("$error, incorrect character length > $validation");
+        throw new \Exception("$error, incorrect character length > $validation");
       }
     //if bool it must be changed/ is required
     } elseif (is_bool($validation)) {
@@ -56,7 +81,7 @@ class Base_Model {
           $DBC->query("ROLLBACK");
           $DBC->quit();
         }
-        throw new Exception("$error, field is required");
+        throw new \Exception("$error, field is required");
       }
     //else I have no idea
     } else {
@@ -64,7 +89,7 @@ class Base_Model {
         $DBC->query("ROLLBACK");
         $DBC->quit();
       }
-      throw new Exception("$error, unknown data error");
+      throw new \Exception("$error, unknown data error");
     }
   }
 }
