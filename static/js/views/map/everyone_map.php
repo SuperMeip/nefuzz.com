@@ -1,4 +1,4 @@
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=<?=\Nefuzz\Php\Auth::google_maps_key?>&callback=initMap">
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=<?=\Nefuzz\Php\Auth::GOOGLE_MAPS_KEY?>&callback=initMap">
 </script>
 
 <script>

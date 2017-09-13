@@ -42,7 +42,7 @@ class Example_AuthAuth {
    *
    * @var string
    */
-  const google_maps_key = "";
+  const GOOGLE_MAPS_KEY = "";
 
   /**
    * Generates the hash for the username and password authorization
