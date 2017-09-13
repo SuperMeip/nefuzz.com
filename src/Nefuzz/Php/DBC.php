@@ -7,7 +7,12 @@ class DBC {
     private $errors;
 
     function __construct() {
-        $mysqli = new \mysqli(\Nefuzz\Php\Auth::DBservername, \Nefuzz\Php\Auth::DBusername, \Nefuzz\Php\Auth::DBpassword, \Nefuzz\Php\Auth::DBname);
+        $mysqli = new \mysqli(
+            \Nefuzz\Php\Auth::DB_SERVER_ADDRESS,
+            \Nefuzz\Php\Auth::DB_USERNAME,
+            \Nefuzz\Php\Auth::DB_PASSWORD,
+            \Nefuzz\Php\Auth::DB_NAME
+        );
         if (mysqli_connect_errno()) {
             printf("Connect failed: %s\n", mysqli_connect_error());
             $this->db = null;
