@@ -6,13 +6,20 @@ use Nefuzz\Models\Coordinates;
 use Nefuzz\Php\DBC as DB;
 
 /**
- * The sql dao for the user model
+ * The sql dao for the location model
  *
  * Class User_SQL_DAO
  */
 class Location_SQL_DAO extends Base_DAO {
 
-  public static function get($id) {
+  /**
+   * Get the location by id
+   *
+   * @param int $id
+   *
+   * @return array - Assoc array with the column names => values
+   */
+  public static function get_by_id($id) {
     $query = "
       SELECT
         id,

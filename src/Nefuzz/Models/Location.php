@@ -12,6 +12,13 @@ use Nefuzz\DAOs\Location_SQL_DAO;
 class Location extends Base_Model {
 
   /**
+   * The exception code for going over the Google Query Limit for geoencoding
+   *
+   * @var int - 8888 for google 0001 for error message number
+   */
+  const EXCEPTION_GOOGLE_COORDINATES_OVER_QUERY_LIMIT = 88880001;
+
+  /**
    * The location id
    *
    * @var int
@@ -62,7 +69,7 @@ class Location extends Base_Model {
    */
   public static function get($id) {
     $location = new Location();
-    $location->populate(Location_SQL_DAO::get($id));
+    $location->populate(Location_SQL_DAO::get_by_id($id));
     return $location;
   }
 
@@ -72,7 +79,12 @@ class Location extends Base_Model {
    * @return string - the address as a string
    */
   public function __toString() {
-    $loc_string = "";
+    $this->getRegion();
+    $loc_string = !empty($this->name) ? $this->name . ', ' : '';
+    $loc_string .= !empty($this->address) ? $this->address . ', ' : '';
+    $loc_string .= !empty($this->city) ? $this->city . ', ' : '';
+    $loc_string .= !empty($this->region->state) ? $this->region->state . ', ' : '';
+    $loc_string .= !empty($this->region->country) ? ', ' . $this->region->country : '';
     return $loc_string;
   }
 
@@ -81,7 +93,7 @@ class Location extends Base_Model {
    *
    * @param Coordinates $value
    */
-  public function setCoordinates($value) {
+  protected function setCoordinates($value) {
     $this->coordinates = $value;
   }
 
@@ -91,14 +103,36 @@ class Location extends Base_Model {
    *
    * @return Coordinates|null - The coordinate object or null if failed for any reason
    */
-  public function getCoordinates() {
+  protected function getCoordinates() {
     if(empty($this->city)) {
       return null;
     }
     if (empty($this->coordinates->lat) || empty($this->coordinates->lng)) {
-      $success = $this->gen_coords();
+      $success = $this->resolve_coordinates();
     }
     return !empty($success) ? $this->coordinates : null;
+  }
+
+  /**
+   * Magic method for setting the region
+   *
+   * @param Region $value
+   */
+  protected function setRegion($value) {
+    $this->region = $value;
+  }
+
+  /**
+   * Magic method for getting the region
+   *    - Checks if the region is an id or the object, if it's not the object grab it via the
+   *
+   * @return Region
+   */
+  protected function getRegion() {
+    if (!empty($this->region) && is_int($this->region)) {
+      $this->region = Region::get($this->region);
+    }
+    return $this->region;
   }
 
   /**
@@ -109,10 +143,11 @@ class Location extends Base_Model {
    * @return array|false - The array contains 2 elements , length and time, which each have a text, and value option. Returns false if something goes wrong
    */
   public function distance($other_loc) {
-    if ($this->city == false || $other_loc->city == false) {
+    if (empty($this->city)|| empty($other_loc->city)) {
       return false;
     }
-    $origin = ($this->address ? str_replace(' ', '+', $this->address) : '') . '+' . $this->city . '+' . $this->state;
+    $this->getRegion();
+    $origin = ($this->address ? str_replace(' ', '+', $this->address) : '') . '+' . $this->city . '+' . $this->region->state;
     $destination = ($other_loc->address ? str_replace(' ', '+', $other_loc->address) : '') . '+' . $other_loc->city . '+' . $other_loc->state;
     $url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=$origin&destinations=$destination&key={$GLOBALS['google_maps_key']}";
     $curl_handle = curl_init();
@@ -187,76 +222,39 @@ class Location extends Base_Model {
    * 
    * @param bool $city_only - calculates from the city level as opposed to the address level. This is true by default to protect user locations.
    * 
-   * @return array|bool - this returns an associative array with the 'lat' and 'lng' of the location, or false if it failed for any reason.
+   * @return bool - this returns an associative array with the 'lat' and 'lng' of the location, or false if it failed for any reason.
+   *
+   * @throws \Exception - EXCEPTION_GOOGLE_COORDINATES_OVER_QUERY_LIMIT if google says query limit reached
    */
-  public function gen_coords($city_only = true) {
+  public function resolve_coordinates($city_only = true) {
     if (!$this->city) {
       return false;
     }
+    $this->getRegion();
     $place = "";
     if (!$city_only) {
-      $name = str_replace(str_split("_ -/\\&?"), "+", $this->name);
-      $address = str_replace(str_split("_ -/\\&?"), "+", $this->address);
-      $place = "$name+$address+";
+      $place .= !empty($this->name) ? "$this->name " : "";
+      $place .= !empty($this->address) ? "$this->address " : "";
     }
-    $address = "$place$this->city+$this->state";
-    $google_api_key = \Nefuzz\Php\Auth::google_maps_key;
-    $url = "https://maps.googleapis.com/maps/api/geocode/json?address=$address&key=$google_api_key";$curl_handle = curl_init();
-    curl_setopt( $curl_handle, CURLOPT_URL, $url );
-    curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, true );
-    $choord_info = json_decode(curl_exec( $curl_handle ), true);
-    curl_close( $curl_handle );
+    $address = urlencode("$place$this->city {$this->region->state}");
+    $google_api_key = \Nefuzz\Php\Auth::GOOGLE_MAPS_KEY;
+    $url = "https://maps.googleapis.com/maps/api/geocode/json?address=$address&key=$google_api_key";
+    $curl_handle = curl_init();
+    curl_setopt($curl_handle, CURLOPT_URL, $url);
+    curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
+    $choord_info = json_decode(curl_exec($curl_handle), true);
+    curl_close($curl_handle);
     if ($choord_info["status"] === "OK") {
       $result = $choord_info['results'][0]['geometry']['location'];
-      $this->lat = $result["lat"];
-      $this->lng = $result["lng"];
-      return $result;
+      $this->coordinates = new Coordinates($result["lat"], $result["lng"]);
     } elseif ($choord_info["status"] === "OVER_QUERY_LIMIT") {
-      // This is thrown if too many addresses are querried at once
-      throw new Exception("OVER_QUERY_LIMIT");
+      // This is thrown if too many addresses are queried at once
+      throw new \Exception(
+        "Attempted to grab coordinates for location id# $this->id, but Google returned OVER QUERY LIMIT",
+        self::EXCEPTION_GOOGLE_COORDINATES_OVER_QUERY_LIMIT
+      );
     } else {
       return false;
     }
-  }
-  
-  /**
-   * This function gets an array of the lat lng coordinates, either returning them or grabbing them if they are not yet set.
-   * 
-   * @param bool $city_only - calculates from the city level as opposed to the address level. This is true by default to protect user locations.
-   * 
-   * @return array|bool - this returns an associative aray with the 'lat' and 'lng' of the location, or false if it failed for any reason.
-   */
-  public function get_coords($city_only = true) {
-    if (!$this->city) {
-      return false;
-    }
-    if($this->lat && $this->lng) {
-      return [
-        "lat" => $this->lat,
-        "lng" => $this->lng
-      ];
-    } else {
-      return $this->gen_coords($city_only);
-    }
-  }
-  
-  /**
-   * serialize the object as a json string
-   * 
-   * @return string - the json string representing this object
-   */
-  public function serialize() {
-    return json_encode($this);
-  }
-  
-  /**
-   * get a new location object from a json
-   * 
-   * @param $json string - the string to get the location from
-   * 
-   * @return Location - the location built from the json
-   */
-  public static function deserialize($json) {
-    return new Location(json_decode($json, true));
   }
 }
