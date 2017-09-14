@@ -1,6 +1,7 @@
 <?php
 
 namespace Nefuzz\Models;
+use Nefuzz\DAOs\Location_SQL_DAO;
 
 /**
  * Class Location
@@ -8,29 +9,61 @@ namespace Nefuzz\Models;
  *
  * @package Nefuzz\Models
  */
-class Location {
-  public $name = "";          //string
-  public $address = "";       //string
-  public $city = "";          //string
-  public $region = "";        //string
-  public $region_id = 1;      //int
-  public $state = "";         //string
-  public $zip = "";           //string
-  public $country = "";       //string
-  public $lat = 0;            //float
-  public $lng = 0;            //float
-  
+class Location extends Base_Model {
+
   /**
-   * constructs a new Location object using an array
-   * 
-   * @param array $location_array - an associative array with keys named for the properties in the location.
+   * The location id
+   *
+   * @var int
    */
-  public function __construct($location_array) {
-    foreach ($location_array as $key => $value) {
-      if (isset($this->{$key})) {
-        $this->{$key} = $value;
-      }
-    }
+  public $id;
+
+  /**
+   * The name of the location
+   *
+   * @var string
+   */
+  public $name;
+
+  /**
+   * The street address
+   *
+   * @var string
+   */
+  public $address;
+
+  /**
+   * The town/city
+   *
+   * @var string
+   */
+  public $city;
+
+  /**
+   * Coordinates for this location
+   *
+   * @var Coordinates
+   */
+  private $coordinates;
+
+  /**
+   * The region id/object for this location
+   *
+   * @var int|Region
+   */
+  private $region;
+
+  /**
+   * Get a location by id
+   *
+   * @param int $id
+   *
+   * @return Location
+   */
+  public static function get($id) {
+    $location = new Location();
+    $location->populate(Location_SQL_DAO::get($id));
+    return $location;
   }
 
   /**
@@ -38,15 +71,34 @@ class Location {
    * 
    * @return string - the address as a string
    */
-  public function full_string() {
+  public function __toString() {
     $loc_string = "";
-    $loc_string .= ($this->name ? $this->name . ', ' : '');
-    $loc_string .= ($this->address ? $this->address . ', ' : '');
-    $loc_string .= ($this->city ? $this->city . ', ' : '');
-    $loc_string .= ($this->state ? $this->state . ' ' : '');
-    $loc_string .= ($this->zip ? $this->zip : '');
-    $loc_string .= ($this->country ? ', ' . $this->country : '');
     return $loc_string;
+  }
+
+  /**
+   * Set function for coordinates
+   *
+   * @param Coordinates $value
+   */
+  public function setCoordinates($value) {
+    $this->coordinates = $value;
+  }
+
+  /**
+   * Get magic method for coordinates.
+   *    - Gets the coordinates from google if none are set
+   *
+   * @return Coordinates|null - The coordinate object or null if failed for any reason
+   */
+  public function getCoordinates() {
+    if(empty($this->city)) {
+      return null;
+    }
+    if (empty($this->coordinates->lat) || empty($this->coordinates->lng)) {
+      $success = $this->gen_coords();
+    }
+    return !empty($success) ? $this->coordinates : null;
   }
 
   /**

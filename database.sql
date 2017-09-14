@@ -9,7 +9,7 @@ CREATE TABLE regions (
     id              INT             NOT NULL AUTO_INCREMENT,
     area            VARCHAR(50)     NOT NULL,
     region          VARCHAR(50)     NOT NULL,
-    state           VARCHAR(50)     NOT NULL,
+    state           VARCHAR(5)      NOT NULL,
     state_name      VARCHAR(50)     NOT NULL,
     country         VARCHAR(50)     NOT NULL DEFAULT "United States",
     

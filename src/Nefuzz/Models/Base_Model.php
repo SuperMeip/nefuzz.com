@@ -8,7 +8,7 @@ namespace Nefuzz\Models;
  * The base class for models
  * @package Nefuzz\Models
  */
-class Base_Model {
+abstract class Base_Model {
 
   /**
    * Populate the model with data from an array
@@ -32,6 +32,45 @@ class Base_Model {
     if (!empty($values)) {
       $this->populate($values);
     }
+  }
+
+  /**
+   * Magic method get
+   *
+   * @param string $name
+   *
+   * @return mixed
+   *
+   * @throws \Exception - If no getX method is found for the property being called
+   */
+  public function __get($name)
+  {
+    $method = sprintf('get%s', ucfirst($name));
+
+    if (!method_exists($this, $method)) {
+      throw new \Exception();
+    }
+
+    return $this->$method();
+  }
+
+  /**
+   * Magic methods set
+   *
+   * @param string $name
+   * @param mixed  $value
+   *
+   * @throws \Exception - If no getX method is found for the property being called
+   */
+  public function __set($name, $value)
+  {
+    $method = sprintf('set%s', ucfirst($name));
+
+    if (!method_exists($this, $method)) {
+      throw new \Exception();
+    }
+
+    $this->$method($value);
   }
 
   /**
