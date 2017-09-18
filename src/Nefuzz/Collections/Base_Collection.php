@@ -1,5 +1,7 @@
 <?php
 
+namespace Nefuzz\Collections;
+
 /**
  * The base collection class
  *

@@ -2,6 +2,7 @@
 
 namespace Nefuzz\Models;
 
+use Nefuzz\DAOs\Location_SQL_DAO;
 use Nefuzz\DAOs\User_SQL_DAO as SQL_DAO;
 
 /**
@@ -111,21 +112,21 @@ class User extends Base_Model {
   /**
    * Attendance info
    *
-   * @var Nefuzz\Collections\Attendance_Collection
+   * @var \Nefuzz\Collections\Event_Collection
    */
-  private $attendance_info;
+  private $events_attending;
 
   /**
    * A collection of meets managed/hosted by the user
    *
-   * @var Nefuzz\Collections\Hosting_Collection
+   * @var \Nefuzz\Collections\Event_Collection
    */
-  private $meet_info;
+  private $events_hosting;
 
   /**
    * The groups this user is a member of
    *
-   * @var Nefuzz\Collections\Group_Collection
+   * @var \Nefuzz\Collections\Group_Collection
    */
   private $group_info;
 
@@ -144,5 +145,12 @@ class User extends Base_Model {
       $user_model->is_current_user = SQL_DAO::exists($user, $password);
     }
     return $user_model;
+  }
+
+  public function getLocation() {
+    if (!empty($this->location) && is_int($this->location)) {
+      $this->location = Location::get($this->location);
+    }
+    return $this->location;
   }
 }

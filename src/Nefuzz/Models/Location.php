@@ -1,7 +1,7 @@
 <?php
 
 namespace Nefuzz\Models;
-use Nefuzz\DAOs\Location_SQL_DAO;
+use Nefuzz\DAOs\Location_SQL_DAO as SQL_DAO;
 
 /**
  * Class Location
@@ -69,8 +69,17 @@ class Location extends Base_Model {
    */
   public static function get($id) {
     $location = new Location();
-    $location->populate(Location_SQL_DAO::get_by_id($id));
+    $location->populate(SQL_DAO::get_by_id($id));
     return $location;
+  }
+
+  /**
+   * Save the location to the DB
+   *
+   * @return int - The id of the saved location, 0 if failed
+   */
+  public function save() {
+    return !empty($this->id) ? SQL_DAO::update($this) : SQL_DAO::add($this);
   }
 
   /**
@@ -131,6 +140,18 @@ class Location extends Base_Model {
   protected function getRegion() {
     if (!empty($this->region) && is_int($this->region)) {
       $this->region = Region::get($this->region);
+    }
+    return $this->region;
+  }
+
+  /**
+   * Get the id of the region without making a call to the DB if necessary
+   *
+   * @return int - The region ID
+   */
+  public function getRegionID() {
+    if (!empty($this->region->id)) {
+      return $this->region->id;
     }
     return $this->region;
   }

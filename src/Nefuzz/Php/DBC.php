@@ -70,7 +70,11 @@ class DBC {
     }
 
     function get_insert_id() {
-        return $this->db->insert_id;
+      return $this->db->insert_id;
+    }
+
+    function get_affected_rows() {
+      return $this->db->affected_rows;
     }
 
     function query_to_array($statement, $types = "" , $arguments = [], $verbose = false) {
