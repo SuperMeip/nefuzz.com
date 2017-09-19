@@ -8,6 +8,9 @@ use Nefuzz\DAOs\Location_SQL_DAO as SQL_DAO;
  * Model for locations
  *
  * @package Nefuzz\Models
+ *
+ * @property Region region
+ * @property int    regionID
  */
 class Location extends Base_Model {
 
