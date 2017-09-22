@@ -9,8 +9,8 @@ use Nefuzz\DAOs\Location_SQL_DAO as SQL_DAO;
  *
  * @package Nefuzz\Models
  *
- * @property Region region
- * @property int    regionID
+ * @property Region      region
+ * @property Coordinates coordinates
  */
 class Location extends Base_Model {
 
@@ -131,7 +131,11 @@ class Location extends Base_Model {
    * @param Region $value
    */
   protected function setRegion($value) {
-    $this->region = $value;
+    if (!empty($value) && is_int($value)) {
+      $this->region = Region::get($value);
+    } else {
+      $this->region = $value;
+    }
   }
 
   /**
@@ -143,18 +147,6 @@ class Location extends Base_Model {
   protected function getRegion() {
     if (!empty($this->region) && is_int($this->region)) {
       $this->region = Region::get($this->region);
-    }
-    return $this->region;
-  }
-
-  /**
-   * Get the id of the region without making a call to the DB if necessary
-   *
-   * @return int - The region ID
-   */
-  public function getRegionID() {
-    if (!empty($this->region->id)) {
-      return $this->region->id;
     }
     return $this->region;
   }

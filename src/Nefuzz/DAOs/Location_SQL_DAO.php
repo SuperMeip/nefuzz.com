@@ -73,7 +73,7 @@ class Location_SQL_DAO extends Base_DAO {
         $location->name,
         $location->address,
         $location->city,
-        $location->regionID,
+        $location->region->id,
         $location->coordinates->lat,
         $location->coordinates->lng,
         $location->id
@@ -103,7 +103,7 @@ class Location_SQL_DAO extends Base_DAO {
         $location->name,
         $location->address,
         $location->city,
-        $location->regionID,
+        $location->region->id,
         $location->coordinates->lat,
         $location->coordinates->lng
       ]
