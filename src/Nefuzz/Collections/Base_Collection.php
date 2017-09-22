@@ -85,9 +85,9 @@ class Base_Collection {
   public function populate($values) {
     $parts = explode('_', get_class($this));
     unset($parts[count($parts) - 1]);
-    $model_name = implode('_', $parts);
+    $model_name = "\\Nefuzz\\Models\\"  . implode('_', $parts);
     foreach ($values as $column) {
-      $this->models[] = new \Nefuzz\Models\{$model_name}($column);
+      $this->models[] = new $model_name($column);
     }
   }
 }

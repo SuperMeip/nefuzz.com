@@ -10,6 +10,8 @@ use Nefuzz\DAOs\User_SQL_DAO as SQL_DAO;
  * The user model
  *
  * @package Nefuzz\Models
+ *
+ * @property Location location
  */
 class User extends Base_Model {
 
@@ -153,4 +155,6 @@ class User extends Base_Model {
     }
     return $this->location;
   }
+
+
 }
