@@ -3,7 +3,6 @@
 namespace Nefuzz\DAOs;
 
 use Nefuzz\Models\Coordinates;
-use Nefuzz\Php\DBC as DB;
 use Nefuzz\Php\DBC;
 
 /**
@@ -34,7 +33,7 @@ class Location_SQL_DAO extends Base_DAO {
       WHERE
         id = ?;
     ";
-    $results = (new DB())->query_to_array($query, "i", [$id]);
+    $results = (new DBC())->query_to_array($query, "i", [$id]);
     if (!empty($results[0])) {
       $results = $results[0];
       $results['coordinates'] = new Coordinates($results['lat'], $results['lng']);

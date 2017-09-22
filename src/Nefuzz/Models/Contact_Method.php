@@ -57,9 +57,9 @@ class Contact_Method extends Base_Model {
   /**
    * Optional, name of the person the contact method belongs to
    *
-   * @var
+   * @var string
    */
-  public $name;
+  public $contact_name;
 
   /**
    * If this method is the default contact method in a collection
@@ -67,5 +67,4 @@ class Contact_Method extends Base_Model {
    * @var bool
    */
   public $is_default_method = false;
-
 }

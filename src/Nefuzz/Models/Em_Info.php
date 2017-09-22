@@ -2,37 +2,63 @@
 
 namespace Nefuzz\Models;
 
+use Nefuzz\Collections\Contact_Method_Collection;
+use Nefuzz\DAOs\Em_Info_SQL_DAO as SQL_DAO;
+
 /**
  * Class Em_Info
  * The model for emergency info
  *
  * @package Nefuzz\Models
  */
-class Em_Info {
-  public $emergency_contacts = [];    //array[assoc[name=>string, phone_number=>string]]
-  public $allergies = "";             //string
-  public $bee_allergy = false;        //int(bool)
-  public $food_allergy = false;       //int(bool)
-  public $medical_issues = "";        //string
+class Em_Info extends Base_Model {
 
   /**
-   * Em_Info constructor.
+   * Emergency Contact Info/Methods
    *
-   * @param array $em_info_array - An assoc array to populate from
+   * @var Contact_Method_Collection
    */
-  public function __construct($em_info_array) {
-    array_push($this->emergency_contacts, [
-      "phone_number" => $em_info_array["em_phone_1"],
-      "name" => $em_info_array["em_name_1"],
-    ]);
-    array_push($this->emergency_contacts, [
-      "phone_number" => $em_info_array["em_phone_2"],
-      "name" => $em_info_array["em_name_2"],
-    ]);
-    $this->bee_allergy = $em_info_array["bee_allergy"];
-    $this->food_allergy = $em_info_array["food_allergy"];
-    $this->medical_issues = $em_info_array["medical_issues"];
-    $this->allergies = $em_info_array["allergies"];
+  public $emergency_contacts;
+
+  /**
+   * List of allergies
+   *
+   * @var string
+   */
+  public $allergies;
+
+  /**
+   * If they have a bee allergy
+   *
+   * @var bool
+   */
+  public $bee_allergy;
+
+  /**
+   * If they have a food allergy
+   *
+   * @var bool|mixed
+   */
+  public $food_allergy;
+
+  /**
+   * List of any applicable medical issues
+   *
+   * @var string
+   */
+  public $medical_issues;
+
+  /**
+   * Get the emergency info for a specific user
+   *
+   * @param int $user_id - The id of the user to grab info for
+   *
+   * @return Em_Info - The emergency info as a populate-able array
+   */
+  public static function get($user_id) {
+    $em_info = new Em_Info();
+    $em_info->populate(SQL_DAO::get_by_user_id($user_id));
+    return $em_info;
   }
 
   /**

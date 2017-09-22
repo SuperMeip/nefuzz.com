@@ -24,6 +24,21 @@ abstract class Base_Model {
   }
 
   /**
+   * Build a new model from the given array of values
+   *
+   * @param array $values - The values of the model as variable name => value
+   *
+   * @return self - A model built from the array values
+   */
+  public static function build($values) {
+    $class_name = get_class();
+    $model = new $class_name();
+    $model->populate($values);
+
+    return $model;
+  }
+
+  /**
    * Constructor, optionally populates too
    *
    * @param null $values
