@@ -2,7 +2,7 @@
 
 namespace Nefuzz\Models;
 
-use Nefuzz\DAOs\Location_SQL_DAO;
+use Nefuzz\Collections\Contact_Method_Collection;
 use Nefuzz\DAOs\User_SQL_DAO as SQL_DAO;
 
 /**
@@ -12,6 +12,7 @@ use Nefuzz\DAOs\User_SQL_DAO as SQL_DAO;
  * @package Nefuzz\Models
  *
  * @property Location location
+ * @property Em_Info  emergency_info
  */
 class User extends Base_Model {
 
@@ -101,13 +102,15 @@ class User extends Base_Model {
 
   /**
    * The user's contact information
-   * @var array
+   *
+   * @var Contact_Method_Collection
    */
   private $contact_info;
 
   /**
-   * The user's Emergency Info/Em_Info_id
-   * @var int|Em_Info
+   * The user's Emergency Info
+   *
+   * @var Em_Info
    */
   private $emergency_info;
 
@@ -149,6 +152,11 @@ class User extends Base_Model {
     return $user_model;
   }
 
+  /**
+   * Get magic method for the location
+   *
+   * @return Location
+   */
   public function getLocation() {
     if (!empty($this->location) && is_int($this->location)) {
       $this->location = Location::get($this->location);
@@ -156,5 +164,15 @@ class User extends Base_Model {
     return $this->location;
   }
 
-
+  /**
+   * Get magic method for the emergency info
+   *
+   * @return Em_Info
+   */
+  public function getEmergency_info() {
+    if (empty($this->emergency_info)) {
+      $this->emergency_info = Em_Info::get($this->id);
+    }
+    return $this->emergency_info;
+  }
 }
