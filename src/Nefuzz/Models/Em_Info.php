@@ -70,14 +70,14 @@ class Em_Info extends Base_Model {
    */
   public function get_as_array($human_readable = false) {
     $array = [];
-    $array[($human_readable ? 'Contact 1 Name' : 'em_name_1')] = $this->emergency_contacts[0]['name'];
-    $array[($human_readable ? 'Contact 1 Phone' : 'em_phone_1')] = $this->emergency_contacts[0]['phone_number'];
-    $array[($human_readable ? 'Contact 2 Name' : 'em_name_2')] = $this->emergency_contacts[1]['name'];
-    $array[($human_readable ? 'Contact 2 Phone' : 'em_phone_2')] = $this->emergency_contacts[1]['phone_number'];
+    $array[($human_readable ? 'Contact 1 Name' : 'em_name_1')] = $this->emergency_contacts[0]->contact_name;
+    $array[($human_readable ? 'Contact 1 Phone' : 'em_phone_1')] = $this->emergency_contacts[0]->value;
+    $array[($human_readable ? 'Contact 2 Name' : 'em_name_2')] = $this->emergency_contacts[1]->contact_name;
+    $array[($human_readable ? 'Contact 2 Phone' : 'em_phone_2')] = $this->emergency_contacts[1]->value;
     $array[($human_readable ? 'Medical Issues' : 'medical_issues')] = $this->medical_issues;
     $array[($human_readable ? 'Allergies' : 'allergies')] = $this->allergies;
-    $array[($human_readable ? 'Food Allergy' : 'food_allergy')] = ($human_readable ? ($this->food_allergy ? "yes" : "no") :$this->food_allergy);
-    $array[($human_readable ? 'Bee Allergy' : 'bee_allergy')] = ($human_readable ? ($this->bee_allergy ? "yes" : "no") :$this->bee_allergy);
+    $array[($human_readable ? 'Food Allergy' : 'food_allergy')] = ($human_readable ? (!empty($this->food_allergy) ? "yes" : "no") : $this->food_allergy);
+    $array[($human_readable ? 'Bee Allergy' : 'bee_allergy')] = ($human_readable ? (!empty($this->bee_allergy) ? "yes" : "no") : $this->bee_allergy);
     return $array;
   }
 }
