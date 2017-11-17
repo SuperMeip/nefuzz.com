@@ -2,7 +2,7 @@
 
 namespace Nefuzz\DAOs;
 
-use Nefuzz\Php\DBC as DB;
+use Nefuzz\Php\DBC;
 
 /**
  * The sql dao for the user model
@@ -44,7 +44,7 @@ class User_SQL_DAO extends Base_DAO {
       WHERE
         $lookup_column = ?;
     ";
-    $results = (new DB())->query_to_array($query, "s", [$user]);
+    $results = (new DBC())->query_to_array($query, $lookup_column === 'username' ? "s" : "i", [$user]);
     return $results[0];
   }
 
@@ -59,13 +59,13 @@ class User_SQL_DAO extends Base_DAO {
    */
   public static function exists ($username, $password = false) {
     if ($password === false) {
-      $result = (new DB())->query_to_array(
+      $result = (new DBC())->query_to_array(
         'SELECT username from users where username = ?;',
         's',
         [$username]
       );
     } else {
-      $result = (new DB())->query_to_array(
+      $result = (new DBC())->query_to_array(
         'SELECT
           username
         FROM users

@@ -1,6 +1,7 @@
 <?php
 
 namespace Nefuzz\Models;
+
 use Nefuzz\DAOs\Location_SQL_DAO as SQL_DAO;
 
 /**

@@ -175,4 +175,8 @@ class User extends Base_Model {
     }
     return $this->emergency_info;
   }
+
+  public function getContacts() {
+
+  }
 }

@@ -43,7 +43,7 @@ class Contact_Method extends Base_Model {
   /**
    * The method used to contact
    *
-   * @var
+   * @var int
    */
   public $method;
 
