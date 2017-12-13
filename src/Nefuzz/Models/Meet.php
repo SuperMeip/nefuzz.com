@@ -2,6 +2,8 @@
 
 namespace Nefuzz\Models;
 
+use Nefuzz\Collections\Event_Collection;
+use Nefuzz\DAOs\Event_SQL_DAO;
 use Nefuzz\DAOs\Meet_SQL_DAO as SQL_DAO;
 use RRule\RRule;
 
@@ -141,8 +143,29 @@ class Meet extends Base_Model {
     return $this->rrule;
   }
 
-  public function get_events() {
+  /**
+   * Get magic method for the event details
+   *
+   * @return Event_Details
+   */
+  public function getDetails() {
+    if (!empty($this->details) && is_int($this->details)) {
+      $this->details = Event_Details::get($this->details);
+    }
+    return $this->details;
+  }
 
+  /**
+   * Get magic method for the events for this meet
+   *
+   * @return \Nefuzz\Collections\Event_Collection
+   */
+  public function getEvents() {
+    if (get_class($this->events) !== 'Event_Collection') {
+      $this->events = new Event_Collection();
+      $this->events->populate(Event_SQL_DAO::get_events_for_meet($this->id));
+    }
+    return $this->events;
   }
 
   public function get_future_events() {

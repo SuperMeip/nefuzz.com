@@ -2,36 +2,86 @@
 
 namespace Nefuzz\Models;
 
-use Nefuzz\Php\DBC;
+use Nefuzz\DAOs\Event_Details_SQL_DAO as SQL_DAO;
 
 /**
  * Class Event_Details
- * Model for the event details
+ * Model for a set of event details
  *
  * @package Nefuzz\Models
  */
-class Event_Details {
-  public $id = 0;
-  public $has_icon = 0;
-  public $description = "";
-  public $short_info = "";
-  public $url = "";
-  public $tags = [];
-  public $must_rsvp = 0;
-  public $max_attendees = 0;
-  
-  public $location = "";
-  public $alt_host_info = [];
-  
-  public function __construct($event_details_info, $location_obj, $alt_host_info) {
-    foreach ($event_details_info as $key => $value) {
-      if (isset($this->{$key})) {
-        $this->{$key} = $value;
-      }
-    }
-    $this->location = $location_obj;
-    $this->alt_host_info = $alt_host_info;
-  }
+class Event_Details extends Base_Model {
+
+  /**
+   * The id of this set of event details
+   *
+   * @var int
+   */
+  public $id;
+
+  /**
+   * If this event has an icon
+   *
+   * @var int
+   */
+  public $has_icon;
+
+  /**
+   * The event description
+   *
+   * @var string
+   */
+  public $description;
+
+  /**
+   * The short blurb about the event
+   *
+   * @var string
+   */
+  public $short_info;
+
+  /**
+   * The owner provided url for the event
+   *
+   * @var string
+   */
+  public $url;
+
+  /**
+   * The tags for this event
+   * @TODO: Implement tag model and tags
+   *
+   * @var array
+   */
+  public $tags;
+
+  /**
+   * If rsvp is required for this event
+   *
+   * @var bool
+   */
+  public $must_rsvp;
+
+  /**
+   * The max number of attendees for this event
+   *
+   * @var int
+   */
+  public $max_attendees;
+
+  /**
+   * The alternate host information
+   *
+   * @var Contact_Method
+   */
+  public $alt_host;
+
+  /**
+   * The location of this event
+   *
+   * @var int|Location
+   */
+  public $location;
 
   /**
    * Get the event details by detail id
@@ -41,38 +91,27 @@ class Event_Details {
    * @return Event_Details - The object containing the event details
    */
   public static function get($event_details_id) {
-    $DB = new DBC();
-    $query = "
-      SELECT
-        e.*,
-        r.name AS region_name,
-        r.state AS state
-      FROM events e
-      JOIN regions r ON e.region = r.id
-      WHERE id = ?;
-    ";
-    $event_details_info = $DB->query_to_array($query, "i", $event_details_id)[0];
-    
-    $location_obj = new Location([
-      "name" => $event_info['location_name'],
-      "address" => $event_info['address'],
-      "city" => $event_info['city'],
-      "region_id" => $event_info['region'],
-      "zip" => $event_info['zip'],
-      "country" => $event_info['country'],
-      "region" => $event_info['region_name'],
-      "state" => $event_info['state'],
-    ]);
-    
-    $alt_host_info = [];
-    if ($event_info['has_alt_host']) {
-      $alt_host_info = [
-        "name" => $event_info['alt_name'],
-        "contact_info" => $event_info['alt_contact'],
-        "contact_method" => $event_info['alt_method']
-      ];
+    $event_details_model = new Event_Details();
+    $event_details_info = SQL_DAO::get_general_info($event_details_id);
+    $alt_host = new Contact_Method();
+    $alt_host->contact_name = $event_details_info['alt_name'];
+    $alt_host->value = $event_details_info['alt_contact'];
+    $alt_host->method = $event_details_info['alt_method'];
+    $event_details_info['alt_host'] = $alt_host;
+    $event_details_model->populate($event_details_info);
+
+    return $event_details_model;
+  }
+
+  /**
+   * Get magic method for the location
+   *
+   * @return Location
+   */
+  public function getLocation() {
+    if (!empty($this->location) && is_int($this->location)) {
+      $this->location = Location::get($this->location);
     }
-    
-    return new Event_Details($event_details_info, $location_obj, $alt_host_info);
+    return $this->location;
   }
 }

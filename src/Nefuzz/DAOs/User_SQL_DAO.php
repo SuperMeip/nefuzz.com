@@ -84,6 +84,13 @@ class User_SQL_DAO extends Base_DAO {
     }
   }
 
+  /**
+   * Get all the attendees of an event
+   *
+   * @param int $event_id - The id of the event to get attendees of
+   *
+   * @return array - The attendee information for this event
+   */
   public static function get_attendees_for_event($event_id) {
     $query = "
       SELECT

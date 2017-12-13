@@ -140,10 +140,9 @@ class Event extends Base_Model {
    * @return \Nefuzz\Collections\Attendee_Collection
    */
   public function getAttendees() {
-    if (get_class($this->attendees) != 'User_Collection') {
-      $attendee_collection = new Attendee_Collection();
-      $attendee_collection->populate(User_SQL_DAO::get_attendees_for_event($this->id));
-      $this->attendees = $attendee_collection;
+    if (get_class($this->attendees) !== 'Attendee_Collection') {
+      $this->attendees = new Attendee_Collection();
+      $this->attendees->populate(User_SQL_DAO::get_attendees_for_event($this->id));
     }
     return $this->attendees;
   }

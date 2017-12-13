@@ -184,7 +184,7 @@ class User extends Base_Model {
    * @return Contact_Method_Collection'
    */
   public function getContact_info() {
-    if(empty($this->contact_info)) {
+    if(get_class($this->contact_info) !== "Contact_Method_Collection") {
       $this->contact_info = new Contact_Method_Collection();
       $this->contact_info->populate(Contact_Method_SQL_DAO::get_contact_methods_for_user($this->id));
     }
