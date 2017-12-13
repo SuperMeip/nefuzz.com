@@ -45,7 +45,7 @@ class User_SQL_DAO extends Base_DAO {
         $lookup_column = ?;
     ";
     $results = (new DBC())->query_to_array($query, $lookup_column === 'username' ? "s" : "i", [$user]);
-    return $results[0];
+    return $results[0] ?? [];
   }
 
 
@@ -57,7 +57,7 @@ class User_SQL_DAO extends Base_DAO {
    *
    * @return bool - if succeeded
    */
-  public static function exists ($username, $password = false) {
+  public static function exists($username, $password = false) {
     if ($password === false) {
       $result = (new DBC())->query_to_array(
         'SELECT username from users where username = ?;',
@@ -82,5 +82,29 @@ class User_SQL_DAO extends Base_DAO {
     } else {
       return false;
     }
+  }
+
+  public static function get_attendees_for_event($event_id) {
+    $query = "
+      SELECT
+        id,
+        username,
+        has_icon,
+        fur_name,
+        real_name,
+        bio,
+        species,
+        contact_method,
+        is_admin,
+        joined_time,
+        location,
+        attendee_type
+      FROM users
+      JOIN event_attendees ON users.id = event_attendees.user;
+      WHERE
+        ea.event = ?;
+    ";
+    $results = (new DBC())->query_to_array($query, "i", [$event_id]);
+    return $results;
   }
 }

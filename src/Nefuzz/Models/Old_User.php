@@ -319,7 +319,7 @@ class Old_User extends \Nefuzz\Models\Base_Model {
     }
     return array_unique(array_merge($ids_groups, $ids_solo), SORT_REGULAR);
   }
-  
+
   private static function get_event_info($username, $Parent_DBC = false) {
     if (!$Parent_DBC) {
       $DB = new DBC();

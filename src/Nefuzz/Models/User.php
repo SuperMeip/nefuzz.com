@@ -3,6 +3,7 @@
 namespace Nefuzz\Models;
 
 use Nefuzz\Collections\Contact_Method_Collection;
+use Nefuzz\DAOs\Contact_Method_SQL_DAO;
 use Nefuzz\DAOs\User_SQL_DAO as SQL_DAO;
 
 /**
@@ -11,8 +12,9 @@ use Nefuzz\DAOs\User_SQL_DAO as SQL_DAO;
  *
  * @package Nefuzz\Models
  *
- * @property Location location
- * @property Em_Info  emergency_info
+ * @property Location                  location
+ * @property Em_Info                   emergency_info
+ * @property Contact_Method_Collection contact_info
  */
 class User extends Base_Model {
 
@@ -133,7 +135,7 @@ class User extends Base_Model {
    *
    * @var \Nefuzz\Collections\Group_Collection
    */
-  private $group_info;
+  private $groups;
 
   /**
    * Get user from the DB by name or ID
@@ -176,7 +178,20 @@ class User extends Base_Model {
     return $this->emergency_info;
   }
 
-  public function getContacts() {
+  /**
+   * Get magic method for the contact info
+   *
+   * @return Contact_Method_Collection'
+   */
+  public function getContact_info() {
+    if(empty($this->contact_info)) {
+      $this->contact_info = new Contact_Method_Collection();
+      $this->contact_info->populate(Contact_Method_SQL_DAO::get_contact_methods_for_user($this->id));
+    }
+    return $this->contact_info;
+  }
+
+  public function getAttendance_info() {
 
   }
 }

@@ -16,6 +16,9 @@ abstract class Base_Model {
    * @param array $values - the values of the model as name => value
    */
   protected function populate($values) {
+    if (!is_array($values)) {
+      return;
+    }
     foreach ($values as $key => $value) {
       if (isset($this->{$key})) {
         $this->{$key} = $value;
